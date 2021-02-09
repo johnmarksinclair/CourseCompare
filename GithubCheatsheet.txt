@@ -1,0 +1,16 @@
+WORKFLOW
+1. pick feature to implement (trello)
+2. update your local git repo 
+3. create a new branch for your feature
+4. implement the feature
+5. add, commit and push your feature to github (your new branch)
+6. open a pull request - someone else will review your code and merge it in 
+
+CHEATSHEET
+inital copy of repo - git clone <url>
+update local copy of repo - git pull origin <branchname> (normally master)
+check current branch name - git branch
+create new branch - git checkout -b "<branchname>"
+stage changes - git add .
+commit changes - git commit -m "<message>"
+push changes - git push origin <branchname>
