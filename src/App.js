@@ -11,9 +11,9 @@ function App() {
     <Router>
       <Navbar />
       <Switch>
+        <Route path="/" exact component={Home} />
         <Route path="/signin" exact component={SignIn} />
         <Route path="/signup" exact component={SignUp} />
-        <Route path="/home" exact component={Home} />
         <Route path="/profile" exact component={Profile} />
       </Switch>
     </Router>

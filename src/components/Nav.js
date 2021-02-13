@@ -12,7 +12,7 @@ const nav = () => {
   const user = false;
   return (
     <Navbar bg="light" expand="lg">
-      <Navbar.Brand as={Link} to="/home">
+      <Navbar.Brand as={Link} to="/">
         glasswindow
       </Navbar.Brand>
 
