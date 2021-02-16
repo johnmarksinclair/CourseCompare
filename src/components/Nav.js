@@ -1,43 +1,67 @@
 import {
   Navbar,
   Nav,
-  NavDropdown,
   Form,
   FormControl,
   Button,
+  InputGroup,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-const nav = () => {
-  const user = false;
+const _Nav = (props) => {
+  const handleSignOut = () => {
+    props.setUser(false);
+  };
   return (
-    <Navbar bg="light" expand="lg">
-      <Navbar.Brand as={Link} to="/">
-        glasswindow
-      </Navbar.Brand>
-
-      <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="mr-auto">
-          <Nav.Link as={Link} to={user ? "/profile" : "/signin"}>
-            Profile
-          </Nav.Link>
-
-          <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-            <NavDropdown.Item>Action</NavDropdown.Item>
-            <NavDropdown.Item>Another</NavDropdown.Item>
-            <NavDropdown.Item>Something</NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item>Separated</NavDropdown.Item>
-          </NavDropdown>
-        </Nav>
-
-        <Form inline>
-          <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-          <Button variant="outline-success">Search</Button>
-        </Form>
-      </Navbar.Collapse>
-    </Navbar>
+    <div className="flexnone">
+      <Navbar bg="light" variant="light" expand="md">
+        <Navbar.Brand as={Link} to="/home">
+          glasswindow
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          {props.user ? (
+            <>
+              <Nav className="mr-auto">
+                <Nav.Link as={Link} to="/home">
+                  Home
+                </Nav.Link>
+                <Nav.Link as={Link} to="/courses">
+                  Courses
+                </Nav.Link>
+                <Nav.Link as={Link} to="/profile">
+                  Profile
+                </Nav.Link>
+                <Nav.Link
+                  as={Link}
+                  to="/"
+                  onClick={() => {
+                    handleSignOut();
+                  }}
+                >
+                  Sign Out
+                </Nav.Link>
+              </Nav>
+              <Form inline>
+                <InputGroup>
+                  <FormControl placeholder="Search" />
+                  <InputGroup.Append>
+                    <Button variant="outline-secondary">Search</Button>
+                  </InputGroup.Append>
+                </InputGroup>
+              </Form>
+            </>
+          ) : (
+            <Nav className="mr-auto">
+              <Nav.Link as={Link} to="/signin">
+                Sign In
+              </Nav.Link>
+            </Nav>
+          )}
+        </Navbar.Collapse>
+      </Navbar>
+    </div>
   );
 };
 
-export default nav;
+export default _Nav;
