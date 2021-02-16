@@ -15,7 +15,7 @@ const _Nav = (props) => {
   return (
     <div className="flexnone">
       <Navbar bg="light" variant="light" expand="md">
-        <Navbar.Brand as={Link} to="/home">
+        <Navbar.Brand as={Link} to="/">
           glasswindow
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

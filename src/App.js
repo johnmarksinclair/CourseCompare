@@ -9,7 +9,7 @@ import Profile from "./components/Profile";
 import Course from "./components/Course";
 
 function App() {
-  const [user, setUser] = useState(true);
+  const [user, setUser] = useState(false);
   return (
     <div className="cont">
       <Router>
