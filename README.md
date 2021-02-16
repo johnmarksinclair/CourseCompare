@@ -18,7 +18,7 @@ check current branch name - `git branch`\
 create new branch - `git checkout -b "<branchname>"`\
 stage changes - `git add .`\
 commit changes - `git commit -m "<message>"`\
-push changes - `git push origin <branchname>`\
+push changes - `git push origin <branchname>`
 
 ## Workflow
 
