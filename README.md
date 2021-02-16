@@ -12,13 +12,13 @@ You will also see any lint errors in the console.
 
 ## GitHub Cheatsheet
 
-inital copy of repo - `git clone <url>`
-update local copy of repo - `git pull origin <branchname> (normally master)`
-check current branch name - `git branch`
-create new branch - `git checkout -b "<branchname>"`
-stage changes - `git add .`
-commit changes - `git commit -m "<message>"`
-push changes - `git push origin <branchname>`
+inital copy of repo - `git clone <url>`\
+update local copy of repo - `git pull origin <branchname> (normally master)`\
+check current branch name - `git branch`\
+create new branch - `git checkout -b "<branchname>"`\
+stage changes - `git add .`\
+commit changes - `git commit -m "<message>"`\
+push changes - `git push origin <branchname>`\
 
 ## Workflow
 
