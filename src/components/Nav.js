@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import { UserContext } from "../providers/UserProvider";
 import {
   Navbar,
   Nav,
@@ -7,11 +9,10 @@ import {
   InputGroup,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { auth } from "../firebase";
 
-const _Nav = (props) => {
-  const handleSignOut = () => {
-    props.setUser(false);
-  };
+const _Nav = () => {
+  const user = useContext(UserContext);
   return (
     <div className="flexnone">
       <Navbar bg="light" variant="light" expand="md">
@@ -20,7 +21,7 @@ const _Nav = (props) => {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          {props.user ? (
+          {user ? (
             <>
               <Nav className="mr-auto">
                 <Nav.Link as={Link} to="/home">
@@ -32,13 +33,7 @@ const _Nav = (props) => {
                 <Nav.Link as={Link} to="/profile">
                   Profile
                 </Nav.Link>
-                <Nav.Link
-                  as={Link}
-                  to="/"
-                  onClick={() => {
-                    handleSignOut();
-                  }}
-                >
+                <Nav.Link as={Link} to="/" onClick={() => auth.signOut()}>
                   Sign Out
                 </Nav.Link>
               </Nav>
