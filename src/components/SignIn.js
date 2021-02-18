@@ -1,16 +1,8 @@
 // import { Form } from "react-bootstrap";
 // import { Link } from "react-router-dom";
 import { signInWithGoogle } from "../firebase";
-import { useHistory } from "react-router-dom";
 
 const SignIn = () => {
-  const history = useHistory();
-
-  const handleGoogleSignIn = () => {
-    signInWithGoogle();
-    history.push("/home");
-  };
-
   return (
     <div className="flexauto centerteddiv authdiv">
       {/* <Form>
@@ -33,7 +25,7 @@ const SignIn = () => {
       <div className="noaccount">
         <button
           className="signbtn googlebtn"
-          onClick={() => handleGoogleSignIn()}
+          onClick={() => signInWithGoogle()}
         >
           Google Sign In
         </button>

@@ -17,8 +17,9 @@ function Application() {
         <Navbar />
         <Route path="/" exact component={Home} />
         <Route path="/home" exact component={Home} />
-        {user ? (
+        {/* {user ? (
           <Switch>
+            <Route path="/signin" exact component={Profile} />
             <Route path="/profile" exact component={Profile} />
             <Route path="/courses" exact component={Courses} />
             <Route path="/course" exact component={Course} />
@@ -28,7 +29,30 @@ function Application() {
             <Route path="/signin" exact component={SignIn} />
             <Route path="/signup" exact component={SignUp} />
           </Switch>
-        )}
+        )} */}
+        <Switch>
+          <Route
+            path="/signin"
+            exact
+            component={() => (user ? <Profile /> : <SignIn />)}
+          />
+          <Route path="/signup" exact component={SignUp} />
+          <Route
+            path="/profile"
+            exact
+            component={() => (user ? <Profile /> : <SignIn />)}
+          />
+          <Route
+            path="/courses"
+            exact
+            component={() => (user ? <Courses /> : <SignIn />)}
+          />
+          <Route
+            path="/course"
+            exact
+            component={() => (user ? <Course /> : <SignIn />)}
+          />
+        </Switch>
       </Router>
     </div>
   );
