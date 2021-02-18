@@ -1,14 +1,19 @@
-import { Form } from "react-bootstrap";
-import { Link } from "react-router-dom";
+// import { Form } from "react-bootstrap";
+// import { Link } from "react-router-dom";
+import { signInWithGoogle } from "../firebase";
+import { useHistory } from "react-router-dom";
 
-const SignIn = (props) => {
-  const handleSignIn = () => {
-    props.setUser(true);
+const SignIn = () => {
+  const history = useHistory();
+
+  const handleGoogleSignIn = () => {
+    signInWithGoogle();
+    history.push("/home");
   };
 
   return (
-    <div className="flexauto centerteddiv">
-      <Form>
+    <div className="flexauto centerteddiv authdiv">
+      {/* <Form>
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control type="email" placeholder="Email" />
@@ -24,13 +29,21 @@ const SignIn = (props) => {
             </button>
           </Link>
         </div>
-        <div className="noaccount">
-          <Form.Text className="text-muted">Don't have an account?</Form.Text>
-          <Link className="nounderline" to="/signup">
-            Sign Up
-          </Link>
-        </div>
-      </Form>
+      </Form> */}
+      <div className="noaccount">
+        <button
+          className="signbtn googlebtn"
+          onClick={() => handleGoogleSignIn()}
+        >
+          Google Sign In
+        </button>
+      </div>
+      {/* <div className="noaccount">
+        <Form.Text className="text-muted">Don't have an account?</Form.Text>
+        <Link className="nounderline" to="/signup">
+          Sign Up
+        </Link>
+      </div> */}
     </div>
   );
 };
