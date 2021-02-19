@@ -8,6 +8,7 @@ import Home from "./components/Home";
 import Profile from "./components/Profile";
 import Course from "./components/Course";
 import Courses from "./components/Courses";
+import Loans from "./components/Loans";
 
 function Application() {
   const user = useContext(UserContext);
@@ -17,19 +18,6 @@ function Application() {
         <Navbar />
         <Route path="/" exact component={Home} />
         <Route path="/home" exact component={Home} />
-        {/* {user ? (
-          <Switch>
-            <Route path="/signin" exact component={Profile} />
-            <Route path="/profile" exact component={Profile} />
-            <Route path="/courses" exact component={Courses} />
-            <Route path="/course" exact component={Course} />
-          </Switch>
-        ) : (
-          <Switch>
-            <Route path="/signin" exact component={SignIn} />
-            <Route path="/signup" exact component={SignUp} />
-          </Switch>
-        )} */}
         <Switch>
           <Route
             path="/signin"
@@ -51,6 +39,11 @@ function Application() {
             path="/course"
             exact
             component={() => (user ? <Course /> : <SignIn />)}
+          />
+          <Route
+            path="/loans"
+            exact
+            component={() => (user ? <Loans /> : <SignIn />)}
           />
         </Switch>
       </Router>
