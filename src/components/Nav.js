@@ -3,6 +3,7 @@ import { UserContext } from "../providers/UserProvider";
 import {
   Navbar,
   Nav,
+  NavDropdown,
   Form,
   FormControl,
   Button,
@@ -17,7 +18,7 @@ const _Nav = () => {
     <div className="flexnone">
       <Navbar bg="light" variant="light" expand="md">
         <Navbar.Brand as={Link} to="/">
-          glasswindow
+          CourseCompare
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -30,14 +31,7 @@ const _Nav = () => {
                 <Nav.Link as={Link} to="/courses">
                   Courses
                 </Nav.Link>
-                <Nav.Link as={Link} to="/profile">
-                  Profile
-                </Nav.Link>
-                <Nav.Link as={Link} to="/" onClick={() => auth.signOut()}>
-                  Sign Out
-                </Nav.Link>
-              </Nav>
-              <Form inline>
+                <Form inline>
                 <InputGroup>
                   <FormControl placeholder="Search" />
                   <InputGroup.Append>
@@ -45,6 +39,12 @@ const _Nav = () => {
                   </InputGroup.Append>
                 </InputGroup>
               </Form>
+                <NavDropdown title="My Account" id="basic-nav-dropdown">
+                <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/" onClick={() => auth.signOut()} >Sign Out</NavDropdown.Item>
+                </NavDropdown>
+              </Nav>
+
             </>
           ) : (
             <Nav className="mr-auto">
