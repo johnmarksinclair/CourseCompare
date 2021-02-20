@@ -39,8 +39,8 @@ const _Nav = () => {
                   </InputGroup.Append>
                 </InputGroup>
               </Form>
-                <NavDropdown title="My Account" id="basic-nav-dropdown">
-                <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
+              <NavDropdown title="My Account" id="basic-nav-dropdown">
+                <NavDropdown.Item href="/profile">Profil</NavDropdown.Item>
                 <NavDropdown.Item as={Link} to="/" onClick={() => auth.signOut()} >Sign Out</NavDropdown.Item>
                 </NavDropdown>
               </Nav>
