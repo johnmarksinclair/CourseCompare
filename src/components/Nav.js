@@ -16,7 +16,7 @@ const _Nav = () => {
   const user = useContext(UserContext);
   return (
     <div className="flexnone">
-      <Navbar bg="light" variant="light" expand="md">
+      <Navbar bg="primary" variant="dark">
         <Navbar.Brand as={Link} to="/">
           CourseCompare
         </Navbar.Brand>
@@ -33,17 +33,21 @@ const _Nav = () => {
                 </Nav.Link>
                 <Form inline>
                 <InputGroup>
-                  <FormControl placeholder="Search" />
+                  <FormControl placeholder="Search" className="mr-sm-2"/>
                   <InputGroup.Append>
-                    <Button variant="outline-secondary">Search</Button>
+                    <Button variant="success">Search</Button>
                   </InputGroup.Append>
                 </InputGroup>
               </Form>
+              </Nav>
+              <Nav bg="primary" variant="dark">
               <NavDropdown title="My Account" id="basic-nav-dropdown">
-                <NavDropdown.Item href="/profile">Profil</NavDropdown.Item>
+                <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
                 <NavDropdown.Item as={Link} to="/" onClick={() => auth.signOut()} >Sign Out</NavDropdown.Item>
                 </NavDropdown>
-              </Nav>
+                </Nav>
+                
+              
 
             </>
           ) : (
