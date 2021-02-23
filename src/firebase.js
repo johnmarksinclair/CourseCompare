@@ -18,6 +18,7 @@ if (!firebase.apps.length) {
   firebase.app();
 }
 
+// FIREBASE AUTH STUFF
 const provider = new firebase.auth.GoogleAuthProvider();
 
 export const signInWithGoogle = () => {
@@ -25,4 +26,12 @@ export const signInWithGoogle = () => {
 };
 
 export const auth = firebase.auth();
+
+// FIRESTORE STUFF
+export const getCourses = async () => {
+  const coursesRef = firestore.collection("courses");
+  const snapshot = await coursesRef.get();
+  return snapshot;
+};
+
 export const firestore = firebase.firestore();
