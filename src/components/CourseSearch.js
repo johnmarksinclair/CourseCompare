@@ -1,98 +1,134 @@
+import { useEffect, useState } from "react";
 import { Form, FormControl, Button, InputGroup } from "react-bootstrap";
+import { getCourses } from "../firebase";
 
 const CourseSearch = () => {
-  const tempData = [
-    {
-      id: 1,
-      title: "Business",
-      host: "TCD",
-      type: "MBA",
-      description: "Description...",
-      length: "2 years",
-      cost: "15000",
-      rating: 4.7,
-    },
-    {
-      id: 2,
-      title: "Law",
-      host: "TCD",
-      type: "MBA",
-      description: "Description...",
-      length: "2 years",
-      cost: "12000",
-      rating: 3.9,
-    },
-    {
-      id: 3,
-      title: "Comp Sci",
-      host: "TCD",
-      type: "MBA",
-      description: "Description...",
-      length: "2 years",
-      cost: "10000",
-      rating: 4.3,
-    },
-    {
-      id: 1,
-      title: "Business",
-      host: "TCD",
-      type: "MBA",
-      description: "Description...",
-      length: "2 years",
-      cost: "15000",
-      rating: 4.7,
-    },
-    {
-      id: 2,
-      title: "Law",
-      host: "TCD",
-      type: "MBA",
-      description: "Description...",
-      length: "2 years",
-      cost: "12000",
-      rating: 3.9,
-    },
-    {
-      id: 3,
-      title: "Comp Sci",
-      host: "TCD",
-      type: "MBA",
-      description: "Description...",
-      length: "2 years",
-      cost: "10000",
-      rating: 4.3,
-    },
-    {
-      id: 1,
-      title: "Business",
-      host: "TCD",
-      type: "MBA",
-      description: "Description...",
-      length: "2 years",
-      cost: "15000",
-      rating: 4.7,
-    },
-    {
-      id: 2,
-      title: "Law",
-      host: "TCD",
-      type: "MBA",
-      description: "Description...",
-      length: "2 years",
-      cost: "12000",
-      rating: 3.9,
-    },
-    {
-      id: 3,
-      title: "Comp Sci",
-      host: "TCD",
-      type: "MBA",
-      description: "Description...",
-      length: "2 years",
-      cost: "10000",
-      rating: 4.3,
-    },
-  ];
+  const [courseData, setCourseData] = useState([]);
+
+  useEffect(() => {
+    updateData();
+    // eslint-disable-next-line
+  }, []);
+
+  const courseSchema = (doc) => {
+    let course = {
+      id: `${doc.id}`,
+      title: `${doc.data().title}`,
+      host: `${doc.data().host}`,
+      type: `${doc.data().type}`,
+      description: `${doc.data().description}`,
+      length: `${doc.data().length}`,
+      cost: `${doc.data().cost}`,
+      rating: `${doc.data().rating}`,
+    };
+    return course;
+  };
+
+  const updateData = async () => {
+    const courseArr = [];
+    let data = await getCourses();
+    data.forEach((doc) => {
+      // console.log(doc.id, "=>", doc.data());
+      // console.log(doc.data().title);
+      let courseObj = courseSchema(doc);
+      console.log(courseObj);
+      courseArr.push(courseObj);
+    });
+    setCourseData(courseArr);
+  };
+
+  // const fakeData = [
+  //   {
+  //     id: 1,
+  //     title: "Business",
+  //     host: "TCD",
+  //     type: "MBA",
+  //     description: "Description...",
+  //     length: "2 years",
+  //     cost: "15000",
+  //     rating: 4.7,
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "Law",
+  //     host: "TCD",
+  //     type: "MBA",
+  //     description: "Description...",
+  //     length: "2 years",
+  //     cost: "12000",
+  //     rating: 3.9,
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "Comp Sci",
+  //     host: "TCD",
+  //     type: "MBA",
+  //     description: "Description...",
+  //     length: "2 years",
+  //     cost: "10000",
+  //     rating: 4.3,
+  //   },
+  //   {
+  //     id: 1,
+  //     title: "Business",
+  //     host: "TCD",
+  //     type: "MBA",
+  //     description: "Description...",
+  //     length: "2 years",
+  //     cost: "15000",
+  //     rating: 4.7,
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "Law",
+  //     host: "TCD",
+  //     type: "MBA",
+  //     description: "Description...",
+  //     length: "2 years",
+  //     cost: "12000",
+  //     rating: 3.9,
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "Comp Sci",
+  //     host: "TCD",
+  //     type: "MBA",
+  //     description: "Description...",
+  //     length: "2 years",
+  //     cost: "10000",
+  //     rating: 4.3,
+  //   },
+  //   {
+  //     id: 1,
+  //     title: "Business",
+  //     host: "TCD",
+  //     type: "MBA",
+  //     description: "Description...",
+  //     length: "2 years",
+  //     cost: "15000",
+  //     rating: 4.7,
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "Law",
+  //     host: "TCD",
+  //     type: "MBA",
+  //     description: "Description...",
+  //     length: "2 years",
+  //     cost: "12000",
+  //     rating: 3.9,
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "Comp Sci",
+  //     host: "TCD",
+  //     type: "MBA",
+  //     description: "Description...",
+  //     length: "2 years",
+  //     cost: "10000",
+  //     rating: 4.3,
+  //   },
+  // ];
 
   const CourseButton = (props) => {
     return (
@@ -141,8 +177,8 @@ const CourseSearch = () => {
       </div>
 
       <div className="courseslist">
-        {tempData.map((course) => (
-          <CourseButton course={course} />
+        {courseData.map((course) => (
+          <CourseButton course={course} key={course.id} />
         ))}
       </div>
     </div>
