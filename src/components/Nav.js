@@ -27,7 +27,7 @@ const _Nav = () => {
                 <Nav.Link as={Link} to="/home">
                   Home
                 </Nav.Link>
-                <Nav.Link as={Link} to="/courses">
+                <Nav.Link as={Link} to="/coursesearch">
                   Courses
                 </Nav.Link>
                 <Nav.Link as={Link} to="/profile">

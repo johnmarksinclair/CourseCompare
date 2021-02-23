@@ -6,19 +6,22 @@ const Home = () => {
   const user = useContext(UserContext);
   return (
     <div className="flexauto">
-      <h2>Home</h2>
-      {user ? (
-        <></>
-      ) : (
-        <div className="noaccount">
+      <div className="home-img-div">
+        <div className="home-glass" />
+      </div>
+      <div className="home-text-div">
+        <h2>Home</h2>
+        {user ? (
+          <></>
+        ) : (
           <button
             className="signbtn googlebtn"
             onClick={() => signInWithGoogle()}
           >
             Google Sign In
           </button>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };
