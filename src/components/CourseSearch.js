@@ -3,6 +3,7 @@ import { Form, FormControl, Button, InputGroup } from "react-bootstrap";
 const CourseSearch = () => {
   const tempData = [
     {
+      id: 1,
       title: "Business",
       host: "TCD",
       type: "MBA",
@@ -12,6 +13,7 @@ const CourseSearch = () => {
       rating: 4.7,
     },
     {
+      id: 2,
       title: "Law",
       host: "TCD",
       type: "MBA",
@@ -21,6 +23,67 @@ const CourseSearch = () => {
       rating: 3.9,
     },
     {
+      id: 3,
+      title: "Comp Sci",
+      host: "TCD",
+      type: "MBA",
+      description: "Description...",
+      length: "2 years",
+      cost: "10000",
+      rating: 4.3,
+    },
+    {
+      id: 1,
+      title: "Business",
+      host: "TCD",
+      type: "MBA",
+      description: "Description...",
+      length: "2 years",
+      cost: "15000",
+      rating: 4.7,
+    },
+    {
+      id: 2,
+      title: "Law",
+      host: "TCD",
+      type: "MBA",
+      description: "Description...",
+      length: "2 years",
+      cost: "12000",
+      rating: 3.9,
+    },
+    {
+      id: 3,
+      title: "Comp Sci",
+      host: "TCD",
+      type: "MBA",
+      description: "Description...",
+      length: "2 years",
+      cost: "10000",
+      rating: 4.3,
+    },
+    {
+      id: 1,
+      title: "Business",
+      host: "TCD",
+      type: "MBA",
+      description: "Description...",
+      length: "2 years",
+      cost: "15000",
+      rating: 4.7,
+    },
+    {
+      id: 2,
+      title: "Law",
+      host: "TCD",
+      type: "MBA",
+      description: "Description...",
+      length: "2 years",
+      cost: "12000",
+      rating: 3.9,
+    },
+    {
+      id: 3,
       title: "Comp Sci",
       host: "TCD",
       type: "MBA",
@@ -37,7 +100,7 @@ const CourseSearch = () => {
         <div
           className="btndiv"
           onClick={() => {
-            console.log(`clicked ${props.course.title}`);
+            console.log(`clicked ${props.course.id}`);
           }}
         >
           <div className="col-sm-4 col-md-2">
