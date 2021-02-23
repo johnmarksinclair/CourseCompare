@@ -40,12 +40,12 @@ const CourseSearch = () => {
             console.log(`clicked ${props.course.title}`);
           }}
         >
-          <div className="col-2">
+          <div className="col-sm-4 col-md-2">
             <div className="title">{props.course.title}</div>
             <div>{props.course.host}</div>
             <div>{props.course.rating} ⭐️</div>
           </div>
-          <div className="col-2">
+          <div className="col-sm-4 col-md-2">
             <div>{props.course.type}</div>
             <div>{props.course.length}</div>
             <div>€{props.course.cost}</div>
