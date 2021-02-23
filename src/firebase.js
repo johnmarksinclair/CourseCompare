@@ -28,10 +28,21 @@ export const signInWithGoogle = () => {
 export const auth = firebase.auth();
 
 // FIRESTORE STUFF
+
+// returns all documents in the courses collection
 export const getCourses = async () => {
   const coursesRef = firestore.collection("courses");
   const snapshot = await coursesRef.get();
   return snapshot;
 };
+
+// adds a new course document to the courses collection
+export const addCourse = async (info) => {};
+
+// returns the reviews associated with a passed courseID
+export const getReviews = async (courseID) => {};
+
+// adds a new review document to the reviews collection
+export const addReview = async (info) => {};
 
 export const firestore = firebase.firestore();

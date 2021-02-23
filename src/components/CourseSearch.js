@@ -31,10 +31,17 @@ const CourseSearch = () => {
       // console.log(doc.id, "=>", doc.data());
       // console.log(doc.data().title);
       let courseObj = courseSchema(doc);
-      console.log(courseObj);
+      //console.log(courseObj);
       courseArr.push(courseObj);
     });
     setCourseData(courseArr);
+  };
+
+  const handleCourseSelect = (data) => {
+    console.log(`clicked ${data.id}`);
+    // route to /course and pass data as param
+    // will then need to grab reviews
+    // in course useEffect will call getReviews()
   };
 
   // const fakeData = [
@@ -136,7 +143,7 @@ const CourseSearch = () => {
         <div
           className="btndiv"
           onClick={() => {
-            console.log(`clicked ${props.course.id}`);
+            handleCourseSelect(props.course);
           }}
         >
           <div className="col-sm-4 col-md-2">
