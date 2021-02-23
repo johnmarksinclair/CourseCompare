@@ -7,7 +7,7 @@ import SignUp from "./components/SignUp";
 import Home from "./components/Home";
 import Profile from "./components/Profile";
 import Course from "./components/Course";
-import Courses from "./components/Courses";
+import CourseSearch from "./components/CourseSearch";
 import Loans from "./components/Loans";
 
 function Application() {
@@ -31,9 +31,9 @@ function Application() {
             component={() => (user ? <Profile /> : <SignIn />)}
           />
           <Route
-            path="/courses"
+            path="/coursesearch"
             exact
-            component={() => (user ? <Courses /> : <SignIn />)}
+            component={() => (user ? <CourseSearch /> : <SignIn />)}
           />
           <Route
             path="/course"
