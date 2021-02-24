@@ -28,9 +28,11 @@ const _Nav = () => {
                 <Nav.Link as={Link} to="/home">
                   Home
                 </Nav.Link>
-                <Nav.Link as={Link} to="/courses">
+                <Nav.Link as={Link} to="/coursesearch">
                   Courses
                 </Nav.Link>
+                </Nav>
+                <Nav class="nav navbar-nav navbar-center">
                 <Form inline>
                 <InputGroup>
                   <FormControl placeholder="Search" className="mr-sm-2"/>
@@ -52,9 +54,6 @@ const _Nav = () => {
             </>
           ) : (
             <Nav className="mr-auto">
-              <Nav.Link as={Link} to="/signin">
-                Sign In
-              </Nav.Link>
             </Nav>
           )}
         </Navbar.Collapse>
@@ -62,5 +61,6 @@ const _Nav = () => {
     </div>
   );
 };
+
 
 export default _Nav;
