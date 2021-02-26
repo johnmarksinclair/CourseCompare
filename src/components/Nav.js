@@ -3,6 +3,7 @@ import { UserContext } from "../providers/UserProvider";
 import {
   Navbar,
   Nav,
+  NavDropdown,
   Form,
   FormControl,
   Button,
@@ -15,9 +16,9 @@ const _Nav = () => {
   const user = useContext(UserContext);
   return (
     <div className="flexnone">
-      <Navbar bg="light" variant="light" expand="md">
+      <Navbar bg="primary" variant="dark" expand="md">
         <Navbar.Brand as={Link} to="/">
-          glasswindow
+          CourseCompare
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -30,27 +31,29 @@ const _Nav = () => {
                 <Nav.Link as={Link} to="/coursesearch">
                   Courses
                 </Nav.Link>
-                <Nav.Link as={Link} to="/profile">
-                  Profile
-                </Nav.Link>
-                <Nav.Link as={Link} to="/" onClick={() => auth.signOut()}>
-                  Sign Out
-                </Nav.Link>
-              </Nav>
-              <Form inline>
+                </Nav>
+                <Nav class="nav navbar-nav navbar-center">
+                <Form inline>
                 <InputGroup>
-                  <FormControl placeholder="Search" />
+                  <FormControl placeholder="Search" className="mr-sm-2"/>
                   <InputGroup.Append>
-                    <Button variant="outline-secondary">Search</Button>
+                    <Button variant="success">Search</Button>
                   </InputGroup.Append>
                 </InputGroup>
               </Form>
+              </Nav>
+              <Nav bg="primary" variant="dark">
+              <NavDropdown title="My Account" id="basic-nav-dropdown">
+                <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/" onClick={() => auth.signOut()} >Sign Out</NavDropdown.Item>
+                </NavDropdown>
+                </Nav>
+                
+              
+
             </>
           ) : (
             <Nav className="mr-auto">
-              <Nav.Link as={Link} to="/signin">
-                Sign In
-              </Nav.Link>
             </Nav>
           )}
         </Navbar.Collapse>
@@ -58,5 +61,6 @@ const _Nav = () => {
     </div>
   );
 };
+
 
 export default _Nav;
