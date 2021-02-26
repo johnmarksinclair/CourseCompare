@@ -9,6 +9,7 @@ import Profile from "./components/Profile";
 import Course from "./components/Course";
 import CourseSearch from "./components/CourseSearch";
 import Loans from "./components/Loans";
+import FBTesting from "./components/FBTesting";
 
 function Application() {
   const user = useContext(UserContext);
@@ -17,6 +18,7 @@ function Application() {
       <Router>
         <Navbar />
         <Switch>
+          <Route path="/firebase" exact component={FBTesting} />
           <Route path="/" exact component={Home} />
           <Route path="/home" exact component={Home} />
           <Route

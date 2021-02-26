@@ -195,3 +195,9 @@
   z-index: 2;
   text-align: left;
 }
+
+.testedBtn {
+  width: 160px;
+  background-color: lightgreen;
+  color: white;
+}

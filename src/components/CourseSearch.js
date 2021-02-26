@@ -10,31 +10,15 @@ const CourseSearch = () => {
     // eslint-disable-next-line
   }, []);
 
-  const courseSchema = (doc) => {
-    let course = {
-      id: `${doc.id}`,
-      title: `${doc.data().title}`,
-      host: `${doc.data().host}`,
-      type: `${doc.data().type}`,
-      description: `${doc.data().description}`,
-      length: `${doc.data().length}`,
-      cost: `${doc.data().cost}`,
-      rating: `${doc.data().rating}`,
-    };
-    return course;
+  const updateData = async () => {
+    setCourseData(await getCourses());
   };
 
-  const updateData = async () => {
-    const courseArr = [];
-    let data = await getCourses();
-    data.forEach((doc) => {
-      // console.log(doc.id, "=>", doc.data());
-      // console.log(doc.data().title);
-      let courseObj = courseSchema(doc);
-      console.log(courseObj);
-      courseArr.push(courseObj);
-    });
-    setCourseData(courseArr);
+  const handleCourseSelect = (data) => {
+    console.log(`clicked ${data.id}`);
+    // route to /course and pass data as param
+    // will then need to grab reviews
+    // in course useEffect will call getReviews()
   };
 
   // const fakeData = [
@@ -136,7 +120,7 @@ const CourseSearch = () => {
         <div
           className="btndiv"
           onClick={() => {
-            console.log(`clicked ${props.course.id}`);
+            handleCourseSelect(props.course);
           }}
         >
           <div className="col-sm-4 col-md-2">
