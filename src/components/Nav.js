@@ -7,7 +7,6 @@ import {
   Form,
   FormControl,
   Button,
-  InputGroup,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { auth } from "../firebase";
@@ -16,7 +15,7 @@ const _Nav = () => {
   const user = useContext(UserContext);
   return (
     <div className="flexnone">
-      <Navbar bg="primary" variant="dark" expand="md">
+      <Navbar bg="info" variant="dark" expand="md">
         <Navbar.Brand as={Link} to="/">
           CourseCompare
         </Navbar.Brand>
@@ -34,12 +33,8 @@ const _Nav = () => {
               </Nav>
               <Nav className="nav navbar-nav navbar-center">
                 <Form inline>
-                  <InputGroup>
-                    <FormControl placeholder="Search" className="mr-sm-2" />
-                    <InputGroup.Append>
-                      <Button variant="success">Search</Button>
-                    </InputGroup.Append>
-                  </InputGroup>
+                  <FormControl placeholder="Search" className="mr-sm-2" />
+                  <Button variant="info">Search</Button>
                 </Form>
               </Nav>
               <Nav bg="primary" variant="dark">
