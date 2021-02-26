@@ -5,12 +5,26 @@
   flex-direction: column;
 }
 
+.coloured {
+  background-color: lightcoral;
+}
+
 .flexnone {
   flex: none;
 }
 
 .flexauto {
   flex: auto;
+}
+
+.flexcol {
+  display: flex;
+  flex-direction: column;
+}
+
+.flexrow {
+  display: flex;
+  flex-direction: row;
 }
 
 .widthauto {
@@ -103,4 +117,81 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.coursesearchdiv {
+  flex: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  padding: 20px;
+}
+
+.searchform {
+  padding-left: 20px;
+}
+
+.courseslist {
+  padding: 0 20px;
+  flex: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.coursebtn {
+  width: 100%;
+  padding: 10px;
+  border: 10px rgb(49, 49, 49) !important;
+  border-radius: 10px;
+  display: flex;
+}
+
+.listdiv {
+  padding: 10px 0;
+}
+
+.btndiv {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px 0 rgba(50, 50, 50, 0.3);
+}
+
+.btndiv:hover {
+  background-color: #efefef;
+  cursor: pointer;
+}
+
+.title {
+  font-weight: bold;
+}
+
+.home-img-div {
+  width: 100%;
+  height: 100%;
+  background-image: url(./assets/splash.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.home-glass {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.home-text-div {
+  color: rgb(80, 80, 80);
+  position: absolute;
+  width: 30%;
+  top: 30%;
+  left: 20%;
+  z-index: 2;
+  text-align: left;
 }

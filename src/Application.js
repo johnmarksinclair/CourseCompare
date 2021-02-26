@@ -7,7 +7,7 @@ import SignUp from "./components/SignUp";
 import Home from "./components/Home";
 import Profile from "./components/Profile";
 import Course from "./components/Course";
-import Courses from "./components/Courses";
+import CourseSearch from "./components/CourseSearch";
 import Loans from "./components/Loans";
 
 function Application() {
@@ -16,9 +16,9 @@ function Application() {
     <div className="cont">
       <Router>
         <Navbar />
-        <Route path="/" exact component={Home} />
-        <Route path="/home" exact component={Home} />
         <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/home" exact component={Home} />
           <Route
             path="/signin"
             exact
@@ -31,9 +31,9 @@ function Application() {
             component={() => (user ? <Profile /> : <SignIn />)}
           />
           <Route
-            path="/courses"
+            path="/coursesearch"
             exact
-            component={() => (user ? <Courses /> : <SignIn />)}
+            component={() => (user ? <CourseSearch /> : <SignIn />)}
           />
           <Route
             path="/course"
