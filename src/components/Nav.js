@@ -16,7 +16,7 @@ const _Nav = () => {
   const user = useContext(UserContext);
   return (
     <div className="flexnone">
-      <Navbar bg="primary" variant="dark">
+      <Navbar bg="primary" variant="dark" expand="md">
         <Navbar.Brand as={Link} to="/">
           CourseCompare
         </Navbar.Brand>
