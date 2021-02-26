@@ -31,36 +31,37 @@ const _Nav = () => {
                 <Nav.Link as={Link} to="/coursesearch">
                   Courses
                 </Nav.Link>
-                </Nav>
-                <Nav class="nav navbar-nav navbar-center">
+              </Nav>
+              <Nav className="nav navbar-nav navbar-center">
                 <Form inline>
-                <InputGroup>
-                  <FormControl placeholder="Search" className="mr-sm-2"/>
-                  <InputGroup.Append>
-                    <Button variant="success">Search</Button>
-                  </InputGroup.Append>
-                </InputGroup>
-              </Form>
+                  <InputGroup>
+                    <FormControl placeholder="Search" className="mr-sm-2" />
+                    <InputGroup.Append>
+                      <Button variant="success">Search</Button>
+                    </InputGroup.Append>
+                  </InputGroup>
+                </Form>
               </Nav>
               <Nav bg="primary" variant="dark">
-              <NavDropdown title="My Account" id="basic-nav-dropdown">
-                <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="/" onClick={() => auth.signOut()} >Sign Out</NavDropdown.Item>
+                <NavDropdown title="My Account" id="basic-nav-dropdown">
+                  <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
+                  <NavDropdown.Item
+                    as={Link}
+                    to="/"
+                    onClick={() => auth.signOut()}
+                  >
+                    Sign Out
+                  </NavDropdown.Item>
                 </NavDropdown>
-                </Nav>
-                
-              
-
+              </Nav>
             </>
           ) : (
-            <Nav className="mr-auto">
-            </Nav>
+            <Nav className="mr-auto"></Nav>
           )}
         </Navbar.Collapse>
       </Navbar>
     </div>
   );
 };
-
 
 export default _Nav;

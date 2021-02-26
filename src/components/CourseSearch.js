@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { Form, FormControl, Button, InputGroup } from "react-bootstrap";
-import { getCourses } from "../firebase";
+//import { Form, FormControl, Button, InputGroup } from "react-bootstrap";
+import { getCourses, searchCourses } from "../firebase";
 
 const CourseSearch = () => {
   const [courseData, setCourseData] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
 
   useEffect(() => {
     updateData();
@@ -14,105 +15,28 @@ const CourseSearch = () => {
     setCourseData(await getCourses());
   };
 
+  const handleChange = (e) => {
+    //console.log(e.target.value);
+    setSearchInput(e.target.value);
+    callSearchCourses(e.target.value);
+  };
+
+  const callSearchCourses = async (search) => {
+    if (search.length <= 0) {
+      updateData();
+      return;
+    }
+    let matching = await searchCourses(search);
+    //console.log(matching);
+    if (matching.length > 0) setCourseData(matching);
+  };
+
   const handleCourseSelect = (data) => {
     console.log(`clicked ${data.id}`);
     // route to /course and pass data as param
     // will then need to grab reviews
     // in course useEffect will call getReviews()
   };
-
-  // const fakeData = [
-  //   {
-  //     id: 1,
-  //     title: "Business",
-  //     host: "TCD",
-  //     type: "MBA",
-  //     description: "Description...",
-  //     length: "2 years",
-  //     cost: "15000",
-  //     rating: 4.7,
-  //   },
-  //   {
-  //     id: 2,
-  //     title: "Law",
-  //     host: "TCD",
-  //     type: "MBA",
-  //     description: "Description...",
-  //     length: "2 years",
-  //     cost: "12000",
-  //     rating: 3.9,
-  //   },
-  //   {
-  //     id: 3,
-  //     title: "Comp Sci",
-  //     host: "TCD",
-  //     type: "MBA",
-  //     description: "Description...",
-  //     length: "2 years",
-  //     cost: "10000",
-  //     rating: 4.3,
-  //   },
-  //   {
-  //     id: 1,
-  //     title: "Business",
-  //     host: "TCD",
-  //     type: "MBA",
-  //     description: "Description...",
-  //     length: "2 years",
-  //     cost: "15000",
-  //     rating: 4.7,
-  //   },
-  //   {
-  //     id: 2,
-  //     title: "Law",
-  //     host: "TCD",
-  //     type: "MBA",
-  //     description: "Description...",
-  //     length: "2 years",
-  //     cost: "12000",
-  //     rating: 3.9,
-  //   },
-  //   {
-  //     id: 3,
-  //     title: "Comp Sci",
-  //     host: "TCD",
-  //     type: "MBA",
-  //     description: "Description...",
-  //     length: "2 years",
-  //     cost: "10000",
-  //     rating: 4.3,
-  //   },
-  //   {
-  //     id: 1,
-  //     title: "Business",
-  //     host: "TCD",
-  //     type: "MBA",
-  //     description: "Description...",
-  //     length: "2 years",
-  //     cost: "15000",
-  //     rating: 4.7,
-  //   },
-  //   {
-  //     id: 2,
-  //     title: "Law",
-  //     host: "TCD",
-  //     type: "MBA",
-  //     description: "Description...",
-  //     length: "2 years",
-  //     cost: "12000",
-  //     rating: 3.9,
-  //   },
-  //   {
-  //     id: 3,
-  //     title: "Comp Sci",
-  //     host: "TCD",
-  //     type: "MBA",
-  //     description: "Description...",
-  //     length: "2 years",
-  //     cost: "10000",
-  //     rating: 4.3,
-  //   },
-  // ];
 
   const CourseButton = (props) => {
     return (
@@ -148,7 +72,7 @@ const CourseSearch = () => {
           <h2>Courses Search</h2>
         </div>
         <hr />
-        <div className="searchform">
+        {/* <div className="searchform">
           <Form inline>
             <InputGroup>
               <FormControl placeholder="Search" />
@@ -157,13 +81,20 @@ const CourseSearch = () => {
               </InputGroup.Append>
             </InputGroup>
           </Form>
+        </div> */}
+        <div>
+          <input value={searchInput} onChange={(e) => handleChange(e)} />
         </div>
       </div>
 
       <div className="courseslist">
-        {courseData.map((course) => (
-          <CourseButton course={course} key={course.id} />
-        ))}
+        {courseData.length > 0 ? (
+          courseData.map((course) => (
+            <CourseButton course={course} key={course.id} />
+          ))
+        ) : (
+          <h1>Nothing</h1>
+        )}
       </div>
     </div>
   );
