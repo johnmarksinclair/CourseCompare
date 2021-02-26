@@ -10,31 +10,8 @@ const CourseSearch = () => {
     // eslint-disable-next-line
   }, []);
 
-  const courseSchema = (doc) => {
-    let course = {
-      id: `${doc.id}`,
-      title: `${doc.data().title}`,
-      host: `${doc.data().host}`,
-      type: `${doc.data().type}`,
-      description: `${doc.data().description}`,
-      length: `${doc.data().length}`,
-      cost: `${doc.data().cost}`,
-      rating: `${doc.data().rating}`,
-    };
-    return course;
-  };
-
   const updateData = async () => {
-    const courseArr = [];
-    let data = await getCourses();
-    data.forEach((doc) => {
-      // console.log(doc.id, "=>", doc.data());
-      // console.log(doc.data().title);
-      let courseObj = courseSchema(doc);
-      //console.log(courseObj);
-      courseArr.push(courseObj);
-    });
-    setCourseData(courseArr);
+    setCourseData(await getCourses());
   };
 
   const handleCourseSelect = (data) => {
