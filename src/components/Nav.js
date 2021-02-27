@@ -30,6 +30,9 @@ const _Nav = () => {
                 <Nav.Link as={Link} to="/coursesearch">
                   Courses
                 </Nav.Link>
+                <Nav.Link as={Link} to="/loans">
+                  Loans
+                </Nav.Link>
               </Nav>
               <Nav className="nav navbar-nav navbar-center">
                 <Form inline>
