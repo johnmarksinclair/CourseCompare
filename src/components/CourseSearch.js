@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 //import { Form, FormControl, Button, InputGroup } from "react-bootstrap";
-import { getCourses, searchCourses } from "../firebase";
+import { getCourses } from "../firebase";
+import { FormControl } from "react-bootstrap";
 
 const CourseSearch = () => {
   const [courseData, setCourseData] = useState([]);
+  const [matchingCourses, setMatchingCourses] = useState([]);
   const [searchInput, setSearchInput] = useState("");
+  const [searching, setSearching] = useState(false);
 
   useEffect(() => {
     updateData();
@@ -12,24 +15,45 @@ const CourseSearch = () => {
   }, []);
 
   const updateData = async () => {
-    setCourseData(await getCourses());
+    let courses = await getCourses();
+    setCourseData(courses);
+    setMatchingCourses(courses);
+    setSearchInput("");
   };
 
   const handleChange = (e) => {
-    //console.log(e.target.value);
     setSearchInput(e.target.value);
-    callSearchCourses(e.target.value);
+    if (e.target.value.length > 0) {
+      setSearching(true);
+      //console.log(e.target.value);
+      //callSearchCourses(e.target.value);
+      searchCachedCourses(e.target.value);
+    } else {
+      setSearching(false);
+    }
   };
 
-  const callSearchCourses = async (search) => {
-    if (search.length <= 0) {
-      updateData();
-      return;
-    }
-    let matching = await searchCourses(search);
-    //console.log(matching);
-    if (matching.length > 0) setCourseData(matching);
+  const searchCachedCourses = (search) => {
+    let matching = [];
+    let lowerSearch = search.toLowerCase();
+    courseData.forEach((doc) => {
+      let lowerTitle = doc.title.toLowerCase();
+      if (lowerTitle.includes(lowerSearch)) {
+        matching.push(doc);
+      }
+    });
+    setMatchingCourses(matching);
   };
+
+  // const callSearchCourses = async (search) => {
+  //   if (search.length <= 0) {
+  //     updateData();
+  //     return;
+  //   }
+  //   let matching = await searchCourses(search);
+  //   //console.log(matching);
+  //   if (matching.length > 0) setCourseData(matching);
+  // };
 
   const handleCourseSelect = (data) => {
     console.log(`clicked ${data.id}`);
@@ -66,35 +90,28 @@ const CourseSearch = () => {
   };
 
   return (
-    <div className="flexauto flexcol">
-      <div className="coursesearchdiv">
-        <div>
+    <div className="searchcont">
+      <div className="searchleft">
+        <div className="searchdash">
           <h2>Courses Search</h2>
-        </div>
-        <hr />
-        {/* <div className="searchform">
-          <Form inline>
-            <InputGroup>
-              <FormControl placeholder="Search" />
-              <InputGroup.Append>
-                <Button variant="outline-secondary">Search</Button>
-              </InputGroup.Append>
-            </InputGroup>
-          </Form>
-        </div> */}
-        <div>
-          <input value={searchInput} onChange={(e) => handleChange(e)} />
+          <div className="">
+            <FormControl
+              placeholder="Search"
+              value={searchInput}
+              onChange={(e) => handleChange(e)}
+            />
+          </div>
         </div>
       </div>
 
-      <div className="courseslist">
-        {courseData.length > 0 ? (
-          courseData.map((course) => (
-            <CourseButton course={course} key={course.id} />
-          ))
-        ) : (
-          <h1>Nothing</h1>
-        )}
+      <div className="searchright">
+        {searching
+          ? matchingCourses.map((course) => (
+              <CourseButton course={course} key={course.id} />
+            ))
+          : courseData.map((course) => (
+              <CourseButton course={course} key={course.id} />
+            ))}
       </div>
     </div>
   );

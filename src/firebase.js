@@ -52,19 +52,8 @@ export const addCourse = async (doc) => {
   coursesRef.add(doc);
 };
 
+// pointless?? - use for navbar search maybe
 export const searchCourses = async (search) => {
-  // const snapshot = await coursesRef.where("title", "==", search).get();
-  // let courseArr = [];
-  // if (snapshot.empty) {
-  //   console.log("No matching documents.");
-  //   return;
-  // }
-  // snapshot.forEach((doc) => {
-  //   let courseObj = createCourseObj(doc);
-  //   //console.log(reviewObj);
-  //   courseArr.push(courseObj);
-  // });
-  // return courseArr;
   if (search.length === 0) return;
   const snapshot = await coursesRef.get();
   let lowerSearch = search.toLowerCase();
@@ -85,7 +74,7 @@ export const searchCourses = async (search) => {
 };
 
 // returns the reviews associated with a passed courseID
-export const getReviews = async (passedID) => {
+export const getCoursesReviews = async (passedID) => {
   const snapshot = await reviewsRef.where("courseID", "==", passedID).get();
   let reviewsArr = [];
   if (snapshot.empty) {

@@ -1,7 +1,7 @@
 import {
   getCourses,
   addCourse,
-  getReviews,
+  getCoursesReviews,
   addReview,
   searchCourses,
 } from "../firebase";
@@ -9,20 +9,12 @@ import { useState } from "react";
 
 const FBTesting = () => {
   const [input, setInput] = useState("");
-  //const [search, setSearch] = useState("");
 
   const handleChange = (e) => {
     console.log(e.target.value);
     setInput(e.target.value);
-    //setSearch(e.target.value);
     testSearch(e.target.value);
   };
-
-  // const handleSubmit = () => {
-  //   testSearch();
-  //   setInput("");
-  //   //setSearch("");
-  // };
 
   const fakeCourse = {
     title: "Law",
@@ -54,8 +46,8 @@ const FBTesting = () => {
     addCourse(fakeCourse);
   };
   // works
-  const testGetReviews = async () => {
-    console.log(await getReviews(courseExampleID));
+  const testGetCoursesReviews = async () => {
+    console.log(await getCoursesReviews(courseExampleID));
   };
   // works
   const testAddReview = () => {
@@ -75,30 +67,42 @@ const FBTesting = () => {
       <button className="signbtn testedBtn" onClick={() => testAddCourse()}>
         addCourse
       </button>
-      <button className="signbtn testedBtn" onClick={() => testGetReviews()}>
-        getReviews
+      <button
+        className="signbtn testedBtn"
+        onClick={() => testGetCoursesReviews()}
+      >
+        getCoursesReviews
       </button>
       <button className="signbtn testedBtn" onClick={() => testAddReview()}>
         addReview
       </button>
-      <button className="signbtn googlebtn" onClick={() => testGetReviews()}>
+      <button
+        className="signbtn googlebtn"
+        onClick={() => testGetCoursesReviews()}
+      >
         editReview
       </button>
-      <button className="signbtn googlebtn" onClick={() => testGetReviews()}>
+      <button
+        className="signbtn googlebtn"
+        onClick={() => testGetCoursesReviews()}
+      >
         deleteReview
       </button>
-      <button className="signbtn googlebtn" onClick={() => testGetReviews()}>
+      <button
+        className="signbtn googlebtn"
+        onClick={() => testGetCoursesReviews()}
+      >
         editCourse
       </button>
-      <button className="signbtn googlebtn" onClick={() => testGetReviews()}>
+      <button
+        className="signbtn googlebtn"
+        onClick={() => testGetCoursesReviews()}
+      >
         deleteCourse
       </button>
       <div>
         <h3>Search Test</h3>
         <input value={input} onChange={(e) => handleChange(e)} />
-        {/* <button className="signbtn googlebtn" onClick={() => handleSubmit()}>
-          searchCourses
-        </button> */}
       </div>
     </div>
   );
