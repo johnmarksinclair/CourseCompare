@@ -15,7 +15,7 @@ const _Nav = () => {
   const user = useContext(UserContext);
   return (
     <div className="flexnone">
-      <Navbar bg="info" variant="dark" expand="md">
+      <Navbar bg="primary" variant="dark" expand="md">
         <Navbar.Brand as={Link} to="/">
           CourseCompare
         </Navbar.Brand>
@@ -37,7 +37,7 @@ const _Nav = () => {
               <Nav className="nav navbar-nav navbar-center">
                 <Form inline>
                   <FormControl placeholder="Search" className="mr-sm-2" />
-                  <Button variant="info">Search</Button>
+                  <Button variant="primary">Search</Button>
                 </Form>
               </Nav>
               <Nav bg="primary" variant="dark">
