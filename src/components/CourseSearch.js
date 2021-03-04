@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 //import { Form, FormControl, Button, InputGroup } from "react-bootstrap";
-import { getCourses } from "../firebase";
+import { getCourses } from "../backendCalls/CourseCalls";
 import { FormControl } from "react-bootstrap";
 
 const CourseSearch = () => {

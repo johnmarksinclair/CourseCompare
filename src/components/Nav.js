@@ -9,13 +9,13 @@ import {
   Button,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { auth } from "../firebase";
+import { auth, signInWithGoogle } from "../firebase";
 
 const _Nav = () => {
   const user = useContext(UserContext);
   return (
     <div className="flexnone">
-      <Navbar bg="primary" variant="dark" expand="md">
+      <Navbar bg="light" variant="light" expand="md">
         <Navbar.Brand as={Link} to="/">
           CourseCompare
         </Navbar.Brand>
@@ -54,7 +54,9 @@ const _Nav = () => {
               </Nav>
             </>
           ) : (
-            <Nav className="mr-auto"></Nav>
+            <Nav className="mr-auto">
+              <Nav.Link onClick={() => signInWithGoogle()}>Sign In</Nav.Link>
+            </Nav>
           )}
         </Navbar.Collapse>
       </Navbar>

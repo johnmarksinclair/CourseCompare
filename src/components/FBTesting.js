@@ -1,11 +1,17 @@
+import { useState } from "react";
 import {
   getCourses,
   addCourse,
-  getCoursesReviews,
-  addReview,
+  editCourse,
+  deleteCourse,
   searchCourses,
-} from "../firebase";
-import { useState } from "react";
+} from "../backendCalls/CourseCalls";
+import {
+  getCourseReviews,
+  addReview,
+  editReview,
+  deleteReview,
+} from "../backendCalls/ReviewCalls";
 
 const FBTesting = () => {
   const [input, setInput] = useState("");
@@ -34,25 +40,8 @@ const FBTesting = () => {
   };
 
   const courseExampleID = "KlKwFOMA0lJRgkHBAfGf";
+  const reviewExampleID = "iGERg5yOiFwnYS2Kd3GH";
 
-  // TESTING
-
-  // works
-  const testGetCourses = async () => {
-    console.log(await getCourses());
-  };
-  // works
-  const testAddCourse = () => {
-    addCourse(fakeCourse);
-  };
-  // works
-  const testGetCoursesReviews = async () => {
-    console.log(await getCoursesReviews(courseExampleID));
-  };
-  // works
-  const testAddReview = () => {
-    addReview(fakeReview);
-  };
   // idk
   const testSearch = async (search) => {
     console.log(await searchCourses(search));
@@ -61,44 +50,55 @@ const FBTesting = () => {
   return (
     <div>
       <h2>Firebase Testing</h2>
-      <button className="signbtn testedBtn" onClick={() => testGetCourses()}>
+      <button
+        className="signbtn testedBtn"
+        onClick={async () => console.log(await getCourses())}
+      >
         getCourses
-      </button>
-      <button className="signbtn testedBtn" onClick={() => testAddCourse()}>
-        addCourse
       </button>
       <button
         className="signbtn testedBtn"
-        onClick={() => testGetCoursesReviews()}
+        onClick={() => addCourse(fakeCourse)}
       >
-        getCoursesReviews
-      </button>
-      <button className="signbtn testedBtn" onClick={() => testAddReview()}>
-        addReview
+        addCourse
       </button>
       <button
         className="signbtn googlebtn"
-        onClick={() => testGetCoursesReviews()}
-      >
-        editReview
-      </button>
-      <button
-        className="signbtn googlebtn"
-        onClick={() => testGetCoursesReviews()}
-      >
-        deleteReview
-      </button>
-      <button
-        className="signbtn googlebtn"
-        onClick={() => testGetCoursesReviews()}
+        onClick={() => editCourse(courseExampleID)}
       >
         editCourse
       </button>
       <button
         className="signbtn googlebtn"
-        onClick={() => testGetCoursesReviews()}
+        onClick={() => deleteCourse(courseExampleID)}
       >
         deleteCourse
+      </button>
+      <button
+        className="signbtn testedBtn"
+        onClick={async () =>
+          console.log(await getCourseReviews(courseExampleID))
+        }
+      >
+        getCourseReviews
+      </button>
+      <button
+        className="signbtn testedBtn"
+        onClick={() => addReview(fakeReview)}
+      >
+        addReview
+      </button>
+      <button
+        className="signbtn googlebtn"
+        onClick={() => editReview(reviewExampleID)}
+      >
+        editReview
+      </button>
+      <button
+        className="signbtn googlebtn"
+        onClick={() => deleteReview(reviewExampleID)}
+      >
+        deleteReview
       </button>
       <div>
         <h3>Search Test</h3>
