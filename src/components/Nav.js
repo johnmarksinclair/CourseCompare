@@ -34,7 +34,7 @@ const _Nav = () => {
                   Loans
                 </Nav.Link>
               </Nav>
-              <Nav className="nav navbar-nav navbar-center">
+              <Nav className="mr-auto">
                 <Form inline>
                   <FormControl placeholder="Search" className="mr-sm-2" />
                   <Button variant="primary">Search</Button>
