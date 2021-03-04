@@ -54,9 +54,15 @@ const _Nav = () => {
               </Nav>
             </>
           ) : (
-            <Nav className="mr-auto">
-              <Nav.Link onClick={() => signInWithGoogle()}>Sign In</Nav.Link>
-            </Nav>
+            // <Nav className="ml-auto">
+            //   <Nav.Link onClick={() => signInWithGoogle()}>Sign In</Nav.Link>
+            // </Nav>
+            <button
+              className="ml-auto homebtn"
+              onClick={() => signInWithGoogle()}
+            >
+              Sign In
+            </button>
           )}
         </Navbar.Collapse>
       </Navbar>
