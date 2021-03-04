@@ -4,9 +4,9 @@ import {
   Navbar,
   Nav,
   NavDropdown,
-  Form,
-  FormControl,
-  Button,
+  // Form,
+  // FormControl,
+  // Button,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { auth, signInWithGoogle } from "../firebase";
@@ -15,7 +15,7 @@ const _Nav = () => {
   const user = useContext(UserContext);
   return (
     <div className="flexnone">
-      <Navbar bg="light" variant="light" expand="md">
+      <Navbar bg="light" variant="light" expand="md" className="py-3">
         <Navbar.Brand as={Link} to="/">
           CourseCompare
         </Navbar.Brand>
@@ -34,12 +34,12 @@ const _Nav = () => {
                   Loans
                 </Nav.Link>
               </Nav>
-              <Nav className="mr-auto">
+              {/* <Nav className="mr-auto">
                 <Form inline>
                   <FormControl placeholder="Search" className="mr-sm-2" />
                   <Button variant="primary">Search</Button>
                 </Form>
-              </Nav>
+              </Nav> */}
               <Nav bg="primary" variant="dark">
                 <NavDropdown title="My Account" id="basic-nav-dropdown">
                   <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
@@ -54,9 +54,6 @@ const _Nav = () => {
               </Nav>
             </>
           ) : (
-            // <Nav className="ml-auto">
-            //   <Nav.Link onClick={() => signInWithGoogle()}>Sign In</Nav.Link>
-            // </Nav>
             <button
               className="ml-auto homebtn"
               onClick={() => signInWithGoogle()}

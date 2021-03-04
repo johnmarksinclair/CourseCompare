@@ -41,9 +41,6 @@ const Home = () => {
         <div className="col-sm-12 col-md-5 pt-10 flex flex-col justify-center hometext">
           <div className="flex flex-col justify-center homeblockmid">
             <div className="col-sm-12 col-md-8">
-              {/* <div className="text-gray-800 font-semibold text-5xl">
-                Make the right decision.
-              </div> */}
               <div className="text-gray-600 font-semibold text-2xl pb-10">
                 We let students rate their modules and courses to provide you
                 with the information you need to make your choice

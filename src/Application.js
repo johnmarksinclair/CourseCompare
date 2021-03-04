@@ -2,8 +2,8 @@ import { useContext } from "react";
 import { UserContext } from "./providers/UserProvider";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Navbar from "./components/Nav";
-import SignIn from "./components/SignIn";
-import SignUp from "./components/SignUp";
+// import SignIn from "./components/SignIn";
+// import SignUp from "./components/SignUp";
 import Home from "./components/Home";
 import Profile from "./components/Profile";
 import Course from "./components/Course";
@@ -21,31 +21,31 @@ function Application() {
           <Route path="/firebase" exact component={FBTesting} />
           <Route path="/" exact component={Home} />
           <Route path="/home" exact component={Home} />
-          <Route
+          {/* <Route
             path="/signin"
             exact
-            component={() => (user ? <Profile /> : <SignIn />)}
+            component={() => (user ? <Profile /> : <Home />)}
           />
-          <Route path="/signup" exact component={SignUp} />
+          <Route path="/signup" exact component={SignUp} /> */}
           <Route
             path="/profile"
             exact
-            component={() => (user ? <Profile /> : <SignIn />)}
+            component={() => (user ? <Profile /> : <Home />)}
           />
           <Route
             path="/coursesearch"
             exact
-            component={() => (user ? <CourseSearch /> : <SignIn />)}
+            component={() => (user ? <CourseSearch /> : <Home />)}
           />
           <Route
             path="/course"
             exact
-            component={() => (user ? <Course /> : <SignIn />)}
+            component={() => (user ? <Course /> : <Home />)}
           />
           <Route
             path="/loans"
             exact
-            component={() => (user ? <Loans /> : <SignIn />)}
+            component={() => (user ? <Loans /> : <Home />)}
           />
         </Switch>
       </Router>
