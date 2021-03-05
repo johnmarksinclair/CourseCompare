@@ -1,6 +1,7 @@
 import { useState } from "react";
 import {
   getCourses,
+  getCourse,
   addCourse,
   editCourse,
   deleteCourse,
@@ -55,6 +56,12 @@ const FBTesting = () => {
         onClick={async () => console.log(await getCourses())}
       >
         getCourses
+      </button>
+      <button
+        className="signbtn testedBtn"
+        onClick={async () => console.log(await getCourse(courseExampleID))}
+      >
+        getCourse
       </button>
       <button
         className="signbtn testedBtn"
