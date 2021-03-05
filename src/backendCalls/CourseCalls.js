@@ -22,6 +22,9 @@ export const getCourses = async () => {
   return courseArr;
 };
 
+// todo - gets just one specified course
+export const getCourse = async (passedID) => {};
+
 // todo
 export const editCourse = async (doc) => {};
 

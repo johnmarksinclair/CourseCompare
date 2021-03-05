@@ -12,9 +12,9 @@ const Home = () => {
   return (
     <div className="col">
       <div className="row">
-        <div className="col-sm-12 col-md-5 pt-10 flex flex-col justify-center hometext">
+        <div className="col-sm-12 col-lg-5 pt-10 flex flex-col justify-center hometext">
           <div className="flex flex-col justify-center homeblock">
-            <div className="col-sm-12 col-md-8">
+            <div className="col-sm-12 col-md-10 col-xl-8">
               <div className="text-gray-800 font-semibold text-5xl">
                 Make the right decision.
               </div>
@@ -25,20 +25,20 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div className="col-sm-12 col-md-7 flex justify-center items-center">
+        <div className="col-sm-12 col-lg-7 flex justify-center items-center">
           <div className="col-10 p-10">
             <img src={option} alt="" width="100%" />
           </div>
         </div>
       </div>
 
-      <div className="row bg-blue-50">
-        <div className="col-sm-12 col-md-7 flex justify-center items-center">
+      <div className="row bg-blue-50 homereverse">
+        <div className="col-sm-12 col-lg-7 flex justify-center items-center">
           <div className="col-10 p-10">
             <img src={cert} alt="" width="100%" />
           </div>
         </div>
-        <div className="col-sm-12 col-md-5 pt-10 flex flex-col justify-center hometext">
+        <div className="col-sm-12 col-lg-5 pt-10 flex flex-col justify-center hometext">
           <div className="flex flex-col justify-center homeblockmid">
             <div className="col-sm-12 col-md-8">
               <div className="text-gray-600 font-semibold text-2xl pb-10">

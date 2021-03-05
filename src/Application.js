@@ -18,18 +18,16 @@ function Application() {
       <Router>
         <Navbar />
         <Switch>
-          <Route path="/firebase" exact component={FBTesting} />
+          <Route path="/firebase" component={FBTesting} />
           <Route path="/" exact component={Home} />
-          <Route path="/home" exact component={Home} />
+          <Route path="/home" component={Home} />
           {/* <Route
             path="/signin"
-            exact
             component={() => (user ? <Profile /> : <Home />)}
           />
-          <Route path="/signup" exact component={SignUp} /> */}
+          <Route path="/signup" component={SignUp} /> */}
           <Route
             path="/profile"
-            exact
             component={() => (user ? <Profile /> : <Home />)}
           />
           <Route
@@ -37,14 +35,9 @@ function Application() {
             exact
             component={() => (user ? <CourseSearch /> : <Home />)}
           />
-          <Route
-            path="/course"
-            exact
-            component={() => (user ? <Course /> : <Home />)}
-          />
+          <Route path="/coursesearch/:id" component={Course} />
           <Route
             path="/loans"
-            exact
             component={() => (user ? <Loans /> : <Home />)}
           />
         </Switch>

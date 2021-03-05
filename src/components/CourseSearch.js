@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 //import { Form, FormControl, Button, InputGroup } from "react-bootstrap";
 import { getCourses } from "../backendCalls/CourseCalls";
 import { FormControl } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const CourseSearch = () => {
   const [courseData, setCourseData] = useState([]);
@@ -45,46 +46,31 @@ const CourseSearch = () => {
     setMatchingCourses(matching);
   };
 
-  // const callSearchCourses = async (search) => {
-  //   if (search.length <= 0) {
-  //     updateData();
-  //     return;
-  //   }
-  //   let matching = await searchCourses(search);
-  //   //console.log(matching);
-  //   if (matching.length > 0) setCourseData(matching);
-  // };
-
-  const handleCourseSelect = (data) => {
-    console.log(`clicked ${data.id}`);
-    // route to /course and pass data as param
-    // will then need to grab reviews
-    // in course useEffect will call getReviews()
-  };
-
-  const CourseButton = (props) => {
+  const CourseButton = ({ course }) => {
     return (
       <div className="listdiv">
-        <div
-          className="btndiv"
-          onClick={() => {
-            handleCourseSelect(props.course);
-          }}
-        >
-          <div className="col-sm-4 col-md-2">
-            <div className="title">{props.course.title}</div>
-            <div>{props.course.host}</div>
-            <div>{props.course.rating} ⭐️</div>
+        <Link to={`/coursesearch/${course.id}`}>
+          <div
+            className="btndiv"
+            // onClick={() => {
+            //   handleCourseSelect(props.course);
+            // }}
+          >
+            <div className="col-sm-4 col-md-2">
+              <div className="title">{course.title}</div>
+              <div>{course.host}</div>
+              <div>{course.rating} ⭐️</div>
+            </div>
+            <div className="col-sm-4 col-md-2">
+              <div>{course.type}</div>
+              <div>{course.length}</div>
+              <div>€{course.cost}</div>
+            </div>
+            <div className="col">
+              <div>{course.description}</div>
+            </div>
           </div>
-          <div className="col-sm-4 col-md-2">
-            <div>{props.course.type}</div>
-            <div>{props.course.length}</div>
-            <div>€{props.course.cost}</div>
-          </div>
-          <div className="col">
-            <div>{props.course.description}</div>
-          </div>
-        </div>
+        </Link>
       </div>
     );
   };
