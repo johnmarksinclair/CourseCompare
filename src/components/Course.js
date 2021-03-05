@@ -11,9 +11,28 @@ const Course = ({ match }) => {
 
   const updateData = async () => {
     let id = match.params.id;
-    let course = await getCourse(id);
-    //console.log(course[0]);
-    setCourseData(course[0]);
+    let data = await getCourse(id);
+    if (data.length > 0) setCourseData(data[0]);
+    else setCourseData(fake);
+  };
+
+  // temp course data
+  const fake = {
+    title: "Business and Finance",
+    host: "University of Dublin, Trinity College",
+    type: "MBA",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur" +
+      " adipiscing elit, sed do eiusmod tempor incididunt ut " +
+      "labore et dolore magna aliqua. Ut enim ad minim veniam, " +
+      "quis nostrud exercitation ullamco laboris nisi ut aliquip" +
+      "ex ea commodo consequat. Duis aute irure dolor in " +
+      "reprehenderit in voluptate velit esse cillum dolore eu fugiat" +
+      " nulla pariatur. Excepteur sint occaecat cupidatat non proident," +
+      " sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    length: "2 years",
+    cost: "15000",
+    rating: 4.7,
   };
 
   return (

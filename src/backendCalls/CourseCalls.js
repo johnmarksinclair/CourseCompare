@@ -27,8 +27,6 @@ export const getCourse = async (passedID) => {
   let snapshot = await coursesRef.where("__name__", "==", passedID).get();
   let courseArr = [];
   snapshot.forEach((doc) => {
-    // console.log(doc.id, "=>", doc.data());
-    // console.log(doc.data().title);
     let courseObj = createCourseObj(doc);
     //console.log(courseObj);
     courseArr.push(courseObj);
