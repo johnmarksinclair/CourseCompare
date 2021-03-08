@@ -33,6 +33,8 @@ export const deleteModule = async (doc) => {};
 export const createModuleObj = (doc) => {
   let module = {
     id: `${doc.id}`,
+    title: `${doc.data().title}`,
+    description: `${doc.data().description}`,
   };
   return module;
 };
