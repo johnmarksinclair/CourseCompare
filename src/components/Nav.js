@@ -17,16 +17,16 @@ const _Nav = () => {
     <div className="flexnone">
       <Navbar bg="light" variant="light" expand="md" className="py-3">
         <Navbar.Brand as={Link} to="/">
-          CourseCompare
+          Course Compare
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           {user ? (
             <>
               <Nav className="mr-auto">
-                <Nav.Link as={Link} to="/home">
+                {/* <Nav.Link as={Link} to="/home">
                   Home
-                </Nav.Link>
+                </Nav.Link> */}
                 <Nav.Link as={Link} to="/coursesearch">
                   Courses
                 </Nav.Link>
