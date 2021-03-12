@@ -41,7 +41,7 @@ const FBTesting = () => {
   };
 
   const courseExampleID = "KlKwFOMA0lJRgkHBAfGf";
-  const reviewExampleID = "iGERg5yOiFwnYS2Kd3GH";
+  const reviewExampleID = "GVomJPsxT20ZkU1VLUB9";
 
   // idk
   const testSearch = async (search) => {
@@ -49,7 +49,7 @@ const FBTesting = () => {
   };
 
   return (
-    <div>
+    <div className="bg-blue-0">
       <h2>Firebase Testing</h2>
       <button
         className="signbtn testedBtn"
@@ -96,13 +96,13 @@ const FBTesting = () => {
         addReview
       </button>
       <button
-        className="signbtn googlebtn"
-        onClick={() => editReview(reviewExampleID)}
+        className="signbtn testedBtn"
+        onClick={() => editReview(reviewExampleID, "new edited body")}
       >
         editReview
       </button>
       <button
-        className="signbtn googlebtn"
+        className="signbtn testedBtn"
         onClick={() => deleteReview(reviewExampleID)}
       >
         deleteReview

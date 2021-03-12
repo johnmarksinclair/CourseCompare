@@ -117,48 +117,6 @@
   align-items: center;
 }
 
-.coursesearchdiv {
-  flex: none;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  text-align: center;
-  width: 100%;
-  padding: 20px;
-  background-color: lightblue;
-}
-
-.searchcont {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: 100%;
-}
-
-.searchleft {
-  padding-top: 20px;
-  padding-left: 20px;
-  padding-bottom: 20px;
-  width: 20%;
-}
-
-.searchdash {
-  background-color: #fff;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  justify-content: flex-start;
-  align-items: center;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px 0 rgba(50, 50, 50, 0.3);
-}
-
-.searchright {
-  padding: 10px 20px;
-  width: 80%;
-}
-
 .hometext {
   text-align: start;
 }
@@ -210,20 +168,6 @@
 
   .homereverse {
     flex-direction: column-reverse;
-  }
-
-  .searchcont {
-    flex-direction: column;
-  }
-
-  .searchleft {
-    width: 100%;
-    padding-right: 20px;
-    padding-bottom: 0px;
-  }
-
-  .searchright {
-    width: 100%;
   }
 }
 
