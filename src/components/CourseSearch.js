@@ -82,11 +82,11 @@ const CourseSearch = () => {
 
   return (
     <div className="flex flex-col h-full px-4">
-      <div className="pt-4 pb-2 text-gray-700 row">
-        <div className="col-sm-12 col-md-3 text-center">
-          <h2>Courses Search</h2>
+      <div className="pt-4 text-gray-700 row">
+        <div className="col-sm-12 col-md-3 text-center pb-4">
+          <div className="font-semibold text-3xl">Courses Search</div>
         </div>
-        <div className="col-sm-12 col-md-6 items-center">
+        <div className="col-sm-12 col-md-6 items-center pb-4">
           <FormControl
             placeholder="Search"
             value={searchInput}
@@ -94,7 +94,7 @@ const CourseSearch = () => {
           />
         </div>
       </div>
-      <div className="divide-y-2 overflow-y-auto ">
+      <div className="divide-y-2 overflow-y-auto">
         {searching
           ? matchingCourses.map((course) => (
               <CourseButton course={course} key={course.id} />
