@@ -13,6 +13,7 @@ import {
   editReview,
   deleteReview,
 } from "../backendCalls/ReviewCalls";
+//import ReviewPopup from "./ReviewPopup";
 
 const FBTesting = () => {
   const [input, setInput] = useState("");
@@ -110,6 +111,18 @@ const FBTesting = () => {
       <div>
         <h3>Search Test</h3>
         <input value={input} onChange={(e) => handleChange(e)} />
+      </div>
+
+      <div>
+        <p className="font-bold text-2xl">Add Review Testing</p>
+        <button
+          className="homebtn"
+          onClick={() => {
+            console.log("clicked");
+          }}
+        >
+          Add
+        </button>
       </div>
     </div>
   );

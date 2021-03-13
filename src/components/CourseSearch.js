@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { getCourses } from "../backendCalls/CourseCalls";
 import { FormControl } from "react-bootstrap";
 import { Link } from "react-router-dom";
-//import trinitylogo from "../assets/trinitylogo.jpeg";
+import trinitylogo from "../assets/trinitylogo.jpeg";
 
 const CourseSearch = () => {
   const [courseData, setCourseData] = useState([]);
@@ -55,14 +55,17 @@ const CourseSearch = () => {
           className="text-gray-500 hover:text-gray-500 hover:no-underline"
         >
           <div className="row">
-            <div className="col-sm-12 col-md-4">
+            <div className="col-xs-12 col-sm-6 col-xl-5">
               <div className="row">
-                <div className="col-6 py-8">
+                <div className="col-2 d-none d-md-block py-8">
+                  <img src={trinitylogo} alt="" className="w-full" />
+                </div>
+                <div className="col-4 py-8">
                   <div className="title">{course.title}</div>
                   <div>{course.host}</div>
                   <div>Rating: {course.rating}</div>
                 </div>
-                <div className="col-6 py-8">
+                <div className="col-5 py-8">
                   <div>{course.type}</div>
                   <div>Duration: {course.length}</div>
                   <div>Fees: €{course.cost}</div>
@@ -70,7 +73,7 @@ const CourseSearch = () => {
               </div>
             </div>
 
-            <div className="col-sm-12 col-md-8 py-8">
+            <div className="col-xs-12 col-sm-6 col-xl-7 py-8">
               <div className="font-bold">Description</div>
               <p className="text-justify">{course.description}</p>
             </div>
