@@ -273,32 +273,33 @@
 }
 
 .header {
+  display: flex;
   background-image: url(https://talloiresnetwork.tufts.edu/wp-content/uploads/TCD-header1.jpg);
   position: relative;
   width: 100%;
   height: 150px;
-  border: 2px solid #000;
   text-align: right;
+  padding-bottom: 20px;
 }
 
 .body {
-
+  padding-top: 50px;
+  padding-left:20px;
   position: relative;
   width: 100%;
-  border: 2px solid #000;
-  height: 500px;
-  text-align: right;
+  height: auto;
+  float: left;
 }
 
 img {
   border-radius: 50%;
   width: 90px;
   height: 90px;
-  border: 2px solid #ddd;
+  border: 6px solid rgb(0, 0, 0);
 }
 
 .floatdown {
   position: absolute;
   top: 100px;
-  left: 20px;
+  left: 60px;
 }
