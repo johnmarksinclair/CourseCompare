@@ -24,17 +24,31 @@ export const getCourseReviews = async (passedID) => {
   return reviewsArr;
 };
 
-// todo
-export const editReview = async (doc) => {};
+// updates the body of a review
+export const editReview = async (passedID, edit) => {
+  let docRef = await reviewsRef.doc(passedID);
+  let temp = {};
+  temp.body = edit;
+  docRef.get().then((doc) => {
+    if (doc) {
+      //console.log(doc.id, "=>", doc.data().body);
+      docRef.update(temp);
+    } else {
+      console.log("error: review not found");
+    }
+  });
+};
 
-// todo
-export const deleteReview = async (doc) => {};
+// deletes a review by id
+export const deleteReview = async (passedID) => {
+  reviewsRef.doc(passedID).delete();
+};
 
 export const createReviewObj = (doc) => {
   let review = {
     id: `${doc.id}`,
     courseID: `${doc.data().courseID}`,
-    description: `${doc.data().description}`,
+    body: `${doc.data().body}`,
     rating: `${doc.data().rating}`,
     author: `${doc.data().author}`,
   };

@@ -13,6 +13,7 @@ import {
   editReview,
   deleteReview,
 } from "../backendCalls/ReviewCalls";
+//import ReviewPopup from "./ReviewPopup";
 
 const FBTesting = () => {
   const [input, setInput] = useState("");
@@ -41,7 +42,7 @@ const FBTesting = () => {
   };
 
   const courseExampleID = "KlKwFOMA0lJRgkHBAfGf";
-  const reviewExampleID = "iGERg5yOiFwnYS2Kd3GH";
+  const reviewExampleID = "GVomJPsxT20ZkU1VLUB9";
 
   // idk
   const testSearch = async (search) => {
@@ -49,7 +50,7 @@ const FBTesting = () => {
   };
 
   return (
-    <div>
+    <div className="bg-blue-0">
       <h2>Firebase Testing</h2>
       <button
         className="signbtn testedBtn"
@@ -96,13 +97,13 @@ const FBTesting = () => {
         addReview
       </button>
       <button
-        className="signbtn googlebtn"
-        onClick={() => editReview(reviewExampleID)}
+        className="signbtn testedBtn"
+        onClick={() => editReview(reviewExampleID, "new edited body")}
       >
         editReview
       </button>
       <button
-        className="signbtn googlebtn"
+        className="signbtn testedBtn"
         onClick={() => deleteReview(reviewExampleID)}
       >
         deleteReview
@@ -110,6 +111,18 @@ const FBTesting = () => {
       <div>
         <h3>Search Test</h3>
         <input value={input} onChange={(e) => handleChange(e)} />
+      </div>
+
+      <div>
+        <p className="font-bold text-2xl">Add Review Testing</p>
+        <button
+          className="homebtn"
+          onClick={() => {
+            console.log("clicked");
+          }}
+        >
+          Add
+        </button>
       </div>
     </div>
   );
