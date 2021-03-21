@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW 2021 (64-Bit Evaluation Version) -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="640px" height="640px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 640 640"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .str0 {stroke:#3B82F6;stroke-width:16;stroke-miterlimit:22.9256}
+    .str1 {stroke:#3B82F6;stroke-width:0.9;stroke-miterlimit:22.9256}
+    .fil0 {fill:none}
+    .fil1 {fill:#3B82F6}
+   ]]>
+  </style>
+ </defs>
+ <g id="Layer_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <path class="fil0 str0" d="M542.15 133.59c43.83,52.23 67.85,118.23 67.85,186.41 0,160.16 -129.84,290 -290,290 -160.16,0 -290,-129.84 -290,-290 0,-68.18 24.02,-134.18 67.85,-186.41"/>
+  <circle class="fil1 str1" cx="97.85" cy="133.59" r="12"/>
+  <circle class="fil1 str1" cx="542.15" cy="133.59" r="12"/>
+ </g>
+</svg>
