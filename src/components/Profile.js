@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { UserContext } from "../providers/UserProvider";
 import Card from "react-bootstrap/Card";
-import Tabs from 'react-bootstrap/Tabs';
 import Button from 'react-bootstrap/Button'
 
 //mport { auth } from "../firebase";
@@ -12,7 +11,7 @@ const Profile = () => {
   return (
 <div>
 <div class="header">
-    <img src= {photoURL} alt="my image" class="floatdown"/>
+    <img src= {photoURL} alt="" class="floatdown"/>
 </div>
 
 <div class = "body">
