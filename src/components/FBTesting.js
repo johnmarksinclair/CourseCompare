@@ -35,13 +35,13 @@ const FBTesting = () => {
   };
 
   const fakeReview = {
-    courseID: "KlKwFOMA0lJRgkHBAfGf",
-    author: "john",
-    body: "terrible",
-    rating: 2.8,
+    courseID: "2aCYcDL577Fbu2EsMTDt",
+    author: "dave",
+    body: "really good",
+    rating: 4.8,
   };
 
-  const courseExampleID = "KlKwFOMA0lJRgkHBAfGf";
+  const courseExampleID = "2aCYcDL577Fbu2EsMTDt";
   const reviewExampleID = "GVomJPsxT20ZkU1VLUB9";
 
   // idk
@@ -113,7 +113,7 @@ const FBTesting = () => {
         <input value={input} onChange={(e) => handleChange(e)} />
       </div>
 
-      <div>
+      {/* <div>
         <p className="font-bold text-2xl">Add Review Testing</p>
         <button
           className="homebtn"
@@ -123,7 +123,7 @@ const FBTesting = () => {
         >
           Add
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };
