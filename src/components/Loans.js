@@ -59,7 +59,7 @@ const Loans = () => {
   return (
     <div className="m-2">
       <div className="mx-12 mb-8 object-center">
-        <h1 className="text-5xl font-semibold">Loan Information</h1>
+        <h1 className="Typist text-5xl font-semibold">Loan Information</h1>
       </div>
 
       <div className="mx-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

@@ -5,10 +5,17 @@ import grad from "../assets/grad.svg";
 import option from "../assets/option.svg";
 import cert from "../assets/cert.svg";
 //import choice from "../assets/choice.svg";
+import Typist from 'react-typist';
 
 const Home = () => {
   const user = useContext(UserContext);
-
+  const typing = (text,keyDelay,delay) => {
+    return(
+      <Typist cursor={{show: false}} avgTypingDelay={keyDelay} startDelay={delay}>
+        {text}
+      </Typist>
+    );
+  };
   return (
     <div className="col">
       <div className="row">
@@ -16,11 +23,10 @@ const Home = () => {
           <div className="flex flex-col justify-center homeblock">
             <div className="col-sm-12 col-md-10 col-xl-8">
               <div className="text-gray-800 font-semibold text-5xl">
-                Make the right decision.
+                {typing('Make the right decision.',100, 0)}
               </div>
               <div className="text-gray-600 font-semibold text-2xl pt-6">
-                We at CourseCompare are here to help you make the right decision
-                when it comes to your degree
+                {typing('We at CourseCompare are here to help you make the right decision when it comes to your degree',30, 800)}
               </div>
             </div>
           </div>
@@ -42,8 +48,7 @@ const Home = () => {
           <div className="flex flex-col justify-center homeblockmid">
             <div className="col-sm-12 col-md-8">
               <div className="text-gray-600 font-semibold text-2xl pb-10">
-                We let students rate their modules and courses to provide you
-                with the information you need to make your choice
+               {typing(' We let students rate their modules and courses to provide you with the information you need to make your choice', 30, 2000)}
               </div>
             </div>
           </div>
@@ -56,7 +61,7 @@ const Home = () => {
             <div className="col-sm-10 col-md-8 flex flex-col items-center">
               <div>
                 <div className="text-gray-600 font-semibold text-2xl">
-                  Start exploring our courses on the courses page
+                  {typing('Start exploring our courses on the courses page', 30, 3000)}
                 </div>
               </div>
             </div>
