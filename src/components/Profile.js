@@ -44,16 +44,14 @@ const Profile = () => {
 
       <div class=" py-10 block rounded-md focus:underline">
           <h3 class="px-2">My Reviews</h3>
-
+       
+        </div>
+        <div class= "pr-4 cursor-pointer bg-gradient-to-r from-blue-50 to-blue-100 border-2 border-blue-500 max-w-lg	rounded-lg shadow-xl	 border-dashed">
+        <h1 class= "p-3 pt-3 text-sm font-bold">{data.courseID}</h1>
+        <h2 class="italic pl-3 text-sm font-normal">"{data.body}"</h2>
+        <h3 class= "pl-3 pb-3 pt-2 font-semibold text-blue-500	text-sm">{data.rating}/5</h3>
         </div>
         <div>
-          <Card border='primary' style={{ width: '23rem' }}>
-            <Card.Body>
-              <Card.Text class="font-bold pl-1 pb-1">{data.courseID}</Card.Text>
-              <Card.Text class=" italic pb-1">"{data.body}"</Card.Text>
-              <Card.Text class=" pl-1 font-bold text-blue-500	">{data.rating}/5</Card.Text>
-            </Card.Body>
-          </Card>
           <div class="pt-12"></div>
         </div>
       </div>
@@ -63,18 +61,17 @@ const Profile = () => {
 };
 
 /*
-function userReview(props){
-  return (
 
-          <Card border='primary' style={{ width: '25rem' }}>
-            <Card.Body>
-              <Card.Text class="font-bold pl-1 pb-1">{props.data.courseID}</Card.Text>
-              <Card.Text class=" italic pb-1">"{props.data.body}"</Card.Text>
-              <Card.Text class=" pl-1 font-bold text-blue-500	">{props.data.rating}/5</Card.Text>
-            </Card.Body>
-          </Card>
-  );
-}
+
+const userReview = (props) => {
+  return (
+        </div>
+        <div class= "cursor-pointer bg-gradient-to-r from-blue-50 to-blue-100 border-2 border-blue-500 max-w-lg	rounded-lg shadow-xl	 border-dashed">
+        <h1 class= "p-3 pt-3 text-sm font-bold">{props.courseID}</h1>
+        <h2 class="italic pl-3 text-sm font-normal">"{props.body}"</h2>
+        <h3 class= "pl-3 pb-3 pt-2 font-bold text-blue-500	text-sm">{props.rating}/5</h3>
+        </div>
+        <div>
 */
 
 export default Profile;
