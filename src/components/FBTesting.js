@@ -14,6 +14,17 @@ import {
   deleteReview,
 } from "../backendCalls/ReviewCalls";
 //import ReviewPopup from "./ReviewPopup";
+import {
+  addModule,
+  getCourseModules,
+  editModule,
+  deleteModule,
+} from "../backendCalls/ModuleCalls";
+import{
+  getUserReviews,
+  getUserCourses,
+  getUserModules,
+} from "../backendCalls/UserCalls";
 
 const FBTesting = () => {
   const [input, setInput] = useState("");
@@ -41,8 +52,24 @@ const FBTesting = () => {
     rating: 4.8,
   };
 
-  const courseExampleID = "2aCYcDL577Fbu2EsMTDt";
-  const reviewExampleID = "GVomJPsxT20ZkU1VLUB9";
+  const fakeModule = {
+    courseID: "2aCYcDL577Fbu2EsMTDt",
+    title: "MSc of Physics",
+    lecturer: "Prof.Smith",
+    description: "Further your knowledge of atoms",
+    rating: 4.6,
+  };
+
+  const fakeUser = {
+    username: "dave@tcd.ie",
+    course: "physics",
+    job: "lab technician",
+  };
+
+  const courseExampleID = "44YJav0oY9PCAkMJl5nO";
+  const reviewExampleID = "9nVvEkNsc1H70SUpzxOd";
+  const moduleExampleID = "Rz3BMRI4X1VPsLu6lwOK"; 
+  //const userExampleID = "";
 
   // idk
   const testSearch = async (search) => {
@@ -71,13 +98,13 @@ const FBTesting = () => {
         addCourse
       </button>
       <button
-        className="signbtn googlebtn"
-        onClick={() => editCourse(courseExampleID)}
+        className="signbtn testedBtn"
+        onClick={() => editCourse(courseExampleID, "Edited Course")}
       >
         editCourse
       </button>
       <button
-        className="signbtn googlebtn"
+        className="signbtn testedBtn"
         onClick={() => deleteCourse(courseExampleID)}
       >
         deleteCourse
@@ -108,6 +135,58 @@ const FBTesting = () => {
       >
         deleteReview
       </button>
+      <button
+        className="signbtn testedBtn"
+        onClick={async () => 
+          console.log(await getCourseModules(courseExampleID))
+          }
+      >
+        getCourseModules
+      </button>
+      <button
+        className="signbtn testedBtn"
+        onClick={() => addModule(fakeModule)}
+      >
+        addModule 
+      </button>
+      <button
+        className="signbtn testedBtn"
+        onClick={() => deleteModule(moduleExampleID)}
+      >
+        deleteModule
+      </button>  
+      <button
+        className="signbtn testedBtn"
+        onClick={() => editModule(moduleExampleID, "Edited Module")}
+      >
+        editModule
+      </button>
+      <button
+        className="signbtn testedBtn"
+        onClick={async () =>
+          console.log(await getUserReviews(fakeUser))
+        }
+      >
+        getUserReviews
+      </button>
+      <button
+        className="signbtn testedBtn"
+        onClick={async () =>
+          console.log(await getUserCourses(fakeUser))
+        }
+      >
+        getUserCourses
+      </button>
+      <button
+        className="signbtn testedBtn"
+        onClick={async () =>
+          console.log(await getUserModules(fakeUser))
+        }
+      >
+        getUserModules
+      </button>
+  
+
       <div>
         <h3>Search Test</h3>
         <input value={input} onChange={(e) => handleChange(e)} />
