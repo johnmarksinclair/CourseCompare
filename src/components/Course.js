@@ -10,7 +10,7 @@ import Data_Ring from "../assets/Data-Ring.svg";
 import Arrow from "../assets/Blue-Arrow.svg";
 import ReviewSection from "./ReviewSection";
 
-const Course = ({ match }) => {
+const Course = ({ match }, props) => {
   const [courseData, setCourseData] = useState({});
   const [reviewData, setReviewData] = useState([]);
 
@@ -32,7 +32,7 @@ const Course = ({ match }) => {
       });
     }
     setReviewData(revArr);
-    // console.log(revArr);
+    console.log(revArr);
   };
 
   const error = {

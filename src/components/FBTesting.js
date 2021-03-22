@@ -35,14 +35,15 @@ const FBTesting = () => {
   };
 
   const fakeReview = {
-    courseID: "2aCYcDL577Fbu2EsMTDt",
-    author: "dave",
-    body: "really good",
+    courseID: "44YJav0oY9PCAkMJl5nO",
+    author: "John Sinclair",
+    body: "this is another test review",
     rating: 4.8,
+    email: "sinclajo@tcd.ie",
   };
 
   const courseExampleID = "2aCYcDL577Fbu2EsMTDt";
-  const reviewExampleID = "GVomJPsxT20ZkU1VLUB9";
+  const reviewExampleID = "61quoPBUYkViW2eaZ5nE";
 
   // idk
   const testSearch = async (search) => {
