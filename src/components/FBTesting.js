@@ -46,10 +46,11 @@ const FBTesting = () => {
   };
 
   const fakeReview = {
-    courseID: "2aCYcDL577Fbu2EsMTDt",
-    author: "dave",
-    body: "really good",
+    courseID: "44YJav0oY9PCAkMJl5nO",
+    author: "John Sinclair",
+    body: "this is another test review",
     rating: 4.8,
+    email: "sinclajo@tcd.ie",
   };
 
   const fakeModule = {
@@ -69,7 +70,6 @@ const FBTesting = () => {
   const courseExampleID = "44YJav0oY9PCAkMJl5nO";
   const reviewExampleID = "9nVvEkNsc1H70SUpzxOd";
   const moduleExampleID = "Rz3BMRI4X1VPsLu6lwOK"; 
-  //const userExampleID = "";
 
   // idk
   const testSearch = async (search) => {

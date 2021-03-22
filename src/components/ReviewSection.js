@@ -4,22 +4,23 @@ const ReviewSection = (props) => {
   let reviewData = props.data;
 
   const NoReviews = () => {
-    return <div>No Reviews</div>;
+    return <div className="pl-3">No Reviews</div>;
   };
 
   const Review = (props) => {
     let data = props.data;
+
     return (
-      <Toast animation={false}>
-        <Toast.Header closeButton={false}>
-          {/* <img src={props.img} className="rounded mr-2 h-8 w-8" alt="" /> */}
-          <strong className="mr-auto">
-            {data.author} - {data.rating}
-          </strong>
-          <small>date</small>
-        </Toast.Header>
-        <Toast.Body className="px-2 py-1">{data.body}</Toast.Body>
-      </Toast>
+      <div className="">
+        <Toast animation={false}>
+          <Toast.Header closeButton={false}>
+            {/* <img src={props.img} className="rounded mr-2 h-8 w-8" alt="" /> */}
+            <div className="mr-auto font-semibold pr-0">{data.author}</div>
+            <strong>{data.rating}/5</strong>
+          </Toast.Header>
+          <Toast.Body className="px-2 py-1">{data.body}</Toast.Body>
+        </Toast>
+      </div>
     );
   };
 
@@ -34,11 +35,13 @@ const ReviewSection = (props) => {
           New Review
         </button>
       </div>
-      {reviewData.length > 0 ? (
-        reviewData.map((review) => <Review data={review} key={review.id} />)
-      ) : (
-        <NoReviews />
-      )}
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+        {reviewData.length > 0 ? (
+          reviewData.map((review) => <Review data={review} key={review.id} />)
+        ) : (
+          <NoReviews />
+        )}
+      </div>
     </div>
   );
 };

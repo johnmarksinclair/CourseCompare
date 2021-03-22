@@ -51,6 +51,7 @@ export const createReviewObj = (doc) => {
     body: `${doc.data().body}`,
     rating: `${doc.data().rating}`,
     author: `${doc.data().author}`,
+    email: `${doc.data().email}`,
   };
   return review;
 };
