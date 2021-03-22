@@ -1,9 +1,11 @@
 import { firestore } from "../firebase";
 
 const reviewsRef = firestore.collection("reviews");
+const coursesRef = firestore.collection("courses");
+const modulesRef = firestore.collection("modules");
 
 export const getUserReviews = async (passedID) => {
-    const snapshot = await userRef.where("courseID", "==", passedID).get();
+    const snapshot = await reviewsRef.where("reviewID", "==", passedID).get();
     let usersRevArr = [];
     if (snapshot.empty) {
         console.log("No matching documents.");
@@ -18,7 +20,7 @@ export const getUserReviews = async (passedID) => {
 };
 
 export const getUserCourses = async (passedID) => {
-    const snapshot = await userRef.where("courseID", "==", passedID).get();
+    const snapshot = await coursesRef.where("courseID", "==", passedID).get();
     let usersCourseArr = [];
     if (snapshot.empty) {
         console.log("No matching documents.");
@@ -33,7 +35,7 @@ export const getUserCourses = async (passedID) => {
 
 export const getUserModules = async (passedID) => {
     //moduleID instead of courseID? 
-    const snapshot = await userRef.where("moduleID", "==", passedID).get();
+    const snapshot = await modulesRef.where("moduleID", "==", passedID).get();
     let usersModuleArr = [];
     if (snapshot.empty) {
         console.log("No matching documents.");
@@ -50,7 +52,9 @@ export const createUserObj = (doc) => {
     let user = {
         id: `${doc.id}`,
         //username?
-        //username: `${doc.data().username}`,
+        username: `${doc.data().username}`,
+        course: `${doc.data().course}`, 
+        job: `${doc.data().data}`,
     };
     return user;
 }

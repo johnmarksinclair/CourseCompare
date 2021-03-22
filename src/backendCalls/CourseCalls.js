@@ -34,11 +34,24 @@ export const getCourse = async (passedID) => {
   return courseArr;
 };
 
-// todo
-export const editCourse = async (doc) => {};
 
-// todo
-export const deleteCourse = async (doc) => {};
+export const editCourse = async (passedID, edit) => {
+  let docRef = await coursesRef.doc(passedID);
+  let temp = {};
+  temp.body = edit;
+  docRef.get().then((doc) => {
+    if (doc) {
+      docRef.update(temp);
+    }else {
+      console.log("Error: Course not Found");
+    }
+  });
+};
+
+
+export const deleteCourse = async (passedID) => {
+  coursesRef.doc(passedID).delete();
+};
 
 // pointless?? - use for navbar search maybe
 export const searchCourses = async (search) => {
