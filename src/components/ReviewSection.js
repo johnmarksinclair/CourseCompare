@@ -37,7 +37,7 @@ const ReviewSection = (props) => {
     else {
       let newReview = {
         courseID: courseData.id,
-        courseName: `${courseData.title}, ${courseData.type}`,
+        courseName: `${courseData.host} - ${courseData.title}, ${courseData.type}`,
         body: bodyInput,
         rating: ratingInput,
         author: name,
