@@ -45,6 +45,8 @@ const ReviewSection = (props) => {
       };
       // console.log(newReview);
       addReview(newReview);
+      setBodyInput("");
+      setRatingInput("");
     }
   };
 

@@ -7,16 +7,18 @@ const Loans = () => {
           src={loan.imgLink}
           alt="bankLogo"
         ></img>
-        <div className="p-10">
-          <div className="mb-auto mt-auto min-h-full max-w-lg">
-            <h1 className="text-3xl uppercase">{loan.bank}</h1>
-            <p className="text-sm text-gray-500">{loan.descript}</p>
-            <button
-              className="bg-blue-500 hover:bg-blue-400 text-white font-semibold py-2 px-4 border-b-4 border-blue-700 hover:border--500 blue rounded-lg inline-block"
-              onClick={() => window.open(loan.link)}
-            >
-              Learn More
-            </button>
+        <div className="p-10 h-full">
+          <h1 className="text-3xl uppercase">{loan.bank}</h1>
+          <p className="text-sm text-gray-500">{loan.descript}</p>
+          <div className="pt-2 flex justify-center">
+            <div>
+              <button
+                className="bg-blue-500 hover:bg-blue-400 text-white font-semibold py-2 px-4 border-b-4 border-blue-700 hover:border--500 blue rounded-lg inline-block"
+                onClick={() => window.open(loan.link)}
+              >
+                Learn More
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -59,13 +61,13 @@ const Loans = () => {
     imgLink:
       "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fmedia.central.ie%2Fmedia%2Fimages%2Fp%2FPermanentTSBLogo_large.jpg&f=1&nofb=1",
   };
-  return (
-    <div className="m-2">
-      <div className="mx-12 mb-8 object-center">
-        <h1 className="text-5xl font-semibold">Loan Information</h1>
-      </div>
 
-      <div className="mx-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-4">
+  return (
+    <div className="px-12 py-4 text-gray-700">
+      <div className="pb-3 flex justify-center md:justify-start">
+        <h1 className="font-semibold text-3xl">Loan Information</h1>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-4">
         <div>{LoanButton(loan1)}</div>
         <div>{LoanButton(loan2)}</div>
         <div>{LoanButton(loan3)}</div>
