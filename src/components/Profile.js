@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../providers/UserProvider";
 import { getUserReviews } from "../backendCalls/UserCalls";
-import { Toast } from "react-bootstrap";
+import ReviewSection from "./ReviewSection";
 
 const Profile = () => {
   const user = useContext(UserContext);
@@ -34,31 +34,6 @@ const Profile = () => {
     console.log(revArr);
   };
 
-  const NoReviews = () => {
-    return <div className="pl-3">No Reviews</div>;
-  };
-
-  const Review = (props) => {
-    let data = props.data;
-
-    return (
-      <div className="">
-        <Toast animation={false}>
-          <Toast.Header closeButton={false}>
-            <img src={data.authorPic} className="rounded mr-2 h-8 w-8" alt="" />
-            <div className="mr-auto font-semibold pr-0">{data.author}</div>
-            <strong>{data.rating}/5</strong>
-          </Toast.Header>
-          <Toast.Body className="px-2 py-1">
-            <div className="">{data.courseName}</div>
-
-            {data.body}
-          </Toast.Body>
-        </Toast>
-      </div>
-    );
-  };
-
   return (
     <div>
       {user ? (
@@ -66,11 +41,7 @@ const Profile = () => {
           <img src={pic} alt="na" />
           <h2>{name}</h2>
           <h2>{add}</h2>
-          {reviews.length > 0 ? (
-            reviews.map((review) => <Review data={review} key={review.id} />)
-          ) : (
-            <NoReviews />
-          )}
+          <ReviewSection reviewData={reviews} profile={true} />
         </div>
       ) : (
         <div>Sign In</div>

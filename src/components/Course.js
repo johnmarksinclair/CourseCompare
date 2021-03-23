@@ -304,7 +304,11 @@ const Course = ({ match }) => {
         <Description data={courseData} />
         <CourseTabs data={courseData} />
       </div>
-      <ReviewSection reviewData={reviewData} courseData={courseData} />
+      <ReviewSection
+        reviewData={reviewData}
+        courseData={courseData}
+        profile={false}
+      />
     </div>
   );
 };
