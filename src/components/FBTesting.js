@@ -20,11 +20,6 @@ import {
   editModule,
   deleteModule,
 } from "../backendCalls/ModuleCalls";
-import{
-  getUserReviews,
-  getUserCourses,
-  getUserModules,
-} from "../backendCalls/UserCalls";
 
 const FBTesting = () => {
   const [input, setInput] = useState("");
@@ -69,7 +64,7 @@ const FBTesting = () => {
 
   const courseExampleID = "44YJav0oY9PCAkMJl5nO";
   const reviewExampleID = "9nVvEkNsc1H70SUpzxOd";
-  const moduleExampleID = "Rz3BMRI4X1VPsLu6lwOK"; 
+  const moduleExampleID = "Rz3BMRI4X1VPsLu6lwOK";
 
   // idk
   const testSearch = async (search) => {
@@ -137,9 +132,9 @@ const FBTesting = () => {
       </button>
       <button
         className="signbtn testedBtn"
-        onClick={async () => 
+        onClick={async () =>
           console.log(await getCourseModules(courseExampleID))
-          }
+        }
       >
         getCourseModules
       </button>
@@ -147,45 +142,20 @@ const FBTesting = () => {
         className="signbtn testedBtn"
         onClick={() => addModule(fakeModule)}
       >
-        addModule 
+        addModule
       </button>
       <button
         className="signbtn testedBtn"
         onClick={() => deleteModule(moduleExampleID)}
       >
         deleteModule
-      </button>  
+      </button>
       <button
         className="signbtn testedBtn"
         onClick={() => editModule(moduleExampleID, "Edited Module")}
       >
         editModule
       </button>
-      <button
-        className="signbtn testedBtn"
-        onClick={async () =>
-          console.log(await getUserReviews(fakeUser))
-        }
-      >
-        getUserReviews
-      </button>
-      <button
-        className="signbtn testedBtn"
-        onClick={async () =>
-          console.log(await getUserCourses(fakeUser))
-        }
-      >
-        getUserCourses
-      </button>
-      <button
-        className="signbtn testedBtn"
-        onClick={async () =>
-          console.log(await getUserModules(fakeUser))
-        }
-      >
-        getUserModules
-      </button>
-  
 
       <div>
         <h3>Search Test</h3>
