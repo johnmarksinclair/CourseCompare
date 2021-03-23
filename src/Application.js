@@ -1,5 +1,5 @@
-import { useContext } from "react";
-import { UserContext } from "./providers/UserProvider";
+// import { useContext } from "react";
+// import { UserContext } from "./providers/UserProvider";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Navbar from "./components/Nav";
 // import SignIn from "./components/SignIn";
@@ -12,7 +12,7 @@ import Loans from "./components/Loans";
 import FBTesting from "./components/FBTesting";
 
 function Application() {
-  const user = useContext(UserContext);
+  //const user = useContext(UserContext);
   return (
     <div className="cont">
       <Router>
@@ -21,12 +21,16 @@ function Application() {
           <Route path="/firebase" component={FBTesting} />
           <Route path="/" exact component={Home} />
           <Route path="/home" component={Home} />
+          <Route path="/profile" component={Profile} />
+          <Route path="/coursesearch" exact component={CourseSearch} />
+          <Route path="/coursesearch/:id" component={Course} />
+          <Route path="/loans" component={Loans} />
           {/* <Route
             path="/signin"
             component={() => (user ? <Profile /> : <Home />)}
           />
           <Route path="/signup" component={SignUp} /> */}
-          <Route
+          {/* <Route
             path="/profile"
             component={() => (user ? <Profile /> : <Home />)}
           />
@@ -39,7 +43,7 @@ function Application() {
           <Route
             path="/loans"
             component={() => (user ? <Loans /> : <Home />)}
-          />
+          /> */}
         </Switch>
       </Router>
     </div>
