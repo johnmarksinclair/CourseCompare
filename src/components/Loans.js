@@ -1,14 +1,14 @@
 const Loans = () => {
   const LoanButton = (loan) => {
     return (
-      <div className="shadow-lg rounded-xl overflow-hidden max-w-full hover:bg-gray-100">
+      <div className="shadow-lg rounded-xl overflow-hidden max-w-full h-full hover:bg-gray-100">
         <img
           className="object-cover object-center w-full max-h-48"
           src={loan.imgLink}
           alt="bankLogo"
         ></img>
-        <div className="flex p-10">
-          <div className="mb-auto mt-auto max-w-lg">
+        <div className="p-10">
+          <div className="mb-auto mt-auto min-h-full max-w-lg">
             <h1 className="text-3xl uppercase">{loan.bank}</h1>
             <p className="text-sm text-gray-500">{loan.descript}</p>
             <button
@@ -65,7 +65,7 @@ const Loans = () => {
         <h1 className="text-5xl font-semibold">Loan Information</h1>
       </div>
 
-      <div className="mx-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="mx-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-4">
         <div>{LoanButton(loan1)}</div>
         <div>{LoanButton(loan2)}</div>
         <div>{LoanButton(loan3)}</div>
