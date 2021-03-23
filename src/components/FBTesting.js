@@ -56,12 +56,6 @@ const FBTesting = () => {
     rating: 4.6,
   };
 
-  const fakeUser = {
-    username: "dave@tcd.ie",
-    course: "physics",
-    job: "lab technician",
-  };
-
   const courseExampleID = "44YJav0oY9PCAkMJl5nO";
   const reviewExampleID = "9nVvEkNsc1H70SUpzxOd";
   const moduleExampleID = "Rz3BMRI4X1VPsLu6lwOK";

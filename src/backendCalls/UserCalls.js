@@ -2,8 +2,6 @@ import { firestore } from "../firebase";
 import { createReviewObj } from "./ReviewCalls";
 
 const reviewsRef = firestore.collection("reviews");
-const coursesRef = firestore.collection("courses");
-const modulesRef = firestore.collection("modules");
 
 export const getUserReviews = async (passedEmail) => {
   const snapshot = await reviewsRef.where("email", "==", passedEmail).get();
