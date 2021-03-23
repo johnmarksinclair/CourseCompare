@@ -85,75 +85,69 @@ const ReviewSection = (props) => {
     );
   };
 
-  const ProfileView = () => {
-    return (
-      <div className="py-4 space-y-2">
-        <div className="font-semibold text-2xl">Reviews</div>
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
-          {reviewData.length > 0 ? (
-            reviewData.map((review) => <Review data={review} key={review.id} />)
-          ) : (
-            <NoReviews />
-          )}
-        </div>
-      </div>
-    );
-  };
-
-  const CourseView = () => {
-    return (
-      <Tabs defaultActiveKey="reviews">
-        <Tab eventKey="reviews" title="Reviews">
-          <div className="py-4">
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
-              {reviewData.length > 0 ? (
-                reviewData.map((review) => (
-                  <Review data={review} key={review.id} />
-                ))
-              ) : (
-                <NoReviews />
-              )}
-            </div>
+  return (
+    <div className="px-2 py-4">
+      {profileScreen ? (
+        <div className="py-4 space-y-2">
+          <div className="font-semibold text-2xl">Reviews</div>
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            {reviewData.length > 0 ? (
+              reviewData.map((review) => (
+                <Review data={review} key={review.id} />
+              ))
+            ) : (
+              <NoReviews />
+            )}
           </div>
-        </Tab>
-        <Tab eventKey="new" title="New Review">
-          <div className="p-4 row">
-            <div className="col-12">
-              <div className="flex flex-col justify-center space-y-2">
-                <input
-                  id="rating"
-                  placeholder="Rating"
-                  className="border p-2 rounded"
-                  onChange={(e) => handleInput(e)}
-                />
-                <textarea
-                  id="body"
-                  placeholder="Review Description"
-                  className="h-48 border p-2 rounded"
-                  onChange={(e) => handleInput(e)}
-                />
-                <div className="pt-2 flex justify-center items-center">
-                  <button
-                    className="homebtn bump"
-                    onClick={() => {
-                      createReview();
-                      setButtonText("Done!");
-                    }}
-                  >
-                    {buttonText}
-                  </button>
+        </div>
+      ) : (
+        <Tabs defaultActiveKey="reviews">
+          <Tab eventKey="reviews" title="Reviews">
+            <div className="py-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                {reviewData.length > 0 ? (
+                  reviewData.map((review) => (
+                    <Review data={review} key={review.id} />
+                  ))
+                ) : (
+                  <NoReviews />
+                )}
+              </div>
+            </div>
+          </Tab>
+          <Tab eventKey="new" title="New Review">
+            <div className="p-4 row">
+              <div className="col-12">
+                <div className="flex flex-col justify-center space-y-2">
+                  <input
+                    id="rating"
+                    placeholder="Rating"
+                    className="border p-2 rounded"
+                    onChange={(e) => handleInput(e)}
+                  />
+                  <textarea
+                    id="body"
+                    placeholder="Review Description"
+                    className="h-48 border p-2 rounded"
+                    onChange={(e) => handleInput(e)}
+                  />
+                  <div className="pt-2 flex justify-center items-center">
+                    <button
+                      className="homebtn bump"
+                      onClick={() => {
+                        createReview();
+                        setButtonText("Done!");
+                      }}
+                    >
+                      {buttonText}
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </Tab>
-      </Tabs>
-    );
-  };
-
-  return (
-    <div className="px-2 py-4">
-      {profileScreen ? <ProfileView /> : <CourseView />}
+          </Tab>
+        </Tabs>
+      )}
     </div>
   );
 };
