@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../providers/UserProvider";
-import { Toast } from "react-bootstrap";
+import { Toast, Dropdown } from "react-bootstrap";
 import { addReview } from "../backendCalls/ReviewCalls";
 import { Tab, Tabs } from "react-bootstrap";
 
@@ -17,11 +17,12 @@ const ReviewSection = (props) => {
   const [add, setAdd] = useState("");
 
   const [buttonText, setButtonText] = useState("Submit");
+  // const [newest, setNewest] = useState(true);
 
   useEffect(() => {
     updateUser();
     // eslint-disable-next-line
-  }, [add, buttonText]);
+  }, [add, buttonText, reviewData]);
 
   const updateUser = () => {
     if (user) {
@@ -52,6 +53,10 @@ const ReviewSection = (props) => {
     }
   };
 
+  const reverseOrder = (e) => {
+    console.log(e.target.id);
+  };
+
   const handleInput = (e) => {
     if (e.target.id === "rating") setRatingInput(e.target.value);
     else if (e.target.id === "body") setBodyInput(e.target.value);
@@ -63,7 +68,6 @@ const ReviewSection = (props) => {
 
   const Review = (props) => {
     let data = props.data;
-    console.log(data);
     return (
       <div className="">
         <Toast animation={false}>
@@ -89,7 +93,25 @@ const ReviewSection = (props) => {
     <div className="px-2 py-4">
       {profileScreen ? (
         <div className="py-4 space-y-2">
-          <div className="font-semibold text-2xl">Reviews</div>
+          <div className="flex space-x-4 items-center">
+            <div className="font-semibold text-2xl">Reviews</div>
+            <div>
+              <Dropdown>
+                <Dropdown.Toggle variant="light" id="dropdown-basic">
+                  Sort By
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <Dropdown.Item id="newest" onClick={(e) => reverseOrder(e)}>
+                    Newest
+                  </Dropdown.Item>
+                  <Dropdown.Item id="oldest" onClick={(e) => reverseOrder(e)}>
+                    Oldest
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </div>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
             {reviewData.length > 0 ? (
               reviewData.map((review) => (
@@ -101,52 +123,54 @@ const ReviewSection = (props) => {
           </div>
         </div>
       ) : (
-        <Tabs defaultActiveKey="reviews">
-          <Tab eventKey="reviews" title="Reviews">
-            <div className="py-4">
-              <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
-                {reviewData.length > 0 ? (
-                  reviewData.map((review) => (
-                    <Review data={review} key={review.id} />
-                  ))
-                ) : (
-                  <NoReviews />
-                )}
+        <div className="h-96">
+          <Tabs defaultActiveKey="reviews">
+            <Tab eventKey="reviews" title="Reviews">
+              <div className="py-4 h-full">
+                <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                  {reviewData.length > 0 ? (
+                    reviewData.map((review) => (
+                      <Review data={review} key={review.id} />
+                    ))
+                  ) : (
+                    <NoReviews />
+                  )}
+                </div>
               </div>
-            </div>
-          </Tab>
-          <Tab eventKey="new" title="New Review">
-            <div className="p-4 row">
-              <div className="col-12">
-                <div className="flex flex-col justify-center space-y-2">
-                  <input
-                    id="rating"
-                    placeholder="Rating"
-                    className="border p-2 rounded"
-                    onChange={(e) => handleInput(e)}
-                  />
-                  <textarea
-                    id="body"
-                    placeholder="Review Description"
-                    className="h-48 border p-2 rounded"
-                    onChange={(e) => handleInput(e)}
-                  />
-                  <div className="pt-2 flex justify-center items-center">
-                    <button
-                      className="homebtn bump"
-                      onClick={() => {
-                        createReview();
-                        setButtonText("Done!");
-                      }}
-                    >
-                      {buttonText}
-                    </button>
+            </Tab>
+            <Tab eventKey="new" title="New Review">
+              <div className="p-4 row">
+                <div className="col-12">
+                  <div className="flex flex-col justify-center space-y-2">
+                    <input
+                      id="rating"
+                      placeholder="Rating"
+                      className="border p-2 rounded"
+                      onChange={(e) => handleInput(e)}
+                    />
+                    <textarea
+                      id="body"
+                      placeholder="Review Description"
+                      className="h-48 border p-2 rounded"
+                      onChange={(e) => handleInput(e)}
+                    />
+                    <div className="pt-2 flex justify-center items-center">
+                      <button
+                        className="homebtn bump"
+                        onClick={() => {
+                          createReview();
+                          setButtonText("Done!");
+                        }}
+                      >
+                        {buttonText}
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </Tab>
-        </Tabs>
+            </Tab>
+          </Tabs>
+        </div>
       )}
     </div>
   );
