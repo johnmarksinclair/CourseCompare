@@ -10,7 +10,7 @@ import Data_Ring from "../assets/Data-Ring.svg";
 import Arrow from "../assets/Blue-Arrow.svg";
 import ReviewSection from "./ReviewSection";
 
-const Course = ({ match }, props) => {
+const Course = ({ match }) => {
   const [courseData, setCourseData] = useState({});
   const [reviewData, setReviewData] = useState([]);
 
@@ -304,7 +304,7 @@ const Course = ({ match }, props) => {
         <Description data={courseData} />
         <CourseTabs data={courseData} />
       </div>
-      <ReviewSection data={reviewData} />
+      <ReviewSection reviewData={reviewData} courseData={courseData} />
     </div>
   );
 };

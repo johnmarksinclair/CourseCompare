@@ -48,9 +48,11 @@ export const createReviewObj = (doc) => {
   let review = {
     id: `${doc.id}`,
     courseID: `${doc.data().courseID}`,
+    courseName: `${doc.data().courseName}`,
     body: `${doc.data().body}`,
     rating: `${doc.data().rating}`,
     author: `${doc.data().author}`,
+    authorPic: `${doc.data().authorPic}`,
     email: `${doc.data().email}`,
   };
   return review;
