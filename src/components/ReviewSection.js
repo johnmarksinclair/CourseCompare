@@ -164,7 +164,11 @@ const ReviewSection = (props) => {
                         onChange={({ x }) => setRatingInput(x.toFixed(1))}
                       />
                       <div className="w-12">
-                        <Form.Control value={ratingInput} disabled />
+                        <Form.Control
+                          className="text-center"
+                          value={ratingInput}
+                          disabled
+                        />
                       </div>
                     </div>
 
