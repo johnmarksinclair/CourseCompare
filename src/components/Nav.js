@@ -27,7 +27,7 @@ const _Nav = () => {
           Course Compare
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav" collapseOnSelect="true">
+        <Navbar.Collapse id="basic-navbar-nav" collapseonselect="true">
           {user ? (
             <>
               <Nav className="mr-auto">

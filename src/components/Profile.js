@@ -1,32 +1,47 @@
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../providers/UserProvider";
+
+import { getUserReviews } from "../backendCalls/UserCalls";
+import ReviewSection from "./ReviewSection";
 import Card from "react-bootstrap/Card";
-
-
-
-
-
-
-//mport { auth } from "../firebase";
 
 
 const Profile = () => {
   const user = useContext(UserContext);
-  const { photoURL, displayName, email } = user;
+  var pic = "";
+  var name = "";
+  var add = "";
+  if (user) {
+    let { photoURL, displayName, email } = user;
+    pic = photoURL;
+    name = displayName;
+    add = email;
+  }
 
-  // tmp review
-  const data =
-  {
-    courseID: "Business Mangement",
-    author: { displayName },
-    body: "really good",
-    rating: 4.8,
+  const [reviews, setReviews] = useState([]);
+
+  useEffect(() => {
+    updateData();
+    // eslint-disable-next-line
+  }, [add]);
+
+  const updateData = async () => {
+    let revs = await getUserReviews(add);
+    let revArr = [];
+    if (revs) {
+      revs.forEach((review) => {
+        revArr.push(review);
+      });
+    }
+    setReviews(revArr);
+    console.log(revArr);
   };
-
-
 
   return (
     <div>
+      {user ? (
+        <div>
+          <div>
       <div class="header">
         <img src={photoURL} alt="" class="floatdown" />
       </div>
@@ -56,23 +71,14 @@ const Profile = () => {
           <div class="pt-12"></div>
         </div>
       </div>
+          <ReviewSection reviewData={reviews} profile={true} />
+        </div>
+      ) : (
+        <div>Sign In</div>
+      )}
     </div>
 
   );
 };
-
-/*
-
-
-const userReview = (props) => {
-  return (
-        </div>
-        <div class= "cursor-pointer bg-gradient-to-r from-blue-50 to-blue-100 border-2 border-blue-500 max-w-lg	rounded-lg shadow-xl	 border-dashed">
-        <h1 class= "p-3 pt-3 text-sm font-bold">{props.courseID}</h1>
-        <h2 class="italic pl-3 text-sm font-normal">"{props.body}"</h2>
-        <h3 class= "pl-3 pb-3 pt-2 font-bold text-blue-500	text-sm">{props.rating}/5</h3>
-        </div>
-        <div>
-*/
 
 export default Profile;

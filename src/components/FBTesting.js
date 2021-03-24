@@ -14,6 +14,12 @@ import {
   deleteReview,
 } from "../backendCalls/ReviewCalls";
 //import ReviewPopup from "./ReviewPopup";
+import {
+  addModule,
+  getCourseModules,
+  editModule,
+  deleteModule,
+} from "../backendCalls/ModuleCalls";
 
 const FBTesting = () => {
   const [input, setInput] = useState("");
@@ -35,14 +41,24 @@ const FBTesting = () => {
   };
 
   const fakeReview = {
-    courseID: "KlKwFOMA0lJRgkHBAfGf",
-    author: "john",
-    body: "terrible",
-    rating: 2.8,
+    courseID: "44YJav0oY9PCAkMJl5nO",
+    author: "John Sinclair",
+    body: "this is another test review",
+    rating: 4.8,
+    email: "sinclajo@tcd.ie",
   };
 
-  const courseExampleID = "KlKwFOMA0lJRgkHBAfGf";
-  const reviewExampleID = "GVomJPsxT20ZkU1VLUB9";
+  const fakeModule = {
+    courseID: "2aCYcDL577Fbu2EsMTDt",
+    title: "MSc of Physics",
+    lecturer: "Prof.Smith",
+    description: "Further your knowledge of atoms",
+    rating: 4.6,
+  };
+
+  const courseExampleID = "44YJav0oY9PCAkMJl5nO";
+  const reviewExampleID = "9nVvEkNsc1H70SUpzxOd";
+  const moduleExampleID = "Rz3BMRI4X1VPsLu6lwOK";
 
   // idk
   const testSearch = async (search) => {
@@ -71,13 +87,13 @@ const FBTesting = () => {
         addCourse
       </button>
       <button
-        className="signbtn googlebtn"
-        onClick={() => editCourse(courseExampleID)}
+        className="signbtn testedBtn"
+        onClick={() => editCourse(courseExampleID, "Edited Course")}
       >
         editCourse
       </button>
       <button
-        className="signbtn googlebtn"
+        className="signbtn testedBtn"
         onClick={() => deleteCourse(courseExampleID)}
       >
         deleteCourse
@@ -108,12 +124,39 @@ const FBTesting = () => {
       >
         deleteReview
       </button>
+      <button
+        className="signbtn testedBtn"
+        onClick={async () =>
+          console.log(await getCourseModules(courseExampleID))
+        }
+      >
+        getCourseModules
+      </button>
+      <button
+        className="signbtn testedBtn"
+        onClick={() => addModule(fakeModule)}
+      >
+        addModule
+      </button>
+      <button
+        className="signbtn testedBtn"
+        onClick={() => deleteModule(moduleExampleID)}
+      >
+        deleteModule
+      </button>
+      <button
+        className="signbtn testedBtn"
+        onClick={() => editModule(moduleExampleID, "Edited Module")}
+      >
+        editModule
+      </button>
+
       <div>
         <h3>Search Test</h3>
         <input value={input} onChange={(e) => handleChange(e)} />
       </div>
 
-      <div>
+      {/* <div>
         <p className="font-bold text-2xl">Add Review Testing</p>
         <button
           className="homebtn"
@@ -123,7 +166,7 @@ const FBTesting = () => {
         >
           Add
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };
