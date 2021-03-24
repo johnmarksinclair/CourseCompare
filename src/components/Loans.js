@@ -1,4 +1,9 @@
+import { useContext } from "react";
+import { UserContext } from "../providers/UserProvider";
+import SignIn from "./SignIn";
+
 const Loans = () => {
+  const user = useContext(UserContext);
   const LoanButton = (loan) => {
     return (
       <div className="shadow-lg rounded-xl overflow-hidden max-w-full h-full hover:bg-gray-100">
@@ -63,16 +68,22 @@ const Loans = () => {
   };
 
   return (
-    <div className="px-12 py-4 text-gray-700">
-      <div className="pb-3 flex justify-center md:justify-start">
-        <h1 className="font-semibold text-3xl">Loan Information</h1>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-4">
-        <div>{LoanButton(loan1)}</div>
-        <div>{LoanButton(loan2)}</div>
-        <div>{LoanButton(loan3)}</div>
-        <div>{LoanButton(loan4)}</div>
-      </div>
+    <div>
+      {user ? (
+        <div className="px-12 py-4 text-gray-700">
+          <div className="pb-3 flex justify-center md:justify-start">
+            <h1 className="font-semibold text-3xl">Loan Information</h1>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-4">
+            <div>{LoanButton(loan1)}</div>
+            <div>{LoanButton(loan2)}</div>
+            <div>{LoanButton(loan3)}</div>
+            <div>{LoanButton(loan4)}</div>
+          </div>
+        </div>
+      ) : (
+        <SignIn />
+      )}
     </div>
   );
 };

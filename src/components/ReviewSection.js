@@ -1,8 +1,10 @@
 import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../providers/UserProvider";
-import { Dropdown, Tab, Tabs, Card, Form } from "react-bootstrap";
+import { Dropdown, Tab, Tabs, Card, Form, Button } from "react-bootstrap";
 import { addReview } from "../backendCalls/ReviewCalls";
 import Slider from "react-input-slider";
+import pencil from "../assets/pencil.svg";
+import trash from "../assets/trash.svg";
 
 const ReviewSection = (props) => {
   let reviewData = props.reviewData;
@@ -71,8 +73,8 @@ const ReviewSection = (props) => {
   const Review = (props) => {
     let data = props.data;
     return (
-      <div className="">
-        <Card bg="light" className="mb-2">
+      <div>
+        <Card bg="light" className="mb-2 shadow">
           <Card.Header>
             <div className="flex items-center">
               <img
@@ -89,7 +91,19 @@ const ReviewSection = (props) => {
               {profileScreen ? (
                 <div>
                   <div className="font-semibold">{data.courseName}</div>
-                  {data.body}
+                  <div>{data.body}</div>
+                  <div className="pt-2 flex">
+                    <div className="col flex justify-center">
+                      <Button variant="light">
+                        <img src={pencil} alt="" width="100%" />
+                      </Button>
+                    </div>
+                    <div className="col flex justify-center">
+                      <Button variant="light">
+                        <img src={trash} alt="" width="100%" />
+                      </Button>
+                    </div>
+                  </div>
                 </div>
               ) : (
                 <div>{data.body}</div>
@@ -105,7 +119,7 @@ const ReviewSection = (props) => {
     <div className="px-2 py-4">
       {profileScreen ? (
         <div className="py-4 space-y-2">
-          <div className="flex space-x-4 items-center">
+          <div className="pb-2 flex space-x-4 items-center">
             <div className="font-semibold text-2xl">Reviews</div>
             <div>
               <Dropdown>

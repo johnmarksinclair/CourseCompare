@@ -1,4 +1,6 @@
-import { useEffect, useState } from "react";
+import { useContext, useState, useEffect } from "react";
+import { UserContext } from "../providers/UserProvider";
+import SignIn from "./SignIn";
 //import { Form, FormControl, Button, InputGroup } from "react-bootstrap";
 import { getCourses } from "../backendCalls/CourseCalls";
 import { FormControl } from "react-bootstrap";
@@ -6,6 +8,7 @@ import { Link } from "react-router-dom";
 import trinitylogo from "../assets/trinitylogo.jpeg";
 
 const CourseSearch = () => {
+  const user = useContext(UserContext);
   const [courseData, setCourseData] = useState([]);
   const [matchingCourses, setMatchingCourses] = useState([]);
   const [searchInput, setSearchInput] = useState("");
@@ -84,28 +87,34 @@ const CourseSearch = () => {
   };
 
   return (
-    <div className="flex flex-col h-full px-4">
-      <div className="pt-4 text-gray-700 row">
-        <div className="col-sm-12 col-md-3 text-center pb-4">
-          <div className="font-semibold text-3xl">Courses Search</div>
+    <div>
+      {user ? (
+        <div className="flex flex-col h-full px-4">
+          <div className="pt-4 text-gray-700 row">
+            <div className="col-sm-12 col-md-3 text-center pb-4">
+              <div className="font-semibold text-3xl">Courses Search</div>
+            </div>
+            <div className="col-sm-12 col-md-6 items-center pb-4">
+              <FormControl
+                placeholder="Search"
+                value={searchInput}
+                onChange={(e) => handleChange(e)}
+              />
+            </div>
+          </div>
+          <div className="divide-y-2 overflow-y-auto">
+            {searching
+              ? matchingCourses.map((course) => (
+                  <CourseButton course={course} key={course.id} />
+                ))
+              : courseData.map((course) => (
+                  <CourseButton course={course} key={course.id} />
+                ))}
+          </div>
         </div>
-        <div className="col-sm-12 col-md-6 items-center pb-4">
-          <FormControl
-            placeholder="Search"
-            value={searchInput}
-            onChange={(e) => handleChange(e)}
-          />
-        </div>
-      </div>
-      <div className="divide-y-2 overflow-y-auto">
-        {searching
-          ? matchingCourses.map((course) => (
-              <CourseButton course={course} key={course.id} />
-            ))
-          : courseData.map((course) => (
-              <CourseButton course={course} key={course.id} />
-            ))}
-      </div>
+      ) : (
+        <SignIn />
+      )}
     </div>
   );
 };

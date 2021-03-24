@@ -1,41 +1,18 @@
-// import { Form } from "react-bootstrap";
-// import { Link } from "react-router-dom";
+import { Jumbotron } from "react-bootstrap";
 import { signInWithGoogle } from "../firebase";
 
 const SignIn = () => {
   return (
-    <div className="flexauto centerteddiv authdiv">
-      {/* <Form>
-        <Form.Group controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control type="email" placeholder="Email" />
-        </Form.Group>
-        <Form.Group controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Password" />
-        </Form.Group>
-        <div className="centerteddiv">
-          <Link to="/home">
-            <button className="signbtn" onClick={() => handleSignIn()}>
-              Sign In
-            </button>
-          </Link>
+    <div className="px-2 pt-40 flex justify-center items-center">
+      <Jumbotron>
+        <div className="text-4xl pb-2">Please sign in!</div>
+        <p>To explore Course Compare further please sign in below</p>
+        <div className="flex justify-center items-center pt-2">
+          <button className="homebtn bump" onClick={() => signInWithGoogle()}>
+            Sign In
+          </button>
         </div>
-      </Form> */}
-      <div className="noaccount">
-        <button
-          className="signbtn googlebtn"
-          onClick={() => signInWithGoogle()}
-        >
-          Google Sign In
-        </button>
-      </div>
-      {/* <div className="noaccount">
-        <Form.Text className="text-muted">Don't have an account?</Form.Text>
-        <Link className="nounderline" to="/signup">
-          Sign Up
-        </Link>
-      </div> */}
+      </Jumbotron>
     </div>
   );
 };

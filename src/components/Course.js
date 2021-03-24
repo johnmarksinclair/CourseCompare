@@ -1,16 +1,17 @@
 import { Tab, Tabs, ProgressBar } from "react-bootstrap";
-// import ReactStoreIndicator from "react-score-indicator";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { UserContext } from "../providers/UserProvider";
+import SignIn from "./SignIn";
 import { getCourse } from "../backendCalls/CourseCalls";
 import { getCourseReviews } from "../backendCalls/ReviewCalls";
 import college from "../assets/trinity.jpg";
-// import circle from "../assets/blue_circle.png";
 import Cost_Tab_Circle from "../assets/Cost-Tab-Circle.svg";
 import Data_Ring from "../assets/Data-Ring.svg";
 import Arrow from "../assets/Blue-Arrow.svg";
 import ReviewSection from "./ReviewSection";
 
 const Course = ({ match }) => {
+  const user = useContext(UserContext);
   const [courseData, setCourseData] = useState({});
   const [reviewData, setReviewData] = useState([]);
 
@@ -298,17 +299,23 @@ const Course = ({ match }) => {
   }
 
   return (
-    <div className="p-2 space-y-4 divide-y divide-gray-300 ">
-      <PageTop data={courseData} />
-      <div className="block rounded-lg shadow-md">
-        <Description data={courseData} />
-        <CourseTabs data={courseData} />
-      </div>
-      <ReviewSection
-        reviewData={reviewData}
-        courseData={courseData}
-        profile={false}
-      />
+    <div>
+      {user ? (
+        <div className="p-2 space-y-4 divide-y divide-gray-300 ">
+          <PageTop data={courseData} />
+          <div className="block rounded-lg shadow-md">
+            <Description data={courseData} />
+            <CourseTabs data={courseData} />
+          </div>
+          <ReviewSection
+            reviewData={reviewData}
+            courseData={courseData}
+            profile={false}
+          />
+        </div>
+      ) : (
+        <SignIn />
+      )}
     </div>
   );
 };

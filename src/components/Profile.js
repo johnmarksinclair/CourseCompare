@@ -1,10 +1,9 @@
 import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../providers/UserProvider";
-
 import { getUserReviews } from "../backendCalls/UserCalls";
 import ReviewSection from "./ReviewSection";
-import Card from "react-bootstrap/Card";
-
+import { Card } from "react-bootstrap";
+import SignIn from "./SignIn";
 
 const Profile = () => {
   const user = useContext(UserContext);
@@ -41,43 +40,39 @@ const Profile = () => {
     <div>
       {user ? (
         <div>
-          <div>
-      <div class="header">
-        <img src={photoURL} alt="" class="floatdown" />
-      </div>
+          <div className="header">
+            <img src={pic} alt="" className="floatdown" />
+          </div>
 
-      <div class="body">
+          <div className="text-left relative px-2 pt-16">
+            <div className="col-sm-12 col-md-4">
+              <Card className="shadow-md rounded-lg">
+                <Card.Body>
+                  <Card.Title className="pb-2">
+                    <div className="font-semibold text-2xl">{name}</div>
+                  </Card.Title>
+                  <Card.Text className="pb-1.5">{add}</Card.Text>
+                </Card.Body>
+              </Card>
+            </div>
 
-        <Card class="shadow-md rounded-lg" style={{ width: '25rem' }}>
-          <Card.Body>
-            <Card.Title class="text-3xl font-bold pb-4	" >{displayName}</Card.Title>
-            <Card.Text class="pb-1.5">
-              {email}
-            </Card.Text>
-          </Card.Body>
-        </Card>
-
-
-      <div class=" py-10 block rounded-md focus:underline">
-          <h3 class="px-2">My Reviews</h3>
-       
-        </div>
-        <div class= "pr-4 cursor-pointer bg-gradient-to-r from-blue-50 to-blue-100 border-2 border-blue-500 max-w-lg	rounded-lg shadow-xl	 border-dashed">
-        <h1 class= "p-3 pt-3 text-sm font-bold">{data.courseID}</h1>
-        <h2 class="italic pl-3 text-sm font-normal">"{data.body}"</h2>
-        <h3 class= "pl-3 pb-3 pt-2 font-semibold text-blue-500	text-sm">{data.rating}/5</h3>
-        </div>
-        <div>
-          <div class="pt-12"></div>
-        </div>
-      </div>
-          <ReviewSection reviewData={reviews} profile={true} />
+            <ReviewSection reviewData={reviews} profile={true} />
+            {/* <div class=" py-10 block rounded-md focus:underline">
+                <h3 class="px-2">My Reviews</h3>
+              </div>
+              <div class="pr-4 cursor-pointer bg-gradient-to-r from-blue-50 to-blue-100 border-2 border-blue-500 max-w-lg	rounded-lg shadow-xl	 border-dashed">
+                <h1 class="p-3 pt-3 text-sm font-bold">temp</h1>
+                <h2 class="italic pl-3 text-sm font-normal">temp</h2>
+                <h3 class="pl-3 pb-3 pt-2 font-semibold text-blue-500	text-sm">
+                  temp
+                </h3>
+              </div> */}
+          </div>
         </div>
       ) : (
-        <div>Sign In</div>
+        <SignIn />
       )}
     </div>
-
   );
 };
 
