@@ -9,7 +9,7 @@ const ReviewSection = (props) => {
   let courseData = props.courseData;
   let profileScreen = props.profile;
   const [bodyInput, setBodyInput] = useState("");
-  const [ratingInput, setRatingInput] = useState(0);
+  const [ratingInput, setRatingInput] = useState(0.0);
 
   const user = useContext(UserContext);
   const [pic, setPic] = useState("");
@@ -154,7 +154,7 @@ const ReviewSection = (props) => {
               <div className="p-4 row">
                 <div className="col-12">
                   <div className="flex flex-col justify-center space-y-2">
-                    <div className="flex justify-center items-center space-x-4">
+                    <div className="pb-3 flex justify-center items-center space-x-4">
                       <Slider
                         axis="x"
                         x={ratingInput}
