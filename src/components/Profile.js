@@ -6,6 +6,7 @@ import Card from "react-bootstrap/Card";
 
 
 
+
 //mport { auth } from "../firebase";
 
 
@@ -39,7 +40,7 @@ const Profile = () => {
               {email}
             </Card.Text>
           </Card.Body>
-        </Card>,
+        </Card>
 
 
       <div class=" py-10 block rounded-md focus:underline">
