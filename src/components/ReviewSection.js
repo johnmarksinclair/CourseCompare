@@ -1,15 +1,15 @@
 import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../providers/UserProvider";
-import { Toast, Dropdown } from "react-bootstrap";
+import { Dropdown, Tab, Tabs, Card, Form } from "react-bootstrap";
 import { addReview } from "../backendCalls/ReviewCalls";
-import { Tab, Tabs } from "react-bootstrap";
+import Slider from "react-input-slider";
 
 const ReviewSection = (props) => {
   let reviewData = props.reviewData;
   let courseData = props.courseData;
   let profileScreen = props.profile;
   const [bodyInput, setBodyInput] = useState("");
-  const [ratingInput, setRatingInput] = useState("");
+  const [ratingInput, setRatingInput] = useState(0);
 
   const user = useContext(UserContext);
   const [pic, setPic] = useState("");
@@ -36,10 +36,12 @@ const ReviewSection = (props) => {
   const createReview = () => {
     if (ratingInput === "" || bodyInput === "") return;
     else {
+      let Filter = require("bad-words");
+      let cleanedBody = new Filter().clean(bodyInput);
       let newReview = {
         courseID: courseData.id,
         courseName: `${courseData.host} - ${courseData.title}, ${courseData.type}`,
-        body: bodyInput,
+        body: cleanedBody,
         rating: ratingInput,
         author: name,
         authorPic: pic,
@@ -70,21 +72,31 @@ const ReviewSection = (props) => {
     let data = props.data;
     return (
       <div className="">
-        <Toast animation={false}>
-          <Toast.Header closeButton={profileScreen}>
-            <img src={data.authorPic} className="rounded mr-2 h-8 w-8" alt="" />
-            <div className="mr-auto font-semibold pr-0">{data.author}</div>
-            <strong>{data.rating}/5</strong>
-          </Toast.Header>
-          {profileScreen ? (
-            <Toast.Body className="px-2 py-1">
-              <div className="font-semibold">{data.courseName}</div>
-              {data.body}
-            </Toast.Body>
-          ) : (
-            <Toast.Body className="px-2 py-1">{data.body}</Toast.Body>
-          )}
-        </Toast>
+        <Card bg="light" className="mb-2">
+          <Card.Header>
+            <div className="flex items-center">
+              <img
+                src={data.authorPic}
+                className="rounded mr-2 h-8 w-8"
+                alt=""
+              />
+              <div className="mr-auto font-semibold pr-0">{data.author}</div>
+              <div>{data.rating}/5</div>
+            </div>
+          </Card.Header>
+          <Card.Body>
+            <Card.Text>
+              {profileScreen ? (
+                <div>
+                  <div className="font-semibold">{data.courseName}</div>
+                  {data.body}
+                </div>
+              ) : (
+                <div>{data.body}</div>
+              )}
+            </Card.Text>
+          </Card.Body>
+        </Card>
       </div>
     );
   };
@@ -142,15 +154,24 @@ const ReviewSection = (props) => {
               <div className="p-4 row">
                 <div className="col-12">
                   <div className="flex flex-col justify-center space-y-2">
-                    <input
-                      id="rating"
-                      placeholder="Rating"
-                      className="border p-2 rounded"
-                      onChange={(e) => handleInput(e)}
-                    />
+                    <div className="flex justify-center items-center space-x-4">
+                      <Slider
+                        axis="x"
+                        x={ratingInput}
+                        xmin={0}
+                        xmax={5}
+                        xstep={0.1}
+                        onChange={({ x }) => setRatingInput(x.toFixed(1))}
+                      />
+                      <div className="w-12">
+                        <Form.Control value={ratingInput} disabled />
+                      </div>
+                    </div>
+
                     <textarea
                       id="body"
                       placeholder="Review Description"
+                      value={bodyInput}
                       className="h-48 border p-2 rounded"
                       onChange={(e) => handleInput(e)}
                     />
