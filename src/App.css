@@ -260,3 +260,11 @@
   top: 125px;
   left: 20px;
 }
+
+.editpromt {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

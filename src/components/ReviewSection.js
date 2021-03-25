@@ -76,13 +76,20 @@ const ReviewSection = (props) => {
     confirmAlert({
       customUI: ({ onClose }) => {
         return (
-          <div className="custom-ui">
+          <div className="custom-ui editpromt space-y-4">
+            {/* <div className="w-100 flex">
+              <input
+                id="rate"
+                placeholder="Edit your rating here..."
+                className="w-100 border p-2 rounded"
+              />
+            </div> */}
             <textarea
               id="edit"
               placeholder="Edit your review here..."
-              className="h-48 border p-2 rounded"
+              className="w-100 h-48 border p-2 rounded"
             />
-            <div className="flex justify-around items-center">
+            <div className="w-4/5 flex justify-around items-center">
               <Button onClick={onClose}>Cancel</Button>
               <Button
                 onClick={() => {
