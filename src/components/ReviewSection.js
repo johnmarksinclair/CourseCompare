@@ -1,8 +1,7 @@
 import { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../providers/UserProvider";
-import { confirmAlert } from "react-confirm-alert"; // Import
-import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
+import { confirmAlert } from "react-confirm-alert";
 import { Dropdown, Tab, Tabs, Card, Form, Button } from "react-bootstrap";
 import {
   addReview,
@@ -87,7 +86,11 @@ const ReviewSection = (props) => {
               <Button onClick={onClose}>Cancel</Button>
               <Button
                 onClick={() => {
-                  editReview(passedID, document.getElementById("edit").value);
+                  let Filter = require("bad-words");
+                  let cleanedBody = new Filter().clean(
+                    document.getElementById("edit").value
+                  );
+                  editReview(passedID, cleanedBody);
                   onClose();
                 }}
               >
