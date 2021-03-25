@@ -33,7 +33,7 @@ const Profile = () => {
       });
     }
     setReviews(revArr);
-    console.log(revArr);
+    // console.log(revArr);
   };
 
   return (

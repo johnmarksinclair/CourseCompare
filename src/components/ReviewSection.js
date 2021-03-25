@@ -1,7 +1,14 @@
 import { useContext, useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { UserContext } from "../providers/UserProvider";
+import { confirmAlert } from "react-confirm-alert"; // Import
+import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
 import { Dropdown, Tab, Tabs, Card, Form, Button } from "react-bootstrap";
-import { addReview } from "../backendCalls/ReviewCalls";
+import {
+  addReview,
+  editReview,
+  deleteReview,
+} from "../backendCalls/ReviewCalls";
 import Slider from "react-input-slider";
 import pencil from "../assets/pencil.svg";
 import trash from "../assets/trash.svg";
@@ -66,12 +73,56 @@ const ReviewSection = (props) => {
     else if (e.target.id === "body") setBodyInput(e.target.value);
   };
 
+  const editConfirm = (passedID) => {
+    confirmAlert({
+      customUI: ({ onClose }) => {
+        return (
+          <div className="custom-ui">
+            <textarea
+              id="edit"
+              placeholder="Edit your review here..."
+              className="h-48 border p-2 rounded"
+            />
+            <div className="flex justify-around items-center">
+              <Button onClick={onClose}>Cancel</Button>
+              <Button
+                onClick={() => {
+                  editReview(passedID, document.getElementById("edit").value);
+                  onClose();
+                }}
+              >
+                Submit
+              </Button>
+            </div>
+          </div>
+        );
+      },
+    });
+  };
+
+  const deleteConfirm = (passedID) => {
+    confirmAlert({
+      title: "Delete review?",
+      message: "",
+      buttons: [
+        {
+          label: "No",
+        },
+        {
+          label: "Yes",
+          onClick: () => deleteReview(passedID),
+        },
+      ],
+    });
+  };
+
   const NoReviews = () => {
     return <div className="pl-3">No Reviews</div>;
   };
 
   const Review = (props) => {
     let data = props.data;
+    // console.log(data);
     return (
       <div>
         <Card bg="light" className="mb-2 shadow">
@@ -90,16 +141,25 @@ const ReviewSection = (props) => {
             <Card.Text>
               {profileScreen ? (
                 <div>
-                  <div className="font-semibold">{data.courseName}</div>
+                  <Link to={`/coursesearch/${data.courseID}`}>
+                    {data.courseName}
+                  </Link>
+                  {/* <div className="font-semibold">{data.courseName}</div> */}
                   <div>{data.body}</div>
                   <div className="pt-2 flex">
                     <div className="col flex justify-center">
-                      <Button variant="light">
+                      <Button
+                        variant="light"
+                        onClick={() => editConfirm(data.id)}
+                      >
                         <img src={pencil} alt="" width="100%" />
                       </Button>
                     </div>
                     <div className="col flex justify-center">
-                      <Button variant="light">
+                      <Button
+                        variant="light"
+                        onClick={() => deleteConfirm(data.id)}
+                      >
                         <img src={trash} alt="" width="100%" />
                       </Button>
                     </div>
@@ -175,6 +235,14 @@ const ReviewSection = (props) => {
                         xmin={0}
                         xmax={5}
                         xstep={0.1}
+                        styles={{
+                          active: {
+                            backgroundColor: "rgb(18, 206, 175)",
+                          },
+                          thumb: {
+                            backgroundColor: "rgb(18, 206, 175)",
+                          },
+                        }}
                         onChange={({ x }) => setRatingInput(x.toFixed(1))}
                       />
                       <div className="w-12">

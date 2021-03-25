@@ -1,10 +1,11 @@
-import { Tab, Tabs, ProgressBar } from "react-bootstrap";
+import { Tab, Tabs } from "react-bootstrap";
+import { Progress, Statistic } from "semantic-ui-react";
 import { useEffect, useState, useContext } from "react";
 import { UserContext } from "../providers/UserProvider";
 import SignIn from "./SignIn";
 import { getCourse } from "../backendCalls/CourseCalls";
 import { getCourseReviews } from "../backendCalls/ReviewCalls";
-import college from "../assets/trinity.jpg";
+import collegePicture from "../assets/trinity.jpg";
 import Cost_Tab_Circle from "../assets/Cost-Tab-Circle.svg";
 import Data_Ring from "../assets/Data-Ring.svg";
 import Arrow from "../assets/Blue-Arrow.svg";
@@ -14,6 +15,7 @@ const Course = ({ match }) => {
   const user = useContext(UserContext);
   const [courseData, setCourseData] = useState({});
   const [reviewData, setReviewData] = useState([]);
+  const [courseRating, setRating] = useState(0);
 
   useEffect(() => {
     updateData();
@@ -27,13 +29,17 @@ const Course = ({ match }) => {
     else setCourseData(error);
     let revs = await getCourseReviews(id);
     let revArr = [];
+    let ratingTotal = 0;
     if (revs) {
       revs.forEach((review) => {
+        ratingTotal += Number.parseFloat(review.rating);
         revArr.push(review);
       });
     }
+    if (revArr.length > 0) setRating((ratingTotal / revArr.length).toFixed(1));
+    else setRating(0);
     setReviewData(revArr);
-    console.log(revArr);
+    // console.log(revArr);
   };
 
   const error = {
@@ -46,46 +52,43 @@ const Course = ({ match }) => {
     rating: 0,
   };
 
-  function PageTop(props) {
+  const PageTop = () => {
     return (
       <div className="rounded-lg bg-blue-500 shadow-md">
         <img
           className="sm:h-32 md:h-96 w-full object-cover rounded-t-lg"
-          src={college}
+          src={collegePicture}
           alt=""
         />
         <div className="py-2 px-4 text-white">
           <div className="text-5xl inline-block">
-            {props.data.title},{" "}
-            <div className="text-3xl inline-block">{props.data.type}</div>
+            {courseData.title},{" "}
+            <div className="text-3xl inline-block">{courseData.type}</div>
           </div>
-          <div className="text-3xl">{props.data.host}</div>
+          <div className="text-3xl">{courseData.host}</div>
         </div>
       </div>
     );
-  }
+  };
 
-  function Description(props) {
+  const Description = () => {
     return (
       <div className="px-2 py-2 md:px-4 md:py-4 text-gray-600">
         <h3 className="text-3xl">Course Description</h3>
-        <p className="text-md">{props.data.description}</p>
+        <p className="text-md">{courseData.description}</p>
       </div>
     );
-  }
+  };
 
-  function CourseTabs(props) {
+  const CourseTabs = () => {
     return (
       <div className="px-2">
         <Tabs defaultActiveKey="Overview">
           <Tab eventKey="Overview" title="Overview">
-            <OverviewTab
-              rating={props.data.rating}
-              length={props.data.length}
-            />
+            <OverviewTab rating={courseRating} length={courseData.length} />
           </Tab>
           <Tab eventKey="Cost" title="Cost">
-            <CostTab cost={props.data.cost} />
+            <CostTab cost={courseData.cost} />
           </Tab>
           <Tab eventKey="Graduates" title="Graduates">
             <GraduateTab />
@@ -93,20 +96,32 @@ const Course = ({ match }) => {
         </Tabs>
       </div>
     );
-  }
+  };
 
-  function OverviewTab(props) {
+  const OverviewTab = () => {
     return (
       <div className="w-full p-4">
         <div className="row">
           <div className="col-sm-12 col-lg-4 space-y-8">
-            <div className="text-2xl">Course Length: {props.length}</div>
-            <div className="space-y-2 pb-8">
-              <div className="text-2xl pb-2">Average Rating:</div>
-              <div className="sm:pr-0 lg:pr-16">
-                <ProgressBar now={props.rating} label={props.rating} max={5} />
-                {/* <RatingBar rating={props.rating} /> */}
-                {/* <ReactStoreIndicator value={props.rating} maxValue={5} /> */}
+            <div className="text-2xl">Course Length: {courseData.length}</div>
+            <div className="space-y-2 pb-10">
+              <Progress
+                percent={courseRating * 20}
+                // label={courseRating}
+                // size="big"
+                indicating
+              />
+              <div className="flex justify-center items-center">
+                <Statistic.Group>
+                  <Statistic>
+                    <Statistic.Value>{courseRating}/5</Statistic.Value>
+                    <Statistic.Label>User Rating</Statistic.Label>
+                  </Statistic>
+                  <Statistic>
+                    <Statistic.Value>{reviewData.length}</Statistic.Value>
+                    <Statistic.Label>User Reviews</Statistic.Label>
+                  </Statistic>
+                </Statistic.Group>
               </div>
             </div>
           </div>
@@ -116,8 +131,8 @@ const Course = ({ match }) => {
               <div className="col-12 text-2xl pb-2">Course Modules</div>
             </div>
             <div className="row">
-              <div className="col-sm-12 col-md-6">
-                <div className="text-xl pb-2">Semester 1 (6 modules)</div>
+              <div className="col-sm-12 col-md-6 pb-2">
+                <div className="text-xl py-2">Semester 1 (6 modules)</div>
                 <p>• Introduction to Finance I</p>
                 <p>• Introduction to Computing I</p>
                 <p>• Introduction to Programming I</p>
@@ -126,7 +141,7 @@ const Course = ({ match }) => {
                 <p>• Business and Technology</p>
               </div>
               <div className="col-sm-12 col-md-6">
-                <div className="text-xl pb-2">Semester 2 (6 modules)</div>
+                <div className="text-xl py-2">Semester 2 (6 modules)</div>
                 <p>• Introduction to Finance II</p>
                 <p>• Introduction to Computing II</p>
                 <p>• Introduction to Programming II</p>
@@ -139,7 +154,7 @@ const Course = ({ match }) => {
         </div>
       </div>
     );
-  }
+  };
 
   // function RatingBar(props) {
   //   return (
@@ -160,7 +175,7 @@ const Course = ({ match }) => {
   //   );
   // }
 
-  function CostTab(props) {
+  const CostTab = () => {
     return (
       <div className="relative text-white text-md text-center">
         <img
@@ -176,7 +191,7 @@ const Course = ({ match }) => {
           </div>
           <div>
             <h4>EU Students</h4>
-            <h3>€{props.cost}</h3>
+            <h3>€{courseData.cost}</h3>
           </div>
           <div className="py-2">
             <h4>In-class Hours</h4>
@@ -198,9 +213,9 @@ const Course = ({ match }) => {
         </div>
       </div>
     );
-  }
+  };
 
-  function GraduateTab() {
+  const GraduateTab = () => {
     return (
       <div className="py-2 text-gray-600 text-md text-center">
         <div className="md:flex justify-center md:space-x-16">
@@ -259,9 +274,9 @@ const Course = ({ match }) => {
         </div>
       </div>
     );
-  }
+  };
 
-  function DataRing(props) {
+  const DataRing = (props) => {
     return (
       <div className="relative text-grey text-md text-center">
         <img className="inline w-80 h-80" src={Data_Ring} alt="" />
@@ -275,9 +290,9 @@ const Course = ({ match }) => {
         </div>
       </div>
     );
-  }
+  };
 
-  function SalarySection(props) {
+  const SalarySection = (props) => {
     return (
       <div className="px-4 text-center py-24">
         <div className="inline-block space-x-2">
@@ -296,16 +311,16 @@ const Course = ({ match }) => {
         </div>
       </div>
     );
-  }
+  };
 
   return (
     <div>
       {user ? (
         <div className="p-2 space-y-4 divide-y divide-gray-300 ">
-          <PageTop data={courseData} />
+          <PageTop />
           <div className="block rounded-lg shadow-md">
-            <Description data={courseData} />
-            <CourseTabs data={courseData} />
+            <Description />
+            <CourseTabs />
           </div>
           <ReviewSection
             reviewData={reviewData}
