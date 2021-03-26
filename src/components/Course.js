@@ -5,7 +5,6 @@ import { getCourse } from "../backendCalls/CourseCalls";
 import { getCourseReviews } from "../backendCalls/ReviewCalls";
 import college from "../assets/trinity.jpg";
 // import circle from "../assets/blue_circle.png";
-import Cost_Tab_Circle from "../assets/Cost-Tab-Circle.svg";
 import Data_Ring from "../assets/Data-Ring.svg";
 import Arrow from "../assets/Blue-Arrow.svg";
 import ReviewSection from "./ReviewSection";
@@ -75,10 +74,10 @@ const Course = ({ match }) => {
 
   function CourseTabs(props) {
     return (
-      <div className="px-2">
+      <div>
         <Tabs defaultActiveKey="Overview">
           <Tab eventKey="Overview" title="Overview">
-            <OverviewTab
+            <OverviewTab className="px-2"
               rating={props.data.rating}
               length={props.data.length}
             />
@@ -87,7 +86,7 @@ const Course = ({ match }) => {
             <CostTab cost={props.data.cost} />
           </Tab>
           <Tab eventKey="Graduates" title="Graduates">
-            <GraduateTab />
+            <GraduateTab className="px-2"/>
           </Tab>
         </Tabs>
       </div>
@@ -161,39 +160,46 @@ const Course = ({ match }) => {
 
   function CostTab(props) {
     return (
-      <div className="relative text-white text-md text-center">
-        <img
-          className="xl:pl-8 place-self-center object-cover h-full"
-          src={Cost_Tab_Circle}
-          alt=""
-        />
+      <div className="flex-grid gap-4 grid-cols-2 p-8 bg-gradient-to-t from-blue-400 to-white-500">
+        <div className="flex justify-start items-start md:pl-40 pl-2">
+          <CostBubbleLarge className="object-scale-down" heading="Non-EU 1" stat="€20,100"/>
+        </div>
+        <div className="flex justify-end items-end md:pr-24 pr-2">
+          <CostBubbleMedium heading="EU 2" stat={"€"+props.cost}/>
+        </div>
+        <div className="flex justify-start items-start md:pl-16 pl-0">
+          <CostBubbleMedium heading="EU 3" stat={"€"+props.cost}/>
+        </div>
+        <div className="flex justify-end items-end md:pr-4 pr-2">
+          <CostBubbleLarge heading="EU 4" stat={"€"+props.cost}/>
+        </div>
+        <div className="flex justify-start items-start md:pl-24 pl-2">
+          <CostBubbleLarge heading="EU 5" stat={"€"+props.cost}/>
+        </div>
+        <div className="flex justify-end items-end md:pr-32 pr-2">
+          <CostBubbleMedium heading="EU 6" stat={"€"+props.cost}/>
+        </div>
+      </div>
+    );
+  }
 
-        <div className="absolute top-4 inset-0 space-y-6">
-          <div>
-            <h4>Non-EU Students</h4>
-            <h3>€20,100</h3>
-          </div>
-          <div>
-            <h4>EU Students</h4>
-            <h3>€{props.cost}</h3>
-          </div>
-          <div className="py-2">
-            <h4>In-class Hours</h4>
-            <h3>240 Hours</h3>
-          </div>
-          <div>
-            <h4>Cost Per Hour</h4>
-            <div className="space-y-2">
-              <div>
-                <h5>Non-EU Students</h5>
-                <h3>€83.75</h3>
-              </div>
-              <div>
-                <h5>EU Students</h5>
-                <h3>€62.29</h3>
-              </div>
-            </div>
-          </div>
+  function CostBubbleLarge(props) {
+    return(
+      <div className="rounded-full md:w-64 md:h-64 h-40 w-40 text-center text-white flex items-center justify-center bg-blue-500 shadow-xl">
+        <div>
+          <div className="md:text-3xl text-2xl font-semibold">{props.heading}</div>
+          <div className="md:text-5xl text-xl font-semibold">{props.stat}</div>
+        </div>
+      </div>
+    );
+  }
+
+  function CostBubbleMedium(props) {
+    return(
+      <div className="rounded-full md:h-48 md:w-48 h-36 w-36 text-center text-white flex items-center justify-center bg-blue-500 shadow-xl">
+        <div>
+          <div className="md:text-3xl text-2xl font-semibold">{props.heading}</div>
+          <div className="md:text-5xl text-xl font-semibold">{props.stat}</div>
         </div>
       </div>
     );
