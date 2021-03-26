@@ -55,9 +55,9 @@ const Course = ({ match }) => {
         <div className="py-2 px-4 text-white">
           <div className="text-5xl inline-block">
             {props.data.title},{" "}
-            <div className="text-3xl inline-block">{props.data.type}</div>
+            <div className="text-3xl inline-block capitalize">{props.data.type}</div>
           </div>
-          <div className="text-3xl">{props.data.host}</div>
+          <div className="text-3xl capitalize">{props.data.host}</div>
         </div>
       </div>
     );
@@ -160,24 +160,37 @@ const Course = ({ match }) => {
 
   function CostTab(props) {
     return (
-      <div className="flex-grid gap-4 grid-cols-2 p-8 bg-gradient-to-t from-blue-400 to-white-500">
-        <div className="flex justify-start items-start md:pl-40 pl-2">
-          <CostBubbleLarge className="object-scale-down" heading="Non-EU 1" stat="€20,100"/>
+      <div className="flex-grid xl:grid gap-4 grid-cols-2 p-8 bg-gradient-to-t from-blue-400 to-white-500 space-y-8">
+
+        <div className="flex justify-center items-center md:justify-start md:items-start md:px-32">
+          <div className="md:mt-0 -mt-48">
+            <CostBubbleMedium heading="Yearly Fees"/>
+          </div>
+          <div className="md:pt-64 pt-64 md:-ml-64 -ml-32 md:mt-0">
+            <CostBubbleLarge heading="EU Students" stat={"€"+props.cost}/>
+          </div>
+          <div className="md:pt-32 pt-8 md:-ml-16 -ml-24">
+            <CostBubbleLarge heading="Non-EU Students" stat="€20,100"/>
+          </div>
         </div>
-        <div className="flex justify-end items-end md:pr-24 pr-2">
-          <CostBubbleMedium heading="EU 2" stat={"€"+props.cost}/>
+
+        <div className="flex justify-center items-center md:justify-end md:items-end md:px-32">
+          <div className="md:pb-24 md:-mr-24 -mr-20">
+            <CostBubbleLarge heading="EU Students" stat="62.29"/>
+          </div>
+          <div className="md:pb-64 pb-60 md:-mr-28 -mr-32">
+            <CostBubbleMedium heading="Cost Per Hour"/>
+          </div>
+          <div className="md:pt-64 pt-60">
+            <CostBubbleLarge heading="Non-EU Students" stat="€83.75"/>
+          </div>
         </div>
-        <div className="flex justify-start items-start md:pl-16 pl-0">
-          <CostBubbleMedium heading="EU 3" stat={"€"+props.cost}/>
-        </div>
-        <div className="flex justify-end items-end md:pr-4 pr-2">
-          <CostBubbleLarge heading="EU 4" stat={"€"+props.cost}/>
-        </div>
-        <div className="flex justify-start items-start md:pl-24 pl-2">
-          <CostBubbleLarge heading="EU 5" stat={"€"+props.cost}/>
-        </div>
-        <div className="flex justify-end items-end md:pr-32 pr-2">
-          <CostBubbleMedium heading="EU 6" stat={"€"+props.cost}/>
+
+        <div className="flex justify-center items-center lg:justify-start lg:items-start lg:px-80">
+          <div>
+            <CostBubbleLarge heading="In-class Hours" stat="240 Hours"/>
+          </div>
+
         </div>
       </div>
     );
@@ -185,7 +198,7 @@ const Course = ({ match }) => {
 
   function CostBubbleLarge(props) {
     return(
-      <div className="rounded-full md:w-64 md:h-64 h-40 w-40 text-center text-white flex items-center justify-center bg-blue-500 shadow-xl">
+      <div className="rounded-full md:w-64 md:h-64 h-40 w-40 text-center text-white flex items-center justify-center bg-blue-500">
         <div>
           <div className="md:text-3xl text-2xl font-semibold">{props.heading}</div>
           <div className="md:text-5xl text-xl font-semibold">{props.stat}</div>
@@ -196,9 +209,9 @@ const Course = ({ match }) => {
 
   function CostBubbleMedium(props) {
     return(
-      <div className="rounded-full md:h-48 md:w-48 h-36 w-36 text-center text-white flex items-center justify-center bg-blue-500 shadow-xl">
+      <div className="rounded-full md:h-48 md:w-48 h-36 w-36 text-center text-white flex items-center justify-center bg-blue-500">
         <div>
-          <div className="md:text-3xl text-2xl font-semibold">{props.heading}</div>
+          <div className="md:text-3xl text-xl font-semibold">{props.heading}</div>
           <div className="md:text-5xl text-xl font-semibold">{props.stat}</div>
         </div>
       </div>
