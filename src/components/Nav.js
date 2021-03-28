@@ -13,6 +13,17 @@ import { auth, signInWithGoogle } from "../firebase";
 
 const _Nav = () => {
   const user = useContext(UserContext);
+  var pic = "";
+  var name = "";
+  var add = "";
+  if (user) {
+    let { photoURL, displayName, email } = user;
+    pic = photoURL;
+    name = displayName;
+    add = email;
+  }
+  const navTitle =  "Hey, " + name;
+
 
   return (
     <div className="flexnone">
@@ -48,7 +59,7 @@ const _Nav = () => {
                 </Form>
               </Nav> */}
               <Nav bg="primary" variant="dark">
-                <NavDropdown title="My Account" id="basic-nav-dropdown">
+                <NavDropdown title={navTitle} id="basic-nav-dropdown">
                   <NavDropdown.Item as={Link} to="/profile" href="/profile">
                     Profile
                   </NavDropdown.Item>

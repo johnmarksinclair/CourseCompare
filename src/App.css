@@ -268,3 +268,12 @@
   justify-content: center;
   align-items: center;
 }
+
+.flexbox-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.icon{
+  padding-left: 1rem;
+}

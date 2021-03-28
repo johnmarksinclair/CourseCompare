@@ -4,6 +4,8 @@ import { getUserReviews } from "../backendCalls/UserCalls";
 import ReviewSection from "./ReviewSection";
 import { Card } from "react-bootstrap";
 import SignIn from "./SignIn";
+import {TwitterShareButton, FacebookShareButton, FacebookIcon, TwitterIcon, LinkedinIcon, WhatsappIcon} from "react-share";
+
 
 const Profile = () => {
   const user = useContext(UserContext);
@@ -52,8 +54,19 @@ const Profile = () => {
                     <div className="font-semibold text-2xl">{name}</div>
                   </Card.Title>
                   <Card.Text className="pb-1.5">{add}</Card.Text>
+                  <Card.Text class="italic pt-4">Share this website with your friends!</Card.Text>
+                  <div class="flexbox-container">
+                  <FacebookIcon class="pl-2" size={50} round={true} />
+                  <TwitterShareButton url={"https://www.google.com/"} title= "Check this out!">
+                  <TwitterIcon class="pl-2" size={50} round={true} />
+                  </TwitterShareButton>
+                  <LinkedinIcon class="pl-2" size={50} round={true} />
+                  <WhatsappIcon class="pl-2" size={50} round={true} />
+                  </div>
                 </Card.Body>
               </Card>
+              
+
             </div>
 
             <ReviewSection reviewData={reviews} profile={true} />
