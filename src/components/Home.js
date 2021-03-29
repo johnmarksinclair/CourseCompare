@@ -16,9 +16,9 @@ const Home = () => {
           <div className="flex flex-col justify-center homeblock">
             <div className="col-sm-12 col-md-10 col-xl-8">
               <TextAnimation text="Make the right decision."
-               font="text-gray-800 font-semibold text-5xl"/>
+                font="text-gray-800 font-semibold text-5xl"/>
               <TextAnimation text="We at CourseCompare are here to help you make the right decision when it comes to your degree" 
-              font="text-gray-600 font-semibold text-2xl pt-6"/>
+                font="text-gray-600 font-semibold text-2xl pt-6"/>
             </div>
           </div>
         </div>
@@ -52,15 +52,14 @@ const Home = () => {
             <div className="col-sm-10 col-md-8 flex flex-col items-center">
               <div>
                 <TextAnimation text="Start exploring our courses on the courses page"
-                font="text-gray-600 font-semibold text-2xl"/>
+                 font="text-gray-600 font-semibold text-2xl"/>
               </div>
             </div>
           ) : (
             <div className="col-sm-10 col-md-8 flex flex-col items-center">
               <div>
-                <div className="text-gray-600 font-semibold text-2xl">
-                  Sign in below to take control of your course decision
-                </div>
+                <TextAnimation text="Sign in below to take control of your course decision"
+                  font = "text-gray-600 font-semibold text-2xl"/>
               </div>
               <div className="pt-4">
                 <button
