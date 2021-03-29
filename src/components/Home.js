@@ -9,16 +9,16 @@ import TextAnimation from "../components/TextAnimation";
 
 const Home = () => {
   const user = useContext(UserContext);
-
   return (
     <div className="col">
       <div className="row">
         <div className="col-sm-12 col-lg-5 pt-10 flex flex-col justify-center hometext">
           <div className="flex flex-col justify-center homeblock">
             <div className="col-sm-12 col-md-10 col-xl-8">
-              <TextAnimation text='Make the right decision.' style='text-gray-800 font-semibold text-5xl'/>
+              <TextAnimation text='Make the right decision.'
+               font={"text-gray-800 font-semibold text-5xl"}/>
               <TextAnimation text='We at CourseCompare are here to help you make the right decision when it comes to your degree' 
-              style='text-gray-600 font-semibold text-2xl pt-6'/>
+              font={"text-gray-600 font-semibold text-2xl pt-6"}/>
             </div>
           </div>
         </div>
@@ -40,7 +40,7 @@ const Home = () => {
             <div className="col-sm-12 col-md-8">
               <TextAnimation text='We let students rate their modules and courses to provide you
                 with the information you need to make your choice'
-                style='text-gray-600 font-semibold text-2xl pb-10'/>
+                font={"text-gray-600 font-semibold text-2xl pb-10"}/>
             </div>
           </div>
         </div>
@@ -52,7 +52,7 @@ const Home = () => {
             <div className="col-sm-10 col-md-8 flex flex-col items-center">
               <div>
                 <TextAnimation text='Start exploring our courses on the courses page'
-                style='text-gray-600 font-semibold text-2xl'/>
+                font={"text-gray-600 font-semibold text-2xl"}/>
               </div>
             </div>
           ) : (
