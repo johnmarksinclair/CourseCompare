@@ -66,7 +66,7 @@ const CourseSearch = () => {
                 <div className="col-4 py-8">
                   <div className="title">{course.title}</div>
                   <div>{course.host}</div>
-                  <div>Rating: {course.rating}</div>
+                  {/* <div>Rating: {course.rating}</div> */}
                 </div>
                 <div className="col-5 py-8">
                   <div>{course.type}</div>

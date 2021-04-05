@@ -8,6 +8,17 @@ export const addModule = async (doc) => {
   modulesRef.add(doc);
 };
 
+export const getModule = async (passedID) => {
+  let snapshot = await modulesRef.where("__name__", "==", passedID).get();
+  let arr = [];
+  snapshot.forEach((doc) => {
+    let obj = createModuleObj(doc);
+    //console.log(courseObj);
+    arr.push(obj);
+  });
+  return arr;
+};
+
 // returns the modules associated with a passed courseID
 export const getCourseModules = async (passedID) => {
   const snapshot = await modulesRef.where("courseID", "==", passedID).get();
@@ -32,7 +43,7 @@ export const editModule = async (passedID, edit) => {
   docRef.get().then((doc) => {
     if (doc) {
       docRef.update(temp);
-    }else {
+    } else {
       console.log("Error: Module not Found");
     }
   });

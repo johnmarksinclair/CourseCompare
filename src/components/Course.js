@@ -1,10 +1,12 @@
 import { Tab, Tabs } from "react-bootstrap";
 import { Progress, Statistic } from "semantic-ui-react";
 import { useEffect, useState, useContext } from "react";
+import { Link } from "react-router-dom";
 import { UserContext } from "../providers/UserProvider";
 import SignIn from "./SignIn";
 import { getCourse } from "../backendCalls/CourseCalls";
 import { getCourseReviews } from "../backendCalls/ReviewCalls";
+import { getCourseModules } from "../backendCalls/ModuleCalls";
 import collegePicture from "../assets/trinity.jpg";
 import Cost_Tab_Circle from "../assets/Cost-Tab-Circle.svg";
 import Data_Ring from "../assets/Data-Ring.svg";
@@ -15,6 +17,7 @@ const Course = ({ match }) => {
   const user = useContext(UserContext);
   const [courseData, setCourseData] = useState({});
   const [reviewData, setReviewData] = useState([]);
+  const [moduleData, setModuleData] = useState([]);
   const [courseRating, setRating] = useState(0);
 
   useEffect(() => {
@@ -40,6 +43,16 @@ const Course = ({ match }) => {
     else setRating(0);
     setReviewData(revArr);
     // console.log(revArr);
+    let modArr = [];
+    let modules = await getCourseModules(id);
+    if (modules) {
+      modules.forEach((mod) => {
+        modArr.push(mod);
+      });
+    }
+    // console.log(modArr);
+    if (modArr.length > 0) setModuleData(modArr);
+    else setModuleData([moduleError]);
   };
 
   const error = {
@@ -50,6 +63,15 @@ const Course = ({ match }) => {
     length: "",
     cost: "",
     rating: 0,
+  };
+
+  const moduleError = {
+    courseID: "",
+    description: "",
+    id: "",
+    lecturer: "",
+    rating: "",
+    title: "Error - No Available Modules",
   };
 
   const PageTop = () => {
@@ -98,6 +120,14 @@ const Course = ({ match }) => {
     );
   };
 
+  const ModuleButton = ({ mod }) => {
+    return (
+      <div className="py-1">
+        <Link to={`/modules/${mod.id}`}>{mod.title}</Link>
+      </div>
+    );
+  };
+
   const OverviewTab = () => {
     return (
       <div className="w-full p-4">
@@ -131,23 +161,10 @@ const Course = ({ match }) => {
               <div className="col-12 text-2xl pb-2">Course Modules</div>
             </div>
             <div className="row">
-              <div className="col-sm-12 col-md-6 pb-2">
-                <div className="text-xl py-2">Semester 1 (6 modules)</div>
-                <p>• Introduction to Finance I</p>
-                <p>• Introduction to Computing I</p>
-                <p>• Introduction to Programming I</p>
-                <p>• Information Management</p>
-                <p>• IT Systems</p>
-                <p>• Business and Technology</p>
-              </div>
-              <div className="col-sm-12 col-md-6">
-                <div className="text-xl py-2">Semester 2 (6 modules)</div>
-                <p>• Introduction to Finance II</p>
-                <p>• Introduction to Computing II</p>
-                <p>• Introduction to Programming II</p>
-                <p>• Database and Systems Management</p>
-                <p>• Concurrent Systems {"&"} Operation Systems</p>
-                <p>• Financial Mathematics</p>
+              <div className="px-6 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
+                {moduleData.map((mod) => (
+                  <ModuleButton mod={mod} key={mod.id} />
+                ))}
               </div>
             </div>
           </div>
@@ -155,25 +172,6 @@ const Course = ({ match }) => {
       </div>
     );
   };
-
-  // function RatingBar(props) {
-  //   return (
-  //     /* Please don't mess with this */
-  //     <div class="sm:w-32 sm:w-96">
-  //       <img
-  //         class="absolute h-32 w-32 shadow-md rounded-full"
-  //         src={circle}
-  //         alt=""
-  //       />
-  //       <h1 class="absolute py-9 px-8 text-white text-5xl">{props.rating}</h1>
-  //       <div class="py-14">
-  //         <div class="shadow-lg rounded-lg">
-  //           <ProgressBar class="absolute" animated now={props.rating * 20} />
-  //         </div>
-  //       </div>
-  //     </div>
-  //   );
-  // }
 
   const CostTab = () => {
     return (
