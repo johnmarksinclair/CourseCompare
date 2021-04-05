@@ -1,17 +1,29 @@
-import { Tab, Tabs, ProgressBar } from "react-bootstrap";
-// import ReactStoreIndicator from "react-score-indicator";
-import { useEffect, useState } from "react";
+import { Tab, Tabs } from "react-bootstrap";
+import { Progress, Statistic } from "semantic-ui-react";
+import { useEffect, useState, useContext } from "react";
+import { Link } from "react-router-dom";
+import { UserContext } from "../providers/UserProvider";
+import SignIn from "./SignIn";
 import { getCourse } from "../backendCalls/CourseCalls";
 import { getCourseReviews } from "../backendCalls/ReviewCalls";
+<<<<<<< HEAD
 import college from "../assets/trinity.jpg";
 // import circle from "../assets/blue_circle.png";
+=======
+import { getCourseModules } from "../backendCalls/ModuleCalls";
+import collegePicture from "../assets/trinity.jpg";
+import Cost_Tab_Circle from "../assets/Cost-Tab-Circle.svg";
+>>>>>>> 4af9708f901a667be6a4637fd0685af62b630822
 import Data_Ring from "../assets/Data-Ring.svg";
 import Arrow from "../assets/Blue-Arrow.svg";
 import ReviewSection from "./ReviewSection";
 
 const Course = ({ match }) => {
+  const user = useContext(UserContext);
   const [courseData, setCourseData] = useState({});
   const [reviewData, setReviewData] = useState([]);
+  const [moduleData, setModuleData] = useState([]);
+  const [courseRating, setRating] = useState(0);
 
   useEffect(() => {
     updateData();
@@ -25,13 +37,27 @@ const Course = ({ match }) => {
     else setCourseData(error);
     let revs = await getCourseReviews(id);
     let revArr = [];
+    let ratingTotal = 0;
     if (revs) {
       revs.forEach((review) => {
+        ratingTotal += Number.parseFloat(review.rating);
         revArr.push(review);
       });
     }
+    if (revArr.length > 0) setRating((ratingTotal / revArr.length).toFixed(1));
+    else setRating(0);
     setReviewData(revArr);
     // console.log(revArr);
+    let modArr = [];
+    let modules = await getCourseModules(id);
+    if (modules) {
+      modules.forEach((mod) => {
+        modArr.push(mod);
+      });
+    }
+    // console.log(modArr);
+    if (modArr.length > 0) setModuleData(modArr);
+    else setModuleData([moduleError]);
   };
 
   const error = {
@@ -44,46 +70,66 @@ const Course = ({ match }) => {
     rating: 0,
   };
 
-  function PageTop(props) {
+  const moduleError = {
+    courseID: "",
+    description: "",
+    id: "",
+    lecturer: "",
+    rating: "",
+    title: "Error - No Available Modules",
+  };
+
+  const PageTop = () => {
     return (
       <div className="rounded-lg bg-blue-500 shadow-md">
         <img
           className="sm:h-32 md:h-96 w-full object-cover rounded-t-lg"
-          src={college}
+          src={collegePicture}
           alt=""
         />
         <div className="py-2 px-4 text-white">
           <div className="text-5xl inline-block">
+<<<<<<< HEAD
             {props.data.title},{" "}
             <div className="text-3xl inline-block capitalize">{props.data.type}</div>
           </div>
           <div className="text-3xl capitalize">{props.data.host}</div>
+=======
+            {courseData.title},{" "}
+            <div className="text-3xl inline-block">{courseData.type}</div>
+          </div>
+          <div className="text-3xl">{courseData.host}</div>
+>>>>>>> 4af9708f901a667be6a4637fd0685af62b630822
         </div>
       </div>
     );
-  }
+  };
 
-  function Description(props) {
+  const Description = () => {
     return (
       <div className="px-2 py-2 md:px-4 md:py-4 text-gray-600">
         <h3 className="text-3xl">Course Description</h3>
-        <p className="text-md">{props.data.description}</p>
+        <p className="text-md">{courseData.description}</p>
       </div>
     );
-  }
+  };
 
-  function CourseTabs(props) {
+  const CourseTabs = () => {
     return (
       <div>
         <Tabs defaultActiveKey="Overview">
           <Tab eventKey="Overview" title="Overview">
+<<<<<<< HEAD
             <OverviewTab className="px-2"
               rating={props.data.rating}
               length={props.data.length}
             />
+=======
+            <OverviewTab rating={courseRating} length={courseData.length} />
+>>>>>>> 4af9708f901a667be6a4637fd0685af62b630822
           </Tab>
           <Tab eventKey="Cost" title="Cost">
-            <CostTab cost={props.data.cost} />
+            <CostTab cost={courseData.cost} />
           </Tab>
           <Tab eventKey="Graduates" title="Graduates">
             <GraduateTab className="px-2"/>
@@ -91,20 +137,40 @@ const Course = ({ match }) => {
         </Tabs>
       </div>
     );
-  }
+  };
 
-  function OverviewTab(props) {
+  const ModuleButton = ({ mod }) => {
+    return (
+      <div className="py-1">
+        <Link to={`/modules/${mod.id}`}>{mod.title}</Link>
+      </div>
+    );
+  };
+
+  const OverviewTab = () => {
     return (
       <div className="w-full p-4">
         <div className="row">
           <div className="col-sm-12 col-lg-4 space-y-8">
-            <div className="text-2xl">Course Length: {props.length}</div>
-            <div className="space-y-2 pb-8">
-              <div className="text-2xl pb-2">Average Rating:</div>
-              <div className="sm:pr-0 lg:pr-16">
-                <ProgressBar now={props.rating} label={props.rating} max={5} />
-                {/* <RatingBar rating={props.rating} /> */}
-                {/* <ReactStoreIndicator value={props.rating} maxValue={5} /> */}
+            <div className="text-2xl">Course Length: {courseData.length}</div>
+            <div className="space-y-2 pb-10">
+              <Progress
+                percent={courseRating * 20}
+                // label={courseRating}
+                // size="big"
+                indicating
+              />
+              <div className="flex justify-center items-center">
+                <Statistic.Group>
+                  <Statistic>
+                    <Statistic.Value>{courseRating}/5</Statistic.Value>
+                    <Statistic.Label>User Rating</Statistic.Label>
+                  </Statistic>
+                  <Statistic>
+                    <Statistic.Value>{reviewData.length}</Statistic.Value>
+                    <Statistic.Label>User Reviews</Statistic.Label>
+                  </Statistic>
+                </Statistic.Group>
               </div>
             </div>
           </div>
@@ -114,51 +180,19 @@ const Course = ({ match }) => {
               <div className="col-12 text-2xl pb-2">Course Modules</div>
             </div>
             <div className="row">
-              <div className="col-sm-12 col-md-6">
-                <div className="text-xl pb-2">Semester 1 (6 modules)</div>
-                <p>• Introduction to Finance I</p>
-                <p>• Introduction to Computing I</p>
-                <p>• Introduction to Programming I</p>
-                <p>• Information Management</p>
-                <p>• IT Systems</p>
-                <p>• Business and Technology</p>
-              </div>
-              <div className="col-sm-12 col-md-6">
-                <div className="text-xl pb-2">Semester 2 (6 modules)</div>
-                <p>• Introduction to Finance II</p>
-                <p>• Introduction to Computing II</p>
-                <p>• Introduction to Programming II</p>
-                <p>• Database and Systems Management</p>
-                <p>• Concurrent Systems {"&"} Operation Systems</p>
-                <p>• Financial Mathematics</p>
+              <div className="px-6 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
+                {moduleData.map((mod) => (
+                  <ModuleButton mod={mod} key={mod.id} />
+                ))}
               </div>
             </div>
           </div>
         </div>
       </div>
     );
-  }
+  };
 
-  // function RatingBar(props) {
-  //   return (
-  //     /* Please don't mess with this */
-  //     <div class="sm:w-32 sm:w-96">
-  //       <img
-  //         class="absolute h-32 w-32 shadow-md rounded-full"
-  //         src={circle}
-  //         alt=""
-  //       />
-  //       <h1 class="absolute py-9 px-8 text-white text-5xl">{props.rating}</h1>
-  //       <div class="py-14">
-  //         <div class="shadow-lg rounded-lg">
-  //           <ProgressBar class="absolute" animated now={props.rating * 20} />
-  //         </div>
-  //       </div>
-  //     </div>
-  //   );
-  // }
-
-  function CostTab(props) {
+  const CostTab = () => {
     return (
       <div className="flex-grid xl:grid gap-4 grid-cols-2 p-8 bg-gradient-to-t from-blue-400 to-white-500 space-y-8">
 
@@ -166,8 +200,14 @@ const Course = ({ match }) => {
           <div className="md:mt-0 -mt-48">
             <CostBubbleMedium heading="Yearly Fees"/>
           </div>
+<<<<<<< HEAD
           <div className="md:pt-64 pt-64 md:-ml-64 -ml-32 md:mt-0">
             <CostBubbleLarge heading="EU Students" stat={"€"+props.cost}/>
+=======
+          <div>
+            <h4>EU Students</h4>
+            <h3>€{courseData.cost}</h3>
+>>>>>>> 4af9708f901a667be6a4637fd0685af62b630822
           </div>
           <div className="md:pt-32 pt-8 md:-ml-16 -ml-24">
             <CostBubbleLarge heading="Non-EU Students" stat="€20,100"/>
@@ -216,9 +256,9 @@ const Course = ({ match }) => {
         </div>
       </div>
     );
-  }
+  };
 
-  function GraduateTab() {
+  const GraduateTab = () => {
     return (
       <div className="py-2 text-gray-600 text-md text-center">
         <div className="md:flex justify-center md:space-x-16">
@@ -277,9 +317,9 @@ const Course = ({ match }) => {
         </div>
       </div>
     );
-  }
+  };
 
-  function DataRing(props) {
+  const DataRing = (props) => {
     return (
       <div className="relative text-grey text-md text-center">
         <img className="inline w-80 h-80" src={Data_Ring} alt="" />
@@ -293,9 +333,9 @@ const Course = ({ match }) => {
         </div>
       </div>
     );
-  }
+  };
 
-  function SalarySection(props) {
+  const SalarySection = (props) => {
     return (
       <div className="px-4 text-center py-24">
         <div className="inline-block space-x-2">
@@ -314,16 +354,26 @@ const Course = ({ match }) => {
         </div>
       </div>
     );
-  }
+  };
 
   return (
-    <div className="p-2 space-y-4 divide-y divide-gray-300 ">
-      <PageTop data={courseData} />
-      <div className="block rounded-lg shadow-md">
-        <Description data={courseData} />
-        <CourseTabs data={courseData} />
-      </div>
-      <ReviewSection data={reviewData} />
+    <div>
+      {user ? (
+        <div className="p-2 space-y-4 divide-y divide-gray-300 ">
+          <PageTop />
+          <div className="block rounded-lg shadow-md">
+            <Description />
+            <CourseTabs />
+          </div>
+          <ReviewSection
+            reviewData={reviewData}
+            courseData={courseData}
+            profile={false}
+          />
+        </div>
+      ) : (
+        <SignIn />
+      )}
     </div>
   );
 };

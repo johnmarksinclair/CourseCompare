@@ -240,3 +240,31 @@
   padding-left: 10px;
   padding-right: 10px;
 }
+
+.header {
+  background-image: url(https://www.irishcentral.com/uploads/article/117267/Trinity_College_Dublin_front_square_Getty.jpg?t=1580294284);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 60% 23%;
+  position: relative;
+  height: 175px;
+  text-align: left;
+}
+
+.floatdown {
+  border-radius: 50%;
+  position: absolute;
+  width: 90px;
+  height: 90px;
+  border: 2px solid #ddd;
+  top: 125px;
+  left: 20px;
+}
+
+.editpromt {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
