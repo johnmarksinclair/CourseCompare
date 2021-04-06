@@ -6,14 +6,9 @@ import { UserContext } from "../providers/UserProvider";
 import SignIn from "./SignIn";
 import { getCourse } from "../backendCalls/CourseCalls";
 import { getCourseReviews } from "../backendCalls/ReviewCalls";
-<<<<<<< HEAD
-import college from "../assets/trinity.jpg";
-// import circle from "../assets/blue_circle.png";
-=======
 import { getCourseModules } from "../backendCalls/ModuleCalls";
 import collegePicture from "../assets/trinity.jpg";
 import Cost_Tab_Circle from "../assets/Cost-Tab-Circle.svg";
->>>>>>> 4af9708f901a667be6a4637fd0685af62b630822
 import Data_Ring from "../assets/Data-Ring.svg";
 import Arrow from "../assets/Blue-Arrow.svg";
 import ReviewSection from "./ReviewSection";
@@ -89,17 +84,10 @@ const Course = ({ match }) => {
         />
         <div className="py-2 px-4 text-white">
           <div className="text-5xl inline-block">
-<<<<<<< HEAD
-            {props.data.title},{" "}
-            <div className="text-3xl inline-block capitalize">{props.data.type}</div>
-          </div>
-          <div className="text-3xl capitalize">{props.data.host}</div>
-=======
             {courseData.title},{" "}
             <div className="text-3xl inline-block">{courseData.type}</div>
           </div>
           <div className="text-3xl">{courseData.host}</div>
->>>>>>> 4af9708f901a667be6a4637fd0685af62b630822
         </div>
       </div>
     );
@@ -119,14 +107,7 @@ const Course = ({ match }) => {
       <div>
         <Tabs defaultActiveKey="Overview">
           <Tab eventKey="Overview" title="Overview">
-<<<<<<< HEAD
-            <OverviewTab className="px-2"
-              rating={props.data.rating}
-              length={props.data.length}
-            />
-=======
             <OverviewTab rating={courseRating} length={courseData.length} />
->>>>>>> 4af9708f901a667be6a4637fd0685af62b630822
           </Tab>
           <Tab eventKey="Cost" title="Cost">
             <CostTab cost={courseData.cost} />
@@ -200,14 +181,9 @@ const Course = ({ match }) => {
           <div className="md:mt-0 -mt-48">
             <CostBubbleMedium heading="Yearly Fees"/>
           </div>
-<<<<<<< HEAD
-          <div className="md:pt-64 pt-64 md:-ml-64 -ml-32 md:mt-0">
-            <CostBubbleLarge heading="EU Students" stat={"€"+props.cost}/>
-=======
           <div>
             <h4>EU Students</h4>
             <h3>€{courseData.cost}</h3>
->>>>>>> 4af9708f901a667be6a4637fd0685af62b630822
           </div>
           <div className="md:pt-32 pt-8 md:-ml-16 -ml-24">
             <CostBubbleLarge heading="Non-EU Students" stat="€20,100"/>
