@@ -8,7 +8,6 @@ import { getCourse } from "../backendCalls/CourseCalls";
 import { getCourseReviews } from "../backendCalls/ReviewCalls";
 import { getCourseModules } from "../backendCalls/ModuleCalls";
 import collegePicture from "../assets/trinity.jpg";
-import Cost_Tab_Circle from "../assets/Cost-Tab-Circle.svg";
 import Data_Ring from "../assets/Data-Ring.svg";
 import Arrow from "../assets/Blue-Arrow.svg";
 import ReviewSection from "./ReviewSection";
@@ -104,7 +103,7 @@ const Course = ({ match }) => {
 
   const CourseTabs = () => {
     return (
-      <div className="px-2">
+      <div>
         <Tabs defaultActiveKey="Overview">
           <Tab eventKey="Overview" title="Overview">
             <OverviewTab rating={courseRating} length={courseData.length} />
@@ -113,7 +112,7 @@ const Course = ({ match }) => {
             <CostTab cost={courseData.cost} />
           </Tab>
           <Tab eventKey="Graduates" title="Graduates">
-            <GraduateTab />
+            <GraduateTab className="px-2"/>
           </Tab>
         </Tabs>
       </div>
@@ -175,39 +174,56 @@ const Course = ({ match }) => {
 
   const CostTab = () => {
     return (
-      <div className="relative text-white text-md text-center">
-        <img
-          className="xl:pl-8 place-self-center object-cover h-full"
-          src={Cost_Tab_Circle}
-          alt=""
-        />
+      <div className="flex-grid xl:grid gap-4 grid-cols-2 p-8 bg-gradient-to-t from-blue-400 to-white-500 space-y-8">
 
-        <div className="absolute top-4 inset-0 space-y-6">
-          <div>
-            <h4>Non-EU Students</h4>
-            <h3>€20,100</h3>
+        <div className="flex justify-center items-center md:justify-start md:items-start md:px-32">
+          <div className="md:mt-0 -mt-48">
+            <CostBubbleMedium heading="Yearly Fees"/>
           </div>
-          <div>
-            <h4>EU Students</h4>
-            <h3>€{courseData.cost}</h3>
+          <div className="md:pt-32 pt-64 md:-ml-16 -ml-24">
+            <CostBubbleLarge heading="EU Students" stat={"€" + courseData.cost}/>
           </div>
-          <div className="py-2">
-            <h4>In-class Hours</h4>
-            <h3>240 Hours</h3>
+          <div className="md:pt-32 pt-0 md:-ml-16 -ml-24">
+            <CostBubbleLarge heading="Non-EU Students" stat="€20,100"/>
           </div>
-          <div>
-            <h4>Cost Per Hour</h4>
-            <div className="space-y-2">
-              <div>
-                <h5>Non-EU Students</h5>
-                <h3>€83.75</h3>
-              </div>
-              <div>
-                <h5>EU Students</h5>
-                <h3>€62.29</h3>
-              </div>
-            </div>
+        </div>
+
+        <div className="flex justify-center items-center md:justify-end md:items-end md:px-32">
+          <div className="md:pb-24 md:-mr-24 -mr-20">
+            <CostBubbleLarge heading="EU Students" stat="€62.29"/>
           </div>
+          <div className="md:pb-64 pb-60 md:-mr-28 -mr-32">
+            <CostBubbleMedium heading="Cost Per Hour"/>
+          </div>
+          <div className="md:pt-64 pt-60">
+            <CostBubbleLarge heading="Non-EU Students" stat="€83.75"/>
+          </div>
+        </div>
+
+        <div className="flex justify-center items-center">
+          <CostBubbleLarge heading="In-class Hours" stat="240 Hours"/>
+        </div>
+      </div>
+    );
+  };
+
+  function CostBubbleLarge(props) {
+    return(
+      <div className="rounded-full md:w-64 md:h-64 h-40 w-40 text-center text-white flex items-center justify-center bg-blue-500">
+        <div>
+          <div className="md:text-3xl text-2xl font-semibold px-2">{props.heading}</div>
+          <div className="md:text-5xl text-xl font-semibold px-2">{props.stat}</div>
+        </div>
+      </div>
+    );
+  }
+
+  function CostBubbleMedium(props) {
+    return(
+      <div className="rounded-full md:h-48 md:w-48 h-36 w-36 text-center text-white flex items-center justify-center bg-blue-500">
+        <div>
+          <div className="md:text-3xl text-xl font-semibold px-2">{props.heading}</div>
+          <div className="md:text-5xl text-xl font-semibold px-2">{props.stat}</div>
         </div>
       </div>
     );

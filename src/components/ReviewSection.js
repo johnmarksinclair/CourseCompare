@@ -11,6 +11,8 @@ import {
 import Slider from "react-input-slider";
 import pencil from "../assets/pencil.svg";
 import trash from "../assets/trash.svg";
+import thumbUp from "../assets/Thumb_up.svg";
+import thumbDown from "../assets/Thumb_down.svg";
 
 const ReviewSection = (props) => {
   let reviewData = props.reviewData;
@@ -176,7 +178,25 @@ const ReviewSection = (props) => {
                   </div>
                 </div>
               ) : (
-                <div>{data.body}</div>
+                <div>
+                  <div>{data.body}</div>
+                  <div className="pt-2 flex">
+                    <div className="col flex justify-center">
+                    <Button
+                      variant="light"
+                    >
+                      <img src={thumbUp} alt="" width="100%" />
+                    </Button>
+                    </div>
+                    <div className="col flex justify-center">
+                    <Button
+                      variant="light"
+                    >
+                      <img src={thumbDown} alt="" width="100%" />
+                    </Button>
+                    </div>
+                  </div>
+                </div>
               )}
             </Card.Text>
           </Card.Body>
