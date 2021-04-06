@@ -210,7 +210,7 @@ const Course = ({ match }) => {
         </div>
       </div>
     );
-  }
+  };
 
   function CostBubbleLarge(props) {
     return(
