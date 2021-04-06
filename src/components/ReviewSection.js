@@ -176,7 +176,26 @@ const ReviewSection = (props) => {
                   </div>
                 </div>
               ) : (
-                <div>{data.body}</div>
+                <div>
+                  <div>{data.body}</div>
+                  <div className="inline-flex pt-3">
+                    <button className="font-thin bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-1 px-2 rounded-l">
+                      <svg xmlns="http://www.w3.org/2000/svg" 
+                        width="16" height="16" viewBox="0 0 24 24" 
+                        fill="none" stroke="#000000" stroke-width="2" 
+                        stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M18 15l-6-6-6 6"/></svg>
+                    </button>
+                    <button className="font-thin bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-1 px-2 rounded-r">
+                      <svg xmlns="http://www.w3.org/2000/svg"
+                        width="16" height="16" viewBox="0 0 24 24" 
+                        fill="none" stroke="#000000" stroke-width="2" 
+                        stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M6 9l6 6 6-6"/>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
               )}
             </Card.Text>
           </Card.Body>

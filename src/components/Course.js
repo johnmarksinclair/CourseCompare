@@ -181,18 +181,17 @@ const Course = ({ match }) => {
           <div className="md:mt-0 -mt-48">
             <CostBubbleMedium heading="Yearly Fees"/>
           </div>
-          <div>
-            <h4>EU Students</h4>
-            <h3>€{courseData.cost}</h3>
+          <div className="md:pt-32 pt-64 md:-ml-16 -ml-24">
+            <CostBubbleLarge heading="EU Students" stat={"€" + courseData.cost}/>
           </div>
-          <div className="md:pt-32 pt-8 md:-ml-16 -ml-24">
+          <div className="md:pt-32 pt-0 md:-ml-16 -ml-24">
             <CostBubbleLarge heading="Non-EU Students" stat="€20,100"/>
           </div>
         </div>
 
         <div className="flex justify-center items-center md:justify-end md:items-end md:px-32">
           <div className="md:pb-24 md:-mr-24 -mr-20">
-            <CostBubbleLarge heading="EU Students" stat="62.29"/>
+            <CostBubbleLarge heading="EU Students" stat="€62.29"/>
           </div>
           <div className="md:pb-64 pb-60 md:-mr-28 -mr-32">
             <CostBubbleMedium heading="Cost Per Hour"/>
@@ -202,11 +201,8 @@ const Course = ({ match }) => {
           </div>
         </div>
 
-        <div className="flex justify-center items-center lg:justify-start lg:items-start lg:px-80">
-          <div>
-            <CostBubbleLarge heading="In-class Hours" stat="240 Hours"/>
-          </div>
-
+        <div className="flex justify-center items-center">
+          <CostBubbleLarge heading="In-class Hours" stat="240 Hours"/>
         </div>
       </div>
     );
