@@ -8,7 +8,6 @@ import { getCourse } from "../backendCalls/CourseCalls";
 import { getCourseReviews } from "../backendCalls/ReviewCalls";
 import { getCourseModules } from "../backendCalls/ModuleCalls";
 import collegePicture from "../assets/trinity.jpg";
-import Cost_Tab_Circle from "../assets/Cost-Tab-Circle.svg";
 import Data_Ring from "../assets/Data-Ring.svg";
 import Arrow from "../assets/Blue-Arrow.svg";
 import ReviewSection from "./ReviewSection";
