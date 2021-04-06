@@ -211,8 +211,8 @@ const Course = ({ match }) => {
     return(
       <div className="rounded-full md:w-64 md:h-64 h-40 w-40 text-center text-white flex items-center justify-center bg-blue-500">
         <div>
-          <div className="md:text-3xl text-2xl font-semibold">{props.heading}</div>
-          <div className="md:text-5xl text-xl font-semibold">{props.stat}</div>
+          <div className="md:text-3xl text-2xl font-semibold px-2">{props.heading}</div>
+          <div className="md:text-5xl text-xl font-semibold px-2">{props.stat}</div>
         </div>
       </div>
     );
@@ -222,8 +222,8 @@ const Course = ({ match }) => {
     return(
       <div className="rounded-full md:h-48 md:w-48 h-36 w-36 text-center text-white flex items-center justify-center bg-blue-500">
         <div>
-          <div className="md:text-3xl text-xl font-semibold">{props.heading}</div>
-          <div className="md:text-5xl text-xl font-semibold">{props.stat}</div>
+          <div className="md:text-3xl text-xl font-semibold px-2">{props.heading}</div>
+          <div className="md:text-5xl text-xl font-semibold px-2">{props.stat}</div>
         </div>
       </div>
     );

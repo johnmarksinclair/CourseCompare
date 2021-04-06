@@ -11,6 +11,8 @@ import {
 import Slider from "react-input-slider";
 import pencil from "../assets/pencil.svg";
 import trash from "../assets/trash.svg";
+import thumbUp from "../assets/Thumb_up.svg";
+import thumbDown from "../assets/Thumb_down.svg";
 
 const ReviewSection = (props) => {
   let reviewData = props.reviewData;
@@ -178,22 +180,21 @@ const ReviewSection = (props) => {
               ) : (
                 <div>
                   <div>{data.body}</div>
-                  <div className="inline-flex pt-3">
-                    <button className="font-thin bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-1 px-2 rounded-l">
-                      <svg xmlns="http://www.w3.org/2000/svg" 
-                        width="16" height="16" viewBox="0 0 24 24" 
-                        fill="none" stroke="#000000" stroke-width="2" 
-                        stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M18 15l-6-6-6 6"/></svg>
-                    </button>
-                    <button className="font-thin bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-1 px-2 rounded-r">
-                      <svg xmlns="http://www.w3.org/2000/svg"
-                        width="16" height="16" viewBox="0 0 24 24" 
-                        fill="none" stroke="#000000" stroke-width="2" 
-                        stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M6 9l6 6 6-6"/>
-                      </svg>
-                    </button>
+                  <div className="pt-2 flex">
+                    <div className="col flex justify-center">
+                    <Button
+                      variant="light"
+                    >
+                      <img src={thumbUp} alt="" width="100%" />
+                    </Button>
+                    </div>
+                    <div className="col flex justify-center">
+                    <Button
+                      variant="light"
+                    >
+                      <img src={thumbDown} alt="" width="100%" />
+                    </Button>
+                    </div>
                   </div>
                 </div>
               )}
