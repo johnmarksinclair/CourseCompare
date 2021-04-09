@@ -1,6 +1,10 @@
 import { useContext } from "react";
 import { UserContext } from "../providers/UserProvider";
 import SignIn from "./SignIn";
+import aib from "../assets/aib.png";
+import boi from "../assets/boi.png";
+import ptsb from "../assets/ptsb.png";
+import ub from "../assets/ub.png";
 
 const Loans = () => {
   const user = useContext(UserContext);
@@ -8,7 +12,7 @@ const Loans = () => {
     return (
       <div className="shadow-lg rounded-xl overflow-hidden max-w-full h-full hover:bg-gray-100">
         <img
-          className="object-cover object-center w-full max-h-48"
+          className="object-cover object-center w-full max-h-60"
           src={loan.imgLink}
           alt="bankLogo"
         ></img>
@@ -18,7 +22,7 @@ const Loans = () => {
           <div className="pt-2 flex justify-center">
             <div>
               <button
-                className="bg-blue-500 hover:bg-blue-400 text-white font-semibold py-2 px-4 border-b-4 border-blue-700 hover:border--500 blue rounded-lg inline-block"
+                className="homebtn bump"
                 onClick={() => window.open(loan.link)}
               >
                 Learn More
@@ -37,7 +41,7 @@ const Loans = () => {
     descript:
       "Discounted variable rate of 5.6% Annual Percentage Rate (APR). Flexible repayment options – choose to repay weekly, fortnightly or monthly. Choose to repay your loan over 1 to 5 years. Maximum loan amount of €14,000. Option to defer the first 12 months repayments only (optional, only if repaid monthly).",
     imgLink:
-      "https://yt3.ggpht.com/-pjfLA95zsVE/AAAAAAAAAAI/AAAAAAAAAAA/iSoLPl32Udw/s900-c-k-no/photo.jpg",
+      boi
   };
 
   const loan2 = {
@@ -46,7 +50,7 @@ const Loans = () => {
     descript:
       "Competitive interest rate for new loans at 8.15%, APR (Annual Percentage Rate) of 8.45%, subject to variation Loan terms from one to five years. You make repayments on the loan every month which are made up of the amount you borrowed plus interest. You can make extra payments at any time with no penalty. We may need a parent or guardian to guarantee the loan.",
     imgLink:
-      "https://upload.wikimedia.org/wikipedia/en/thumb/4/4b/Allied_Irish_Banks_logo.svg/220px-Allied_Irish_Banks_logo.svg.png",
+      aib
   };
 
   const loan3 = {
@@ -55,7 +59,7 @@ const Loans = () => {
     descript:
       "Borrow between €2,500 and €75,000. Borrow for almost any purpose. Monthly repayments with no upfront fees or charges. Apply online.",
     imgLink:
-      "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.northernsound.ie%2Fwp-content%2Fuploads%2Fsites%2F20%2FUlster-Bank-534x462.jpeg&f=1&nofb=1",
+      ub
   };
 
   const loan4 = {
@@ -64,7 +68,7 @@ const Loans = () => {
     descript:
       "Approval online or in-app in minutes for loans from €1,500 up to €25,000. If approved you can get your loan paid into your account instantly. Competitive rates.",
     imgLink:
-      "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fmedia.central.ie%2Fmedia%2Fimages%2Fp%2FPermanentTSBLogo_large.jpg&f=1&nofb=1",
+      ptsb
   };
 
   return (
