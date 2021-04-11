@@ -25,10 +25,11 @@ export const getCourseReviews = async (passedID) => {
 };
 
 // updates the body of a review
-export const editReview = async (passedID, edit) => {
+export const editReview = async (passedID, rating, body) => {
   let docRef = await reviewsRef.doc(passedID);
   let temp = {};
-  temp.body = edit;
+  temp.rating = rating;
+  temp.body = body;
   docRef.get().then((doc) => {
     if (doc) {
       //console.log(doc.id, "=>", doc.data().body);

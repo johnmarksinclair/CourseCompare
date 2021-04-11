@@ -1,8 +1,16 @@
 import { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../providers/UserProvider";
-import { confirmAlert } from "react-confirm-alert";
-import { Dropdown, Tab, Tabs, Card, Form, Button } from "react-bootstrap";
+// import { confirmAlert } from "react-confirm-alert";
+import {
+  Dropdown,
+  Tab,
+  Tabs,
+  Card,
+  Form,
+  Button,
+  Modal,
+} from "react-bootstrap";
 import {
   addReview,
   editReview,
@@ -19,7 +27,7 @@ const ReviewSection = (props) => {
   let courseData = props.courseData;
   let profileScreen = props.profile;
   const [bodyInput, setBodyInput] = useState("");
-  const [ratingInput, setRatingInput] = useState(0.0);
+  const [ratingInput, setRatingInput] = useState((0).toFixed(1));
 
   const user = useContext(UserContext);
   const [pic, setPic] = useState("");
@@ -27,6 +35,15 @@ const ReviewSection = (props) => {
   const [add, setAdd] = useState("");
 
   const [buttonText, setButtonText] = useState("Submit");
+
+  const [currentID, setCurrentID] = useState("");
+  const [deleting, setDeleting] = useState(false);
+  const [modalShow, setModalShow] = useState(false);
+  const handleModalClose = () => setModalShow(false);
+  const handleModalShow = (id) => {
+    setModalShow(true);
+    setCurrentID(id);
+  };
   // const [newest, setNewest] = useState(true);
 
   useEffect(() => {
@@ -74,58 +91,90 @@ const ReviewSection = (props) => {
     else if (e.target.id === "body") setBodyInput(e.target.value);
   };
 
-  const editConfirm = (passedID) => {
-    confirmAlert({
-      customUI: ({ onClose }) => {
-        return (
-          <div className="custom-ui editpromt space-y-4">
-            {/* <div className="w-100 flex">
-              <input
-                id="rate"
-                placeholder="Edit your rating here..."
-                className="w-100 border p-2 rounded"
+  const ConfirmModal = () => {
+    const [newrating, setNewRating] = useState((0).toFixed(1));
+    return (
+      <>
+        {deleting ? (
+          <Modal show={modalShow} onHide={handleModalClose} centered>
+            <Modal.Header closeButton>
+              <Modal.Title>
+                Are you sure you want to delete this review?
+              </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>This action cannot be undone</Modal.Body>
+            <Modal.Footer>
+              <Button variant="light" onClick={handleModalClose}>
+                Close
+              </Button>
+              <Button
+                variant="danger"
+                onClick={() => {
+                  handleModalClose();
+                  deleteReview(currentID);
+                  setCurrentID("");
+                }}
+              >
+                Delete
+              </Button>
+            </Modal.Footer>
+          </Modal>
+        ) : (
+          <Modal show={modalShow} onHide={handleModalClose} centered>
+            <Modal.Body>
+              <div className="pb-3 flex justify-center items-center space-x-4">
+                <Slider
+                  axis="x"
+                  x={newrating}
+                  xmin={0}
+                  xmax={5}
+                  xstep={0.1}
+                  styles={{
+                    active: {
+                      backgroundColor: "rgb(18, 206, 175)",
+                    },
+                    thumb: {
+                      backgroundColor: "rgb(18, 206, 175)",
+                    },
+                  }}
+                  onChange={({ x }) => setNewRating(x.toFixed(1))}
+                />
+                <div className="w-12">
+                  <Form.Control
+                    className="text-center"
+                    value={newrating}
+                    disabled
+                  />
+                </div>
+              </div>
+              <textarea
+                id="edit"
+                placeholder="Edit your review here..."
+                className="w-100 h-48 border p-2 rounded"
               />
-            </div> */}
-            <textarea
-              id="edit"
-              placeholder="Edit your review here..."
-              className="w-100 h-48 border p-2 rounded"
-            />
-            <div className="w-4/5 flex justify-around items-center">
-              <Button onClick={onClose}>Cancel</Button>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="light" onClick={handleModalClose}>
+                Close
+              </Button>
               <Button
                 onClick={() => {
+                  handleModalClose();
                   let Filter = require("bad-words");
                   let cleanedBody = new Filter().clean(
                     document.getElementById("edit").value
                   );
-                  editReview(passedID, cleanedBody);
-                  onClose();
+                  editReview(currentID, newrating, cleanedBody);
+                  setCurrentID("");
                 }}
               >
                 Submit
               </Button>
-            </div>
-          </div>
-        );
-      },
-    });
-  };
-
-  const deleteConfirm = (passedID) => {
-    confirmAlert({
-      title: "Delete review?",
-      message: "",
-      buttons: [
-        {
-          label: "No",
-        },
-        {
-          label: "Yes",
-          onClick: () => deleteReview(passedID),
-        },
-      ],
-    });
+            </Modal.Footer>
+          </Modal>
+        )}
+      </>
+    );
   };
 
   const NoReviews = () => {
@@ -162,7 +211,11 @@ const ReviewSection = (props) => {
                     <div className="col flex justify-center">
                       <Button
                         variant="light"
-                        onClick={() => editConfirm(data.id)}
+                        onClick={() => {
+                          // editConfirm(data.id);
+                          setDeleting(false);
+                          handleModalShow(data.id);
+                        }}
                       >
                         <img src={pencil} alt="" width="100%" />
                       </Button>
@@ -170,7 +223,11 @@ const ReviewSection = (props) => {
                     <div className="col flex justify-center">
                       <Button
                         variant="light"
-                        onClick={() => deleteConfirm(data.id)}
+                        onClick={() => {
+                          setDeleting(true);
+                          handleModalShow(data.id);
+                          //deleteConfirm(data.id);
+                        }}
                       >
                         <img src={trash} alt="" width="100%" />
                       </Button>
@@ -182,18 +239,14 @@ const ReviewSection = (props) => {
                   <div>{data.body}</div>
                   <div className="pt-2 flex">
                     <div className="col flex justify-center">
-                    <Button
-                      variant="light"
-                    >
-                      <img src={thumbUp} alt="" width="100%" />
-                    </Button>
+                      <Button variant="light">
+                        <img src={thumbUp} alt="" width="100%" />
+                      </Button>
                     </div>
                     <div className="col flex justify-center">
-                    <Button
-                      variant="light"
-                    >
-                      <img src={thumbDown} alt="" width="100%" />
-                    </Button>
+                      <Button variant="light">
+                        <img src={thumbDown} alt="" width="100%" />
+                      </Button>
                     </div>
                   </div>
                 </div>
@@ -237,6 +290,7 @@ const ReviewSection = (props) => {
               <NoReviews />
             )}
           </div>
+          <ConfirmModal />
         </div>
       ) : (
         <div className="h-96">
