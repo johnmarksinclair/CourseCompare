@@ -47,6 +47,7 @@ const Course = ({ match }) => {
     if (modules) {
       modules.forEach((mod) => {
         modArr.push(mod);
+        console.log(mod);
       });
     }
     // console.log(modArr);
@@ -112,7 +113,7 @@ const Course = ({ match }) => {
             <CostTab cost={courseData.cost} />
           </Tab>
           <Tab eventKey="Graduates" title="Graduates">
-            <GraduateTab className="px-2"/>
+            <GraduateTab className="px-2" />
           </Tab>
         </Tabs>
       </div>
@@ -175,59 +176,69 @@ const Course = ({ match }) => {
   const CostTab = () => {
     return (
       <div className="flex-grid xl:grid gap-4 grid-cols-2 p-8 bg-gradient-to-t from-blue-400 to-white-500 space-y-8">
-
         <div className="flex justify-center items-center md:justify-start md:items-start md:px-32">
           <div className="md:mt-0 -mt-48">
-            <CostBubbleMedium heading="Yearly Fees"/>
+            <CostBubbleMedium heading="Yearly Fees" />
           </div>
           <div className="md:pt-32 pt-64 md:-ml-16 -ml-24">
-            <CostBubbleLarge heading="EU Students" stat={"€" + courseData.cost}/>
+            <CostBubbleLarge
+              heading="EU Students"
+              stat={"€" + courseData.cost}
+            />
           </div>
           <div className="md:pt-32 pt-0 md:-ml-16 -ml-24">
-            <CostBubbleLarge heading="Non-EU Students" stat="€20,100"/>
+            <CostBubbleLarge heading="Non-EU Students" stat="€20,100" />
           </div>
         </div>
 
         <div className="flex justify-center items-center md:justify-end md:items-end md:px-32">
           <div className="md:pb-24 md:-mr-24 -mr-20">
-            <CostBubbleLarge heading="EU Students" stat="€62.29"/>
+            <CostBubbleLarge heading="EU Students" stat="€62.29" />
           </div>
           <div className="md:pb-64 pb-60 md:-mr-28 -mr-32">
-            <CostBubbleMedium heading="Cost Per Hour"/>
+            <CostBubbleMedium heading="Cost Per Hour" />
           </div>
           <div className="md:pt-64 pt-60">
-            <CostBubbleLarge heading="Non-EU Students" stat="€83.75"/>
+            <CostBubbleLarge heading="Non-EU Students" stat="€83.75" />
           </div>
         </div>
 
         <div className="flex justify-center items-center">
-          <CostBubbleLarge heading="In-class Hours" stat="240 Hours"/>
+          <CostBubbleLarge heading="In-class Hours" stat="240 Hours" />
         </div>
       </div>
     );
   };
 
   function CostBubbleLarge(props) {
-    return(
+    return (
       <div className="rounded-full md:w-64 md:h-64 h-40 w-40 text-center text-white flex items-center justify-center bg-blue-500">
         <div>
-          <div className="md:text-3xl text-2xl font-semibold px-2">{props.heading}</div>
-          <div className="md:text-5xl text-xl font-semibold px-2">{props.stat}</div>
+          <div className="md:text-3xl text-2xl font-semibold px-2">
+            {props.heading}
+          </div>
+          <div className="md:text-5xl text-xl font-semibold px-2">
+            {props.stat}
+          </div>
         </div>
       </div>
     );
   }
 
   function CostBubbleMedium(props) {
-    return(
+    return (
       <div className="rounded-full md:h-48 md:w-48 h-36 w-36 text-center text-white flex items-center justify-center bg-blue-500">
         <div>
-          <div className="md:text-3xl text-xl font-semibold px-2">{props.heading}</div>
-          <div className="md:text-5xl text-xl font-semibold px-2">{props.stat}</div>
+          <div className="md:text-3xl text-xl font-semibold px-2">
+            {props.heading}
+          </div>
+          <div className="md:text-5xl text-xl font-semibold px-2">
+            {props.stat}
+          </div>
         </div>
       </div>
     );
-  };
+  }
 
   const GraduateTab = () => {
     return (
